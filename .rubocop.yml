@@ -1,0 +1,44 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - "tmp/**/*"
+    - "config/initializers/*"
+    - "vendor/**/*"
+    - "db/schema.rb"
+    - "db/migrate/*.rb"
+    - "bin/*"
+    - "app/helpers/devise_helper.rb"
+  DisplayCopNames: true
+  TargetRubyVersion: 2.7.1
+
+# 日本語でのコメントを許可
+AsciiComments:
+  Enabled: false
+
+# モジュール名::クラス名の定義を許可
+ClassAndModuleChildren:
+  Enabled: false
+
+# メソッド名のprefixに「set_」「get_」を許可
+AccessorMethodName:
+  Enabled: false
+
+# クラスにコメントを残さない
+Documentation:
+  Enabled: false
+
+# 「and」「or」の使用を許可
+AndOr:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'config/routes.rb'
+
+Metrics/AbcSize:
+  Max: 25
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

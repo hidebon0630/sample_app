@@ -1,0 +1,117 @@
+version: 2.1
+
+executors:
+    app_set:
+      working_directory: ~/sample_app
+      docker:
+        - image: circleci/ruby:2.7.1-node-browsers
+          environment:
+            - BUNDLER_VERSION: 2.1.4
+            - RAILS_ENV: test
+        - image: circleci/mysql:5.7
+          environment:
+            - MYSQL_ALLOW_EMPTY_PASSWORD: yes
+
+commands:
+  restore_rails_package:
+    description: bundle installの結果をリストア
+    steps:
+      - restore_cache:
+          name: リストア
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+  bundle_install:
+    description: bundle install
+    steps:
+      - run:
+          name: bundle install
+          command: |
+            gem install bundler -v 2.1.4
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+  install_dependencies:
+    description: 依存関係のインストール
+    steps:
+      - run:
+          name: install dependencies
+          command: yarn install
+  save_rails_package:
+    description: bundle installの結果をキャッシュ
+    steps:
+      - save_cache:
+          name: キャッシュ
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+  wait_mysql_run:
+    description: MysqlのDockerイメージが起動することを待機
+    steps:
+      - run:
+          name: Mysqlの起動を待機
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+  change_database_setup:
+    description: データベースのテスト環境を変更
+    steps:
+      - run:
+          name: database.ymlとdatabase.yml.ciの入れ替え
+          command: mv config/database.yml.ci config/database.yml
+  create_database:
+    description: データベースの作成
+    steps:
+      - run:
+          name: 作成
+          command: bundle exec rake db:create
+  setup_database:
+    description: データベースのセットアップ
+    steps:
+      - run:
+          name: セットアップ
+          command: bundle exec rake db:schema:load
+  run_rubocop:
+    description: Rubocopの起動
+    steps:
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+  run_rspec:
+    description: RSpecの起動
+    steps:
+      - run:
+          name: RSpec
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
+            bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              --format progress \
+              $TEST_FILES
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+jobs:
+  build_test:
+    executor:
+      name: app_set
+    steps:
+      - checkout
+      - restore_rails_package
+      - bundle_install
+      - install_dependencies
+      - save_rails_package
+      - wait_mysql_run
+      - change_database_setup
+      - create_database
+      - setup_database
+      - run_rubocop
+      - run_rspec
+
+workflows:
+  version: 2.1
+  test:
+    jobs:
+      - build_test
