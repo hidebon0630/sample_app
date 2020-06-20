@@ -78,3 +78,4 @@ gem 'faker'
 gem "cancancan"
 gem "rails_admin"
 gem 'font-awesome-sass'
+gem 'ransack'
