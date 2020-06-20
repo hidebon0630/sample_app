@@ -15,6 +15,22 @@
  */
 @import "bootstrap";
 
+.sm-page {
+  @extend .container-fluid;
+  max-width: 576px;
+  padding: 2rem;
+}
+
+.md-page {
+  @extend .container-fluid;
+  max-width: 768px;
+  padding: 2rem;
+}
+
+body {
+  padding-top: 60px;
+}
+
 .alert-notice {
   @extend .alert-info;
 }
