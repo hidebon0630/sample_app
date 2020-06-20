@@ -2,9 +2,7 @@ version: '3'
 services:
   db:
     image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: root
+    env_file: development.env
     ports:
       - "3306:3306"
     volumes:
@@ -22,6 +20,10 @@ services:
       - public_data:/sample_app/public
       - tmp_data:/sample_app/tmp
       - log_data:/sample_app/log
+      - gem_data:/usr/local/bundle
+    environment:
+      RUBYOPT: '-W:no-deprecated'
+    env_file: development.env
     ports:
       - "3000:3000"
     depends_on:
@@ -44,3 +46,4 @@ volumes:
   public_data:
   tmp_data:
   log_data:
+  gem_data:
