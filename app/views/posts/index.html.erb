@@ -1,0 +1,9 @@
+<% provide(:title, '全ての投稿') %>
+<div class="md-page">
+  <ul class="post-list jscroll">
+    <% @posts.each do |post| %>
+      <li><%= post.content %></li>
+    <% end %>
+    <%= paginate @posts %>
+  </ul>
+</div>
