@@ -22,6 +22,8 @@ services:
       - public_data:/sample_app/public
       - tmp_data:/sample_app/tmp
       - log_data:/sample_app/log
+    environment:
+      RUBYOPT: '-W:no-deprecated'
     ports:
       - "3000:3000"
     depends_on:
