@@ -75,3 +75,6 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'faker'
+gem "cancancan"
+gem "rails_admin"
+gem 'font-awesome-sass'

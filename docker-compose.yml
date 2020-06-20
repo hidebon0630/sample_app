@@ -22,6 +22,7 @@ services:
       - public_data:/sample_app/public
       - tmp_data:/sample_app/tmp
       - log_data:/sample_app/log
+      - gem_data:/usr/local/bundle
     environment:
       RUBYOPT: '-W:no-deprecated'
     ports:
@@ -46,3 +47,4 @@ volumes:
   public_data:
   tmp_data:
   log_data:
+  gem_data:
