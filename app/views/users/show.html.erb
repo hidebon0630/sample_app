@@ -1,7 +1,6 @@
-<%= @user.name %>
-
 <div class="md-page">
   <ul class="post-list jscroll">
+  <%= @user.name %>
   <% if @user.posts.any? %>
     <h3>posts (<%= @posts.count %>)</h3>
     <ul class="posts">
