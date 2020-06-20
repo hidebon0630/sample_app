@@ -106,5 +106,4 @@ RSpec.describe User, type: :model do
     user.valid?
     expect(user.errors[:password]).to include('は6文字以上で入力してください')
   end
-
 end
