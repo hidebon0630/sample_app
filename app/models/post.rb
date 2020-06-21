@@ -7,9 +7,8 @@ class Post < ApplicationRecord
   validate :image_size
 
   private
-    def image_size
-      if image_size > 5.megabytes
-        errors.add(:image, "should be less than 5MB")
-      end
-    end
+
+  def image_size
+    errors.add(:image, 'should be less than 5MB') if image_size > 5.megabytes
+  end
 end
