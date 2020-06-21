@@ -21,4 +21,5 @@ Rails.application.routes.draw do
     end
   end
   resources :posts
+  resources :relationships, only: %i[create destroy]
 end
