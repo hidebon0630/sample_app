@@ -5,6 +5,10 @@ class PostsController < ApplicationController
     @posts = Post.page(params[:page]).per(20)
   end
 
+  def new
+    @post = current_user.posts.build
+  end
+
   def show
     @post = Post.find(params[:id])
   end
