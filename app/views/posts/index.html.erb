@@ -2,7 +2,7 @@
 <div class="md-page">
   <ul class="post-list jscroll">
     <% @posts.each do |post| %>
-      <li><%= post.content %></li>
+      <%= image_tag post.image.url if post.image? %>
     <% end %>
     <%= paginate @posts %>
   </ul>

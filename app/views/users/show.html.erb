@@ -1,6 +1,8 @@
 <div class="md-page">
+  <li><%= @user.name %></li>
+  <%= render 'shared/stats' %>
+  <%= render 'follow_form' if user_signed_in? %>
   <ul class="post-list jscroll">
-  <%= @user.name %>
   <% if @user.posts.any? %>
     <h3>posts (<%= @posts.count %>)</h3>
     <ul class="posts">
