@@ -5,6 +5,9 @@
       <%= f.label :content %>
       <%= f.text_area :content, placeholder: "入力してください", class: 'form-control' %>
     </div>
+    <span>
+      <%= f.file_field :image %>
+    </span>
     <%= f.submit "投稿", class: "btn btn-primary btn-block" %>
   <% end %>
 </div>
