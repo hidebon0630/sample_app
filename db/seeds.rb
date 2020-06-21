@@ -12,7 +12,7 @@ User.create!(name: 'ゲストユーザー',
              password: 'password',
              password_confirmation: 'password')
 
-100.times do |n|
+10.times do |n|
   name = Faker::Name.name
   email = "sample-#{n + 1}@example.com"
   password = 'password'
@@ -23,7 +23,15 @@ User.create!(name: 'ゲストユーザー',
 end
 
 users = User.order(:created_at).take(6)
-30.times do
+3.times do
   content = Faker::Lorem.sentence(word_count: 5)
-  users.each { |user| user.posts.create!(content: content) }
+  image = "#{Rails.root}/db/fixtures/sample1.png"
+  users.each { |user| user.posts.create!(content: content, image: File.open(image)) }
 end
+
+users = User.all
+user  = users.first
+following = users[1..10]
+followers = users[1..10]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
