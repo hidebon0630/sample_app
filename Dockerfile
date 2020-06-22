@@ -10,6 +10,7 @@ RUN apk update && \
     apk upgrade && \
     apk add --no-cache \
         alpine-sdk \
+        bash \
         imagemagick \
         mysql-dev \
         mysql-client \
