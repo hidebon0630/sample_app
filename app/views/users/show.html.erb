@@ -9,7 +9,7 @@
   <ul class="post-list jscroll">
   投稿
   <% if @user.posts.any? %>
-    <h3>posts (<%= @posts.count %>)</h3>
+    <h3>posts (<%= @user.posts.count %>)</h3>
     <ul class="posts">
       <%= render @posts %>
     </ul>
