@@ -4,6 +4,7 @@ AllCops:
   Exclude:
     - "tmp/**/*"
     - "config/initializers/*"
+    - "config/puma.rb"
     - "vendor/**/*"
     - "db/schema.rb"
     - "db/migrate/*.rb"
