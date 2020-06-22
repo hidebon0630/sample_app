@@ -36,6 +36,7 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'config/routes.rb'
+    - 'lib/tasks/auto_annotate_models.rake'
 
 Metrics/AbcSize:
   Max: 25
