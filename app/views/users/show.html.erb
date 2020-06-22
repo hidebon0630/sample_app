@@ -1,8 +1,13 @@
 <div class="md-page">
+<div class="row">
+<aside class="col-md-4">
   <li><%= @user.name %></li>
   <%= render 'shared/stats' %>
   <%= render 'follow_form' if user_signed_in? %>
+</aside>
+<aside class="col-md-4">
   <ul class="post-list jscroll">
+  投稿
   <% if @user.posts.any? %>
     <h3>posts (<%= @posts.count %>)</h3>
     <ul class="posts">
@@ -10,5 +15,13 @@
     </ul>
     <%= paginate @posts %>
   <% end %>
+</aside>
+<aside class="col-md-4">
+  <h3>いいねしている投稿</h3>
+  <% @user.liked_posts.each do |post| %>
+    <%= image_tag post.image.url if post.image? %>
+  <% end %>
   </ul>
+</aside>
+</div>
 </div>
