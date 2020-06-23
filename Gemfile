@@ -85,3 +85,4 @@ gem 'kaminari'
 gem 'mini_magick'
 gem 'rails-i18n'
 gem 'rails_admin'
+gem "gretel"
