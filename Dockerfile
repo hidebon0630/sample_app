@@ -17,7 +17,10 @@ RUN bundle install
 ADD . $APP_ROOT
 RUN mkdir -p tmp/sockets
 
-RUN rails assets:precompile RAILS_ENV=production
+ENV RAILS_ENV production
 
-VOLUME /sample_app/public
-VOLUME /sample_app/tmp
+ARG RAILS_MASTER_KEY
+ENV RAILS_MASTER_KEY $RAILS_MASTER_KEY
+
+RUN RAILS_ENV=production bundle exec rake assets:precompile
+RUN rm -f tmp/pids/server.pid
