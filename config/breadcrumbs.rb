@@ -1,9 +1,9 @@
 crumb :root do
-  link "Home", root_path
+  link 'Home', root_path
 end
 
 crumb :users do
-  link "Users", users_path
+  link 'Users', users_path
   parent :root
 end
 
