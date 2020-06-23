@@ -56,7 +56,6 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'view_source_map'
 end
 
 group :test do
@@ -85,3 +84,4 @@ gem 'kaminari'
 gem 'mini_magick'
 gem 'rails-i18n'
 gem 'rails_admin'
+gem "chartkick"
