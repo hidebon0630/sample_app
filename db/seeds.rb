@@ -24,9 +24,10 @@ end
 
 users = User.order(:created_at).take(6)
 3.times do
+  title = Faker::Lorem.sentence(word_count: 3)
   content = Faker::Lorem.sentence(word_count: 5)
   image = "#{Rails.root}/db/fixtures/sample1.png"
-  users.each { |user| user.posts.create!(content: content, image: File.open(image)) }
+  users.each { |user| user.posts.create!(title: title, content: content, image: File.open(image)) }
 end
 
 users = User.all

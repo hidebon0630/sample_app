@@ -2,6 +2,7 @@
 <% breadcrumb :users %>
 <div class="md-page">
   <%= breadcrumbs pretext: "You are here:",separator: " &rsaquo; " %>
+  <%= column_chart User.pluck(:id, :name) %>
   <ul class="user-list jscroll">
     <% @users.each do |user| %>
       <li><%= link_to user.name, user %></li>
