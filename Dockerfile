@@ -16,8 +16,7 @@ RUN bundle install
 ADD . $APP_ROOT
 RUN mkdir -p tmp/sockets
 
-ARG RAILS_MASTER_KEY
-RUN RAILS_MASTER_KEY=${RAILS_MASTER_KEY} RAILS_ENV=production bundle exec rails assets:precompile
+RUN ASSETS_PRECOMPILE=1 SECRET_KEY_BASE=1 RAILS_ENV=production bundle exec rake assets:precompile
 
 VOLUME /sample_app/public
 VOLUME /sample_app/tmp
