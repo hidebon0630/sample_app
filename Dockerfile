@@ -5,6 +5,12 @@ RUN apt-get update -qq && \
                        libpq-dev \
                        nodejs
 
+
+RUN apt-get update && apt-get install -y curl apt-transport-https wget && \
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+apt-get update && apt-get install -y yarn
+
 RUN mkdir /sample_app
 ENV APP_ROOT /sample_app
 WORKDIR $APP_ROOT
@@ -16,7 +22,12 @@ RUN bundle install
 ADD . $APP_ROOT
 RUN mkdir -p tmp/sockets
 
-RUN ASSETS_PRECOMPILE=1 SECRET_KEY_BASE=1 RAILS_ENV=production bundle exec rake assets:precompile
+ENV RAILS_ENV production
+
+ARG RAILS_MASTER_KEY
+ENV RAILS_MASTER_KEY $RAILS_MASTER_KEY
+
+RUN RAILS_ENV=production bundle exec rake assets:precompile
 
 VOLUME /sample_app/public
 VOLUME /sample_app/tmp
