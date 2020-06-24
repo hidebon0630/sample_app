@@ -22,147 +22,78 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  it '投稿が有効' do
-    user = User.create(
+  before do
+    @user = User.create(
       name: 'tester',
       email: 'tester@example.com',
       password: 'password'
     )
 
-    post = user.posts.build(
+    @post = @user.posts.build(
       content: 'test',
       title: 'test',
       image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/sample1.png'))
     )
+  end
 
-    post.valid?
-    expect(post).to be_valid
+  it '投稿が有効' do
+    @post.valid?
+    expect(@post).to be_valid
   end
 
   it '内容が無い場合は無効' do
-    user = User.create(
-      name: 'tester',
-      email: 'tester@example.com',
-      password: 'password'
-    )
-
-    post = user.posts.build(
-      content: '',
-      title: 'test',
-      image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/sample1.png'))
-    )
-
-    post.valid?
-    expect(post.errors[:content]).to include('を入力してください')
+    @post.content = ""
+    @post.valid?
+    expect(@post.errors[:content]).to include('を入力してください')
   end
 
   it '内容が100文字以内場合は有効' do
-    user = User.create(
-      name: 'tester',
-      email: 'tester@example.com',
-      password: 'password'
-    )
-
-    post = user.posts.build(
-      content: 'a' * 100,
-      title: 'test',
-      image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/sample1.png'))
-    )
-
-    post.valid?
-    expect(post).to be_valid
+    @post.content = "a" * 100
+    @post.valid?
+    expect(@post).to be_valid
   end
 
   it '内容が101文字以上場合は無効' do
-    user = User.create(
-      name: 'tester',
-      email: 'tester@example.com',
-      password: 'password'
-    )
-
-    post = user.posts.build(
-      content: 'a' * 101,
-      title: 'test',
-      image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/sample1.png'))
-    )
-
-    post.valid?
-    expect(post.errors[:content]).to include('は100文字以内で入力してください')
+    @post.content = "a" * 101
+    @post.valid?
+    expect(@post.errors[:content]).to include('は100文字以内で入力してください')
   end
 
   it 'タイトルが無い場合は無効' do
-    user = User.create(
-      name: 'tester',
-      email: 'tester@example.com',
-      password: 'password'
-    )
-
-    post = user.posts.build(
-      content: 'test',
-      title: '',
-      image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/sample1.png'))
-    )
-
-    post.valid?
-    expect(post.errors[:title]).to include('を入力してください')
+    @post.title = ""
+    @post.valid?
+    expect(@post.errors[:title]).to include('を入力してください')
   end
 
-  it 'タイトルが16字以内の場合は有効' do
-    user = User.create(
-      name: 'tester',
-      email: 'tester@example.com',
-      password: 'password'
-    )
-
-    post = user.posts.build(
-      content: 'test',
-      title: 'a' * 15,
-      image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/sample1.png'))
-    )
-
-    post.valid?
-    expect(post).to be_valid
+  it 'タイトルが15字以内の場合は有効' do
+    @post.title = "a" * 15
+    @post.valid?
+    expect(@post).to be_valid
   end
 
-  it 'タイトルが16文字以上の場合は有効' do
-    user = User.create(
-      name: 'tester',
-      email: 'tester@example.com',
-      password: 'password'
-    )
-
-    post = user.posts.build(
-      content: 'test',
-      title: 'a' * 16,
-      image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/sample1.png'))
-    )
-
-    post.valid?
-    expect(post.errors[:title]).to include('は15文字以内で入力してください')
+  it 'タイトルが16文字以上の場合は無効' do
+    @post.title = "a" * 16
+    @post.valid?
+    expect(@post.errors[:title]).to include('は15文字以内で入力してください')
   end
 
   it '投稿が新しい順に並んでいる' do
-    user = User.create(
-      name: 'tester',
-      email: 'tester@example.com',
-      password: 'password'
-    )
 
-    user.posts.create(
+    @user.posts.create(
       content: 'test1',
       title: 'test1',
       image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/sample1.png')),
       created_at: 2.days.ago
     )
 
-    user.posts.create(
+    @user.posts.create(
       content: 'test2',
       title: 'test2',
       image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/sample1.png')),
       created_at: 5.minutes.ago
     )
 
-    most_recent_post = user.posts.create(
+    most_recent_post = @user.posts.create(
       content: 'test2',
       title: 'test2',
       image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/sample1.png')),

@@ -22,6 +22,7 @@ ja:
         sign_in_count: ログイン回数
         updated_at: 更新日
       post:
+        title: タイトル
         content: 内容
     models:
       user: ユーザ
