@@ -32,13 +32,13 @@ RSpec.describe User, type: :model do
   end
 
   it '50文字以下の名前は有効' do
-    user = FactoryBot.build(:user, name: "a" * 50 )
+    user = FactoryBot.build(:user, name: 'a' * 50)
     user.valid?
     expect(user).to be_valid
   end
 
   it '51文字以上の名前は無効' do
-    user = FactoryBot.build(:user, name: "a" * 51 )
+    user = FactoryBot.build(:user, name: 'a' * 51)
     user.valid?
     expect(user.errors[:name]).to include('は50文字以内で入力してください')
   end
@@ -50,14 +50,14 @@ RSpec.describe User, type: :model do
   end
 
   it '重複したメールアドレスは無効' do
-    FactoryBot.create(:user, email: "tester@example.com" )
-    user = FactoryBot.build(:user, email: "tester@example.com" )
+    FactoryBot.create(:user, email: 'tester@example.com')
+    user = FactoryBot.build(:user, email: 'tester@example.com')
     user.valid?
     expect(user.errors[:email]).to include('はすでに存在します')
   end
 
   it 'メールアドレスは小文字に変換' do
-    user = FactoryBot.build(:user, email: "TESTER@eXAmpLe.com" )
+    user = FactoryBot.build(:user, email: 'TESTER@eXAmpLe.com')
     user.valid?
     expect(user[:email]).to eq 'tester@example.com'
   end
@@ -75,13 +75,13 @@ RSpec.describe User, type: :model do
   end
 
   it '6文字以上のパスワードは有効' do
-    user = FactoryBot.build(:user, password: "a" * 6 )
+    user = FactoryBot.build(:user, password: 'a' * 6)
     user.valid?
     expect(user).to be_valid
   end
 
   it '5文字以下のパスワードは無効' do
-    user = FactoryBot.build(:user, password: "a" * 5 )
+    user = FactoryBot.build(:user, password: 'a' * 5)
     user.valid?
     expect(user.errors[:password]).to include('は6文字以上で入力してください')
   end
