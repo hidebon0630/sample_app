@@ -20,7 +20,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Post < ApplicationRecord
-  belongs_to :owner, class_name: "User", foreign_key: :user_id
+  belongs_to :owner, class_name: 'User', foreign_key: :user_id
   default_scope -> { order(created_at: :desc) }
   mount_uploader :image, ImageUploader
   validates :user_id, presence: true

@@ -42,43 +42,42 @@ RSpec.describe Post, type: :model do
   end
 
   it '内容が無い場合は無効' do
-    @post.content = ""
+    @post.content = ''
     @post.valid?
     expect(@post.errors[:content]).to include('を入力してください')
   end
 
   it '内容が100文字以内場合は有効' do
-    @post.content = "a" * 100
+    @post.content = 'a' * 100
     @post.valid?
     expect(@post).to be_valid
   end
 
   it '内容が101文字以上場合は無効' do
-    @post.content = "a" * 101
+    @post.content = 'a' * 101
     @post.valid?
     expect(@post.errors[:content]).to include('は100文字以内で入力してください')
   end
 
   it 'タイトルが無い場合は無効' do
-    @post.title = ""
+    @post.title = ''
     @post.valid?
     expect(@post.errors[:title]).to include('を入力してください')
   end
 
   it 'タイトルが15字以内の場合は有効' do
-    @post.title = "a" * 15
+    @post.title = 'a' * 15
     @post.valid?
     expect(@post).to be_valid
   end
 
   it 'タイトルが16文字以上の場合は無効' do
-    @post.title = "a" * 16
+    @post.title = 'a' * 16
     @post.valid?
     expect(@post.errors[:title]).to include('は15文字以内で入力してください')
   end
 
   it '投稿が新しい順に並んでいる' do
-
     @user.posts.create(
       content: 'test1',
       title: 'test1',
