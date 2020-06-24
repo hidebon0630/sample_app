@@ -16,7 +16,7 @@ ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
 RUN bundle install
 ADD . $APP_ROOT
 RUN mkdir -p tmp/sockets
-RUN yarn install --check-files
+RUN yarn install
 
 VOLUME /sample_app/public
 VOLUME /sample_app/tmp
