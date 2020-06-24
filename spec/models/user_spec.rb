@@ -21,8 +21,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
-
   it '名前が無い場合は無効' do
     user = FactoryBot.build(:user, name: nil)
     user.valid?
