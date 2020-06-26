@@ -2,21 +2,6 @@
 <h3><%= @post.user.email %></h3>
 <h3><%= @post.content %></h3>
 
-<h2>クエスチョン一覧</h2>
-<% @questions.each do |q| %>
-  <div>
-    <%= q.content %>
-    <hr>
-  </div>
-<% end %>
-
-<%= form_for [@post, @question] do |f| %>
-  <%= f.text_field :content %>
-  <%= f.hidden_field :post_id, value: @post.id %>
-  <br>
-  <%= f.submit '質問する' %>
-<% end %>
-
 <h2>コメント一覧</h2>
 <% @comments.each do |c| %>
   <div>

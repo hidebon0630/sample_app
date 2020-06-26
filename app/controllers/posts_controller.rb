@@ -14,8 +14,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comments = @post.comments
     @comment = current_user.comments.build
-    @questions = @post.questions
-    @question = current_user.questions.build
   end
 
   def edit

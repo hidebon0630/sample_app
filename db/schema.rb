@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_26_102045) do
+ActiveRecord::Schema.define(version: 2020_06_24_063024) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
@@ -42,16 +42,6 @@ ActiveRecord::Schema.define(version: 2020_06_26_102045) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "content"
-    t.bigint "post_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_questions_on_post_id"
-    t.index ["user_id"], name: "index_questions_on_user_id"
-  end
-
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -81,6 +71,4 @@ ActiveRecord::Schema.define(version: 2020_06_26_102045) do
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
-  add_foreign_key "questions", "posts"
-  add_foreign_key "questions", "users"
 end
