@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def create
-    @question = current_user.questions(question_params)
+    @question = current_user.questions.build(question_params)
     redirect_back(fallback_location: root_path) if @question.save
   end
 
