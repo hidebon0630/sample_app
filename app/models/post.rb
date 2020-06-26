@@ -20,6 +20,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Post < ApplicationRecord
+  belongs_to :user
   belongs_to :owner, class_name: 'User', foreign_key: :user_id
   default_scope -> { order(created_at: :desc) }
   mount_uploader :image, ImageUploader
@@ -30,6 +31,7 @@ class Post < ApplicationRecord
   has_many :likes
   has_many :liked_users, through: :likes, source: :user
   has_many :comments
+  has_many :questions
 
   private
 
