@@ -27,4 +27,5 @@ Rails.application.routes.draw do
     resources :questions, only: %i[create destroy]
   end
   resources :relationships, only: %i[create destroy]
+  resources :notifications, only: :index
 end
