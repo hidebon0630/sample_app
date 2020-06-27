@@ -24,9 +24,7 @@ RUN mkdir -p tmp/sockets
 
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
-ARG RAILS_ENV
-ENV RAILS_ENV ${RAILS_ENV}
-RUN rails assets:precompile
+RUN RAILS_ENV=production bundle exec rake assets:precompile
 RUN rm -f tmp/pids/server.pid
 
 VOLUME /sample_app/public
