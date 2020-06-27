@@ -1,7 +1,11 @@
 class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(comment_params)
-    redirect_back(fallback_location: root_path) if @comment.save
+    @post = @comment.post
+    return unless @comment.save
+
+    @post.create_notification_comment!(current_user, @comment.id)
+    redirect_back(fallback_location: root_path)
   end
 
   private
