@@ -16,7 +16,7 @@ Rails.application.routes.draw do
                registrations: 'users/registrations'
              }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users, only: %i[index show] do
+  resources :users do
     member do
       get :following, :followers
     end
@@ -28,4 +28,6 @@ Rails.application.routes.draw do
   end
   resources :relationships, only: %i[create destroy]
   resources :notifications, only: :index
+  resources :messages, only: [:create]
+  resources :rooms, only: [:create, :show]
 end
