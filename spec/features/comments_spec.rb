@@ -3,18 +3,13 @@ require 'rails_helper'
 RSpec.feature 'Comments', type: :feature do
   scenario 'コメント' do
     user = FactoryBot.create(:user)
-    post = FactoryBot.create(:post,
-                             title: 'タイトル',
-                             content: 'コメント機能のテストです。',
-                             owner: user,
-                             image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/sample1.png')))
+    post = FactoryBot.create(:post)
     post.comments.create!(content: 'コメント', user: post.owner)
 
     sign_in user
     visit root_path
     click_link href: post_path(post)
     expect(page).to have_content '投稿詳細ページ'
-    expect(page).to have_content 'コメント機能のテストです。'
     expect do
       fill_in '内容', with: ''
       click_button 'コメントする'
