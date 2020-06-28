@@ -1,19 +1,22 @@
+<% provide(:title, 'ユーザー詳細') %>
+<% breadcrumb :user_show %>
 <div class="md-page">
+<%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
 <div class="row">
 <aside class="col-md-4">
-  <li><%= @user.name %></li>
+  <li>ユーザー：<%= @user.name %></li>
   <%= render 'shared/stats' %>
   <%= render 'follow_form' if user_signed_in? %>
   <% unless @user.id == current_user.id %>
     <% if (current_user.following?(@user)) && (@user.following?(current_user))  %>
     <% if @is_room == true %>
-      <p class="user-show-room"><a href="/rooms/<%= @room_id %>" class="btn btn-primary btn-lg">チャットへ</a>
+      <p class="user-show-room"><a href="/rooms/<%= @room_id %>" class="btn btn-secondary btn-block">チャットへ</a>
     <% else %>
       <%= form_for @room do |f| %>
         <%= fields_for @entry do |e| %>
           <%= e.hidden_field :user_id, value: @user.id %>
         <% end %>
-        <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"%>
+        <%= f.submit "チャットを始める", class:"btn btn-secondary btn-block user-show-chat"%>
       <% end %>
     <% end %>
     <% end %>

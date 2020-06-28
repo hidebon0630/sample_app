@@ -33,6 +33,10 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :notifications, dependent: :destroy
 
+  def liked_by?(user)
+    likes.exists?(user_id: user.id)
+  end
+
   def create_notification_like!(current_user)
     temp = Notification.where(['visitor_id = ? and visited_id = ? and post_id = ? and action = ? ', current_user.id, user_id, id, 'like'])
     return unless temp.blank?
