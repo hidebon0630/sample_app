@@ -41,6 +41,12 @@ RSpec.describe Post, type: :model do
     expect(@post).to be_valid
   end
 
+  it '画像が無い場合は無効' do
+    @post.image = nil
+    @post.valid?
+    expect(@post.errors[:image]).to include('を入力してください')
+  end
+
   it '内容が無い場合は無効' do
     @post.content = ''
     @post.valid?

@@ -24,8 +24,6 @@ require 'rails_helper'
 RSpec.describe Comment, type: :model do
   it 'コメントファクトリが有効' do
     comment = FactoryBot.create(:comment)
-    puts "This post's comment is #{comment.post.inspect}"
-    puts "This post's user is #{comment.user.inspect}"
   end
 
   it '内容が無い場合は無効' do

@@ -27,6 +27,7 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 100 }
   validates :title, presence: true, length: { maximum: 15 }
+  validates :image, presence: true
   validate :image_size
   has_many :likes
   has_many :liked_users, through: :likes, source: :user

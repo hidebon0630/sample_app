@@ -5,9 +5,9 @@
   <ul class="post-list jscroll">
     <% if @posts.any? %>
       <%= render @posts %>
+      <%= paginate @posts %>
     <% else %>
       <p><%= '検索結果がありません' %></p>
     <% end %>
-    <%= paginate @posts %>
   </ul>
 </div>

@@ -7,7 +7,7 @@ RSpec.feature 'Comments', type: :feature do
     post.comments.create!(content: 'コメント', user: post.owner)
 
     sign_in user
-    visit root_path
+    visit posts_path
     click_link href: post_path(post)
     expect(page).to have_content '投稿詳細'
     expect do
