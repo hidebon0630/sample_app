@@ -1,32 +1,18 @@
 <% provide(:title, '投稿詳細') %>
 <% breadcrumb :post_show %>
 <div class="md-page">
-<%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
-<p>投稿詳細ページ</p>
-<p>投稿ユーザー：<%= link_to @post.user.name, user_path(@post.user) %></p>
-<p>タイトル：<%= @post.title %></p>
-<p>内容：<%= @post.content %></p>
-<%= image_tag @post.image.url if @post.image? %>
+  <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
+  <p>投稿ユーザー：<%= link_to @post.user.name, user_path(@post.user) %></p>
+  <p>タイトル：<%= @post.title %></p>
+  <p>内容：<%= @post.content %></p>
+  <p><%= image_tag @post.image.url if @post.image? %></p>
 
-
-<p>コメント一覧</p>
-<% @comments.each do |c| %>
-  <div>
-    <a href="/users/<%= @post.user.id %>"><%= c.user.email %></a>
-    <%= c.content %>
-    <hr>
-  </div>
-<% end %>
-
-<% if user_signed_in? %>
-  <%= form_for [@post, @comment] do |f| %>
-    <%= f.label :content %>
-    <%= f.text_field :content, placeholder: "30文字以内で入力してください",
-                               class: 'form-control',
-                               required: true %>
-    <%= f.hidden_field :post_id, value: @post.id %>
-    <br>
-    <%= f.submit 'コメントする' %>
+  <p>コメント一覧</p>
+  <% @comments.each do |comment| %>
+    <%= render "comment", comment: comment %>
   <% end %>
-<% end %>
+
+  <% if user_signed_in? %>
+    <%= render "comment_form" %>
+  <% end %>
 </div>

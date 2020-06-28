@@ -1,0 +1,9 @@
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.label :content %>
+  <%= f.text_field :content, placeholder: "30文字以内で入力してください",
+                             class: 'form-control',
+                             required: true %>
+  <%= f.hidden_field :post_id, value: @post.id %>
+  <br>
+  <%= f.submit 'コメントする' %>
+<% end %>

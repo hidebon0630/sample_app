@@ -1,9 +1,9 @@
 <li id="post-<%= post.id %>">
-  <li class="user">ユーザー：<%= post.user.name %></li>
-  <li class="content">
+  <span class="user">ユーザー：<%= post.user.name %></span>
+  <span class="content">
     投稿内容：<%= post.content %>
     <%= link_to image_tag(post.image.url), post %>
-  </li>
+  </span>
   <span class="timestamp">
   投稿時間：<%= time_ago_in_words(post.created_at) %>前
     <% if current_user == post.user %>

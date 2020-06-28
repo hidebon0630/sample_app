@@ -6,7 +6,7 @@
     <% if @posts.any? %>
       <%= render @posts %>
     <% else %>
-      <h1><%= '検索結果がありません。' %></h1>
+      <p><%= '検索結果がありません' %></p>
     <% end %>
     <%= paginate @posts %>
   </ul>
