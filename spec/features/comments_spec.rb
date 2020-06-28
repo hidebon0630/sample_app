@@ -1,14 +1,15 @@
 require 'rails_helper'
 
 RSpec.feature 'Comments', type: :feature do
-  scenario "コメント" do
+  scenario 'コメント' do
     user = FactoryBot.create(:user)
     post = FactoryBot.create(:post,
-      title: "タイトル",
-      content: "コメント機能のテストです。",
-      owner: user,
-      image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/sample1.png')) )
-    comment = post.comments.create!(content: "コメント", user: post.owner)
+                             title: 'タイトル',
+                             content: 'コメント機能のテストです。',
+                             owner: user,
+                             image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/sample1.png')))
+    post.comments.create!(content: 'コメント', user: post.owner)
+
     sign_in user
     visit root_path
     click_link href: post_path(post)
