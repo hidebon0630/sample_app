@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'posts#index'
+  root 'static_pages#home'
   get '/home', to: 'static_pages#home'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users,

@@ -2,7 +2,7 @@
   <span class="user"><%= link_to post.user.name, post.user %></span>
   <span class="content">
     <%= post.content %>
-    <%= image_tag post.image.url if post.image? %>
+    <%= link_to image_tag(post.image.url), post %>
   </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(post.created_at) %> ago.

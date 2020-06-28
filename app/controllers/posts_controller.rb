@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   before_action :correct_user, only: :destroy
 
   def index
-    @posts = Post.page(params[:page]).per(10)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result.page(params[:page])
   end
 
   def new
@@ -13,7 +14,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments
-    @comment = Comment.new
+    @comment = current_user.comments.build
   end
 
   def edit

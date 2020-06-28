@@ -1,10 +1,11 @@
 <% provide(:title, '全ての投稿') %>
 <div class="md-page">
+  <%= render 'search_form', url: posts_path, q: @q %>
   <ul class="post-list jscroll">
-    <% @posts.each do |post| %>
-      <% if post.image? %>
-        <li><%= link_to image_tag(post.image.url), post %></li>
-      <% end %>
+    <% if @posts.any? %>
+      <%= render @posts %>
+    <% else %>
+      <h1><%= '検索結果がありません。' %></h1>
     <% end %>
     <%= paginate @posts %>
   </ul>
