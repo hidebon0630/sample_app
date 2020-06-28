@@ -2,10 +2,13 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(comment_params)
     @post = @comment.post
-    return unless @comment.save
-
-    @post.create_notification_comment!(current_user, @comment.id)
-    redirect_back(fallback_location: root_path)
+    if @comment.save
+      redirect_back(fallback_location: root_path)
+      @post.create_notification_comment!(current_user, @comment.id)
+    else
+      flash[:notice] = "コメントに失敗しました。"
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   private

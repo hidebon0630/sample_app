@@ -24,6 +24,8 @@ ja:
       post:
         title: タイトル
         content: 内容
+      comment:
+        content: 内容
     models:
       user: ユーザ
   devise:

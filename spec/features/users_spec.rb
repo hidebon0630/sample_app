@@ -19,7 +19,7 @@ RSpec.feature 'Users', type: :feature do
     click_button "新規登録"
     expect(page).to have_content 'パスワード（確認用）とパスワードの入力が一致しません'
     fill_in "名前", with: "テストユーザー"
-    fill_in "メールアドレス", with: "tester1@example.com"
+    fill_in "メールアドレス", with: "tester@example.com"
     fill_in "パスワード", with: "password"
     fill_in "パスワード（確認用）", with: "password"
     click_button "新規登録"
