@@ -1,41 +1,29 @@
+<% provide(:title, 'ユーザー詳細') %>
+<% breadcrumb :user_show %>
 <div class="md-page">
-<div class="row">
-<aside class="col-md-4">
-  <li><%= @user.name %></li>
-  <%= render 'shared/stats' %>
-  <%= render 'follow_form' if user_signed_in? %>
-  <% unless @user.id == current_user.id %>
-    <% if (current_user.following?(@user)) && (@user.following?(current_user))  %>
-    <% if @is_room == true %>
-      <p class="user-show-room"><a href="/rooms/<%= @room_id %>" class="btn btn-primary btn-lg">チャットへ</a>
-    <% else %>
-      <%= form_for @room do |f| %>
-        <%= fields_for @entry do |e| %>
-          <%= e.hidden_field :user_id, value: @user.id %>
+  <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
+  <div class="row">
+    <aside class="col-md-4">
+      <li>ユーザー：<%= @user.name %></li>
+      <li>ユーザー：<%= @user.email %></li>
+      <%= render 'shared/stats' %>
+      <%= render 'follow_form' if user_signed_in? %>
+      <%= render 'chat' %>
+    </aside>
+    <aside class="col-md-4">
+      <ul class="post-list jscroll">
+        <% if @user.posts.any? %>
+          <%= render @posts %>
+          <%= paginate @posts %>
         <% end %>
-        <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"%>
+      </ul>
+    </aside>
+    <aside class="col-md-4">
+      <p>いいねしている投稿</p>
+      <% @user.liked_posts.each do |post| %>
+        <%= image_tag post.image.url if post.image? %>
       <% end %>
-    <% end %>
-    <% end %>
-  <% end %>
-</aside>
-<aside class="col-md-4">
-  <ul class="post-list jscroll">
-  投稿
-  <% if @user.posts.any? %>
-    <h3>posts (<%= @user.posts.count %>)</h3>
-    <ul class="posts">
-      <%= render @posts %>
-    </ul>
-    <%= paginate @posts %>
-  <% end %>
-</aside>
-<aside class="col-md-4">
-  <h3>いいねしている投稿</h3>
-  <% @user.liked_posts.each do |post| %>
-    <%= image_tag post.image.url if post.image? %>
-  <% end %>
-  </ul>
-</aside>
-</div>
+      </ul>
+    </aside>
+  </div>
 </div>

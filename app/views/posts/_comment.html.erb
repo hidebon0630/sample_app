@@ -1,0 +1,8 @@
+<li id="comment-<%= comment.id %>">
+  <span class="user">
+    <a href="/users/<%= @post.user.id %>"><%= comment.user.name %></a>
+  </span>
+  <span class="content">
+    <%= comment.content %>
+  </span>
+</li>

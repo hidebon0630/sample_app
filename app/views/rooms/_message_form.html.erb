@@ -1,0 +1,8 @@
+<%= form_for @message do |f| %>
+  <%= f.text_field :content,placeholder: "メッセージを入力してください",
+                             class: 'form-control',
+                             required: true %>
+  <%= f.hidden_field :room_id, :value => @room.id %>
+  <br>
+  <%= f.submit "投稿する" %>
+<% end %>

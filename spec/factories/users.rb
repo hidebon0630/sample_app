@@ -4,6 +4,7 @@
 #
 #  id                     :bigint           not null, primary key
 #  admin_flg              :boolean
+#  avatar                 :string(255)
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
 #  name                   :string(255)      default(""), not null
@@ -20,8 +21,24 @@
 #
 FactoryBot.define do
   factory :user, aliases: [:owner] do
-    name { 'tester' }
+    name { 'テストユーザー' }
     sequence(:email) { |n| "tester#{n}@example.com" }
     password { 'password' }
+
+    trait :sample do
+      name { 'サンプルユーザー' }
+      email { 'sample@example.com' }
+    end
+
+    trait :guest do
+      name { 'ゲストユーザー' }
+      email { 'guest@example.com' }
+    end
+
+    trait :admin do
+      name { '管理人' }
+      email { 'admin@example.com' }
+      admin_flg { 'true' }
+    end
   end
 end

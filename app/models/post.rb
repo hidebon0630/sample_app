@@ -27,11 +27,16 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 100 }
   validates :title, presence: true, length: { maximum: 15 }
+  validates :image, presence: true
   validate :image_size
   has_many :likes
   has_many :liked_users, through: :likes, source: :user
   has_many :comments
   has_many :notifications, dependent: :destroy
+
+  def liked_by?(user)
+    likes.exists?(user_id: user.id)
+  end
 
   def create_notification_like!(current_user)
     temp = Notification.where(['visitor_id = ? and visited_id = ? and post_id = ? and action = ? ', current_user.id, user_id, id, 'like'])

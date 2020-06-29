@@ -1,0 +1,6 @@
+<p>参加者</p>
+<% @entries.each do |e| %>
+  <a href="/users/<%= e.user.id %>">
+    <li><%= e.user.name%>さん</li>
+  </a>
+<% end %>

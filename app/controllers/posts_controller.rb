@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   before_action :correct_user, only: :destroy
 
   def index
-    @posts = Post.page(params[:page]).per(20)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result.page(params[:page]).per(10)
   end
 
   def new

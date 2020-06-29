@@ -1,21 +1,15 @@
-<h1>投稿詳細ページ</h1>
-<h3><%= @post.user.email %></h3>
-<h3><%= @post.content %></h3>
+<% provide(:title, '投稿詳細') %>
+<% breadcrumb :post_show %>
+<div class="md-page">
+  <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
+  <%= render "posts/post", post: @post %>
 
-<h2>コメント一覧</h2>
-<% @comments.each do |c| %>
-  <div>
-    <a href="/users/<%= @post.user.id %>"><%= c.user.email %></a>
-    <%= c.content %>
-    <hr>
-  </div>
-<% end %>
+  <p>コメント一覧</p>
+  <% @comments.each do |comment| %>
+    <%= render "comment", comment: comment %>
+  <% end %>
 
-<%= form_for [@post, @comment] do |f| %>
-  <%= f.text_field :content %>
-  <%= f.hidden_field :post_id, value: @post.id %>
-  <br>
-  <%= f.submit 'コメントする' %>
-<% end %>
-
-<%= link_to "ホームへ戻る", posts_path %>
+  <% if user_signed_in? %>
+    <%= render "comment_form" %>
+  <% end %>
+</div>
