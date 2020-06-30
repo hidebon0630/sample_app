@@ -4,7 +4,6 @@ RSpec.feature 'Comments', type: :feature do
   scenario 'コメント' do
     user = FactoryBot.create(:user)
     post = FactoryBot.create(:post)
-    post.comments.create!(content: 'コメント', user: post.user)
 
     sign_in user
     visit posts_path
