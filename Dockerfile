@@ -15,9 +15,3 @@ ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
 RUN bundle install
 ADD . $APP_ROOT
 RUN mkdir -p tmp/sockets
-
-RUN RAILS_ENV=production bundle exec rails assets:precompile
-RUN rm -f tmp/pids/server.pid
-
-VOLUME /sample_app/public
-VOLUME /sample_app/tmp
