@@ -17,6 +17,17 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def url
+    if path.present?
+      # 保存先がローカルの場合
+      return "#{super}?updatedAt=#{model.updated_at.to_i}" if Rails.env.development? || Rails.env.test?
+
+      # 保存先がS3の場合
+      return "#{Settings.asset_host}/#{path}?updatedAt=#{model.updated_at.to_i}"
+    end
+    super
+  end
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
