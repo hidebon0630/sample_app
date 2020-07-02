@@ -11,4 +11,5 @@ if Rails.env.production?
     }
     config.fog_directory = Rails.application.credentials.aws[:s3_bucket]
   end
+  config.asset_host = 'https://images.water-mint.work'
 end
