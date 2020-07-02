@@ -10,6 +10,7 @@ if Rails.env.production?
       aws_secret_access_key: Rails.application.credentials.aws[:secret_access_key]
     }
     config.fog_directory = Rails.application.credentials.aws[:s3_bucket]
+    config.fog_public     = false
     config.asset_host = 'https://images.water-mint.work'
   end
 end
