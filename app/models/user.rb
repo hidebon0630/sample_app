@@ -4,7 +4,6 @@
 #
 #  id                     :bigint           not null, primary key
 #  admin_flg              :boolean
-#  avatar                 :string(255)
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
 #  name                   :string(255)      default(""), not null
@@ -20,7 +19,6 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
-  mount_uploader :avatar, AvatarUploader
   has_many :posts, dependent: :destroy
   has_many :active_relationships, class_name: 'Relationship',
                                   foreign_key: 'follower_id',
