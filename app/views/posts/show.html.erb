@@ -4,6 +4,13 @@
   <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
   <%= render "posts/post", post: @post %>
 
+<%= form_with(model: @post, local: true) do |form| %>
+  <%= form.radio_button :title, :tanaka %>
+    <%= form.label :title, "田中", {value: :tanaka, style: "display: inline-block;"} %>
+  <%= form.radio_button :title, :yamada %>
+    <%= form.label :title, "山田", {value: :yamada, style: "display: inline-block;"} %>
+<% end %>
+
   <p>コメント一覧</p>
   <% @comments.each do |comment| %>
     <%= render "comment", comment: comment %>

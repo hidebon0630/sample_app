@@ -2,10 +2,12 @@
 <% breadcrumb :user_show %>
 <div class="md-page">
   <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
+
   <div class="row">
     <aside class="col-md-4">
       <li>ユーザー：<%= @user.name %></li>
       <li>ユーザー：<%= @user.email %></li>
+      <li>性別：<%= @user.sex %></li>
       <%= render 'shared/stats' %>
       <%= render 'follow_form' if user_signed_in? %>
       <%= render 'chat' %>

@@ -10,6 +10,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string(255)
+#  sex                    :integer          default("sex_not_known")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -19,6 +20,7 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  enum sex: { sex_not_known: 0, man: 1, woman: 2 }
   has_many :posts, dependent: :destroy
   has_many :active_relationships, class_name: 'Relationship',
                                   foreign_key: 'follower_id',

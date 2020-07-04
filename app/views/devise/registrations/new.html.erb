@@ -5,6 +5,13 @@
     <%= bootstrap_devise_error_messages! %>
 
     <div class="form-group">
+        <%= f.label :man, "男性"  %>
+        <%= f.radio_button :sex, :man %>
+        <%= f.label :woman, "女性"  %>
+        <%= f.radio_button :sex, :woman %>
+    </div>
+
+    <div class="form-group">
       <%= f.label :name %>
       <%= f.text_field :name, autofocus: true,
                         autocomplete: 'name',

@@ -10,6 +10,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string(255)
+#  sex                    :integer          default("sex_not_known")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
