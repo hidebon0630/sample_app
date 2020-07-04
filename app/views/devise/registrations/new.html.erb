@@ -5,10 +5,8 @@
     <%= bootstrap_devise_error_messages! %>
 
     <div class="form-group">
-        <%= f.label :man, "男性"  %>
-        <%= f.radio_button :sex, :man %>
-        <%= f.label :woman, "女性"  %>
-        <%= f.radio_button :sex, :woman %>
+      <%= f.label :sex  %>
+      <%= f.select :sex, User.sexes.keys.map {|k| [I18n.t("enums.user.sex.#{k}"), k]} %>
     </div>
 
     <div class="form-group">
