@@ -21,13 +21,12 @@ ja:
         remember_me: ログインを記憶する
         sign_in_count: ログイン回数
         updated_at: 更新日
+        sex: 性別
       post:
         title: タイトル
         content: 内容
       comment:
         content: 内容
-    models:
-      user: ユーザ
   devise:
     failure:
       already_authenticated: すでにログインしています。
