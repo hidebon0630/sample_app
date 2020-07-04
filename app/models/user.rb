@@ -4,6 +4,7 @@
 #
 #  id                     :bigint           not null, primary key
 #  admin_flg              :boolean
+#  avatar                 :string(255)
 #  birth_date             :date             not null
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
@@ -21,6 +22,7 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
   enum sex: { sex_not_known: 0, man: 1, woman: 2 }
   has_many :posts, dependent: :destroy
   has_many :active_relationships, class_name: 'Relationship',

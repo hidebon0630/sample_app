@@ -4,6 +4,7 @@
 #
 #  id                     :bigint           not null, primary key
 #  admin_flg              :boolean
+#  avatar                 :string(255)
 #  birth_date             :date             not null
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
