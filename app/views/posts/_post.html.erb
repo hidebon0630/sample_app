@@ -1,5 +1,6 @@
 <li id="post-<%= post.id %>">
   <p>タイトル：<%= link_to post.title, post %></p>
+  <p><%= link_to image_tag(post.image.url), post %></p>
   <span class="timestamp">
     <% if current_user == post.user %>
       <%= link_to "delete", post, method: :delete,

@@ -1,3 +1,8 @@
 <li id="user-<%= user.id %>">
+  <% if user.avatar? %>
+    <%= image_tag user.avatar.thumb.url %>
+  <% else %>
+    <%= image_tag "/assets/default.png", :size => '100x100' %>
+  <% end %>
   <span><%= link_to user.name, user %></span>
 </li>
