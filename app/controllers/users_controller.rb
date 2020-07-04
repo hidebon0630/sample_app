@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i[following followers]
+  require 'happybirthday'
+
   def index
     @users = User.page(params[:page]).per(30)
   end
 
   def show
     @user = User.find_by(id: params[:id])
+    birthday = Happybirthday.born_on(@user.birth_date)
+    @birthday = birthday.age.years_old
     @posts = @user.posts.page(params[:page])
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)

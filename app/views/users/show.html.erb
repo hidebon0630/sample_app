@@ -8,6 +8,7 @@
       <li>ユーザー：<%= @user.name %></li>
       <li>ユーザー：<%= @user.email %></li>
       <li>性別：<%= @user.sex %></li>
+      <li>年齢：<%= @birthday %></li>
       <%= render 'shared/stats' %>
       <%= render 'follow_form' if user_signed_in? %>
       <%= render 'chat' %>
