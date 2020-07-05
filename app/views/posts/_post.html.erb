@@ -10,6 +10,9 @@
           <% end %>
         <% end %>
       </p>
+      <p>
+        <%= post.likes.count %>
+      </p>
       <% if current_user != post.user %>
         <p>
           <% if current_user.already_liked?(post) %>

@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
   get '/home', to: 'static_pages#home'
+  get '/ranking', to: 'posts#ranking'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users,
              path: '',
