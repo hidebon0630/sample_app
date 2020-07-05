@@ -6,11 +6,11 @@
 
     <div class="form-group">
       <% if current_user.avatar? %>
-        <%= image_tag current_user.avatar.thumb.url, class: "user_icon" %>
+        <%= image_tag current_user.avatar.thumb.url, :size => '120x120', class: "user_icon" %>
       <% else %>
-        <%= image_tag "/assets/default.png", :size => '100x100', class: "user_icon" %>
+        <%= image_tag "/assets/default.png", :size => '120x120', class: "user_icon" %>
       <% end %>
-      <button type="button" class="btn btn-outline-secondary rounded-pill">
+      <button type="button" class="btn btn-outline-secondary">
          <%= f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png' %>
       </button>
     </div>

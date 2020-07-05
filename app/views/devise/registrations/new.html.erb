@@ -6,15 +6,15 @@
 
     <div class="form-group">
       <%= f.label :sex  %>
-      <%= f.select :sex, User.sexes.keys.map {|k| [I18n.t("enums.user.sex.#{k}"), k]} %>
+      <%= f.select :sex, User.sexes.keys.map {|k| [I18n.t("enums.user.sex.#{k}"), k]}, {}, class: 'form-control' %>
     </div>
 
     <div class="form-group">
       <%= f.label :birth_date %>
-      <%= f.date_select :birth_date, use_month_numbers: true,
+      <%= f.date_select :birth_date, {use_month_numbers: true,
                         start_year: 1990,
                         end_year: (Time.now.year - 10),
-                        default: Date.new(1990, 1, 1) %>
+                        default: Date.new(1990, 1, 1)}, { class: "form-control" } %>
     </div>
 
     <div class="form-group">
