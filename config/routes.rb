@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users
   resources :posts do
-    resources :likes, only: %i[create destroy]
+    resource :likes, only: %i[create destroy]
     resources :comments, only: [:create]
     resources :answers, only: %i[create]
   end

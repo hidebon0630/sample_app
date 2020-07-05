@@ -1,10 +1,23 @@
 <li id="post-<%= post.id %>">
-  <p>タイトル：<%= link_to post.title, post %></p>
-  <p><%= link_to image_tag(post.image.url), post %></p>
-  <span class="timestamp">
-    <% if current_user == post.user %>
-      <%= link_to "delete", post, method: :delete,
-                                       data: { confirm: "本当に削除しますか？" } %>
-    <% end %>
-  </span>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= post.title %></h5>
+      <p class="card-text"><%= post.content %></p>
+      <p>
+        <% if current_user == post.user %>
+          <%= link_to "削除", post, method: :delete,
+                                           data: { confirm: "本当に削除しますか？" } %>
+        <% end %>
+      </p>
+      <p>いいね件数: <%= post.likes.count %></p>
+      <% if current_user != post.user %>
+        <% if current_user.already_liked?(post) %>
+          <%= button_to 'いいねを取り消す', post_likes_path(post), method: :delete %>
+        <% else %>
+          <%= button_to 'いいね', post_likes_path(post) %>
+        <% end %>
+      <% end %>
+      <a href="/posts/<%= post.id %>" class="btn btn-primary">回答する</a>
+    </div>
+  </div>
 </li>

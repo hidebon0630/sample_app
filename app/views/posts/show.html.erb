@@ -3,7 +3,6 @@
 <div class="md-page">
   <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
   <%= render "posts/post", post: @post %>
-
   <p>コメント一覧</p>
   <% @comments.each do |comment| %>
     <%= render "comment", comment: comment %>
