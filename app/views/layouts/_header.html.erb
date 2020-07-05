@@ -23,12 +23,19 @@
             </li>
             <li class="nav-item">
               <%= link_to new_post_path, class: "nav-link" do %>
-                <i class="fas fa-plus">新規投稿</i>
+                <i class="fas fa-upload">新規投稿</i>
               <% end %>
             </li>
             <li class="nav-item">
               <%= link_to notifications_path, class: "nav-link" do %>
-                <i class="fas fa-bell">通知</i>
+                <% if unchecked_notifications.any? %>
+                  <span class="fa-stack">
+                    <i class="fas fa-bell fa-stack-2x"></i>
+                    <i class="fas fa-circle n-circle fa-stack-1x"></i>
+                  </span>
+                <% else %>
+                  <i class="fas fa-bell">通知</i>
+                <% end %>
               <% end %>
             </li>
           </ul>

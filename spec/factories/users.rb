@@ -26,6 +26,7 @@ FactoryBot.define do
     name { 'テストユーザー' }
     sequence(:email) { |n| "tester#{n}@example.com" }
     password { 'password' }
+    birth_date { Date.new(1990, 1, 1) }
 
     trait :sample do
       name { 'サンプルユーザー' }

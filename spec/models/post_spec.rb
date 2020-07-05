@@ -26,7 +26,8 @@ RSpec.describe Post, type: :model do
     @user = User.create(
       name: 'tester',
       email: 'tester@example.com',
-      password: 'password'
+      password: 'password',
+      birth_date: Date.new(1990, 1, 1)
     )
 
     @post = @user.posts.build(
