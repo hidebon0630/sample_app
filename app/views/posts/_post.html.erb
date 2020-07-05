@@ -5,17 +5,23 @@
       <p class="card-text"><%= post.content %></p>
       <p>
         <% if current_user == post.user %>
-          <%= link_to "削除", post, method: :delete,
-                                           data: { confirm: "本当に削除しますか？" } %>
+          <%= link_to post, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
       </p>
-      <p>いいね件数: <%= post.likes.count %></p>
       <% if current_user != post.user %>
-        <% if current_user.already_liked?(post) %>
-          <%= button_to 'いいねを取り消す', post_likes_path(post), method: :delete %>
-        <% else %>
-          <%= button_to 'いいね', post_likes_path(post) %>
-        <% end %>
+        <p>
+          <% if current_user.already_liked?(post) %>
+            <%= link_to post_likes_path(post), method: :delete do %>
+              <i class="fas fa-thumbs-up"></i>
+            <% end %>
+          <% else %>
+            <%= link_to post_likes_path(post), method: :post do %>
+              <i class="far fa-thumbs-up"></i>
+            <% end %>
+          <% end %>
+        </p>
       <% end %>
       <a href="/posts/<%= post.id %>" class="btn btn-primary">回答する</a>
     </div>
