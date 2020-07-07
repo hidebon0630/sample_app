@@ -13,21 +13,10 @@
         <div data-role="tagsinput">
           <%= render 'posts/tag_list', tag_list: post.tag_list %>
         </div>
-      <p>
-        <%= post.likes.count %>
-      </p>
       <% if current_user != post.user %>
-        <p>
-          <% if current_user.already_liked?(post) %>
-            <%= button_to post_likes_path(post), method: :delete, class:"btn btn-success bmd-btn-fab" do %>
-              <i class="material-icons">grade</i>
-            <% end %>
-          <% else %>
-            <%= button_to post_likes_path(post), method: :post, class:"btn btn-secondary bmd-btn-fab" do %>
-              <i class="material-icons">grade</i>
-            <% end %>
-          <% end %>
-        </p>
+        <div id="likes_buttons_<%= post.id %>">
+          <%= render partial: 'likes/like', locals: { post: post} %>
+        </div>
       <% end %>
       <a href="/posts/<%= post.id %>" class="btn btn-primary btn-raised">回答する</a>
     </div>
