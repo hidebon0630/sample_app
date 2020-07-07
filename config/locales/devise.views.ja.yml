@@ -26,6 +26,7 @@ ja:
       post:
         title: タイトル
         content: 内容
+        tag_list: タグ
       comment:
         content: 内容
   devise:

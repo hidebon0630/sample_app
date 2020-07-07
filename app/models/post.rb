@@ -32,6 +32,7 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   has_many :comments
   has_many :notifications, dependent: :destroy
+  acts_as_taggable
 
   def liked_by?(user)
     likes.exists?(user_id: user.id)

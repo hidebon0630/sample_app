@@ -10,6 +10,9 @@
           <% end %>
         <% end %>
       </p>
+        <p>
+          <%= render 'posts/tag_list', tag_list: post.tag_list %>
+        </p>
       <p>
         <%= post.likes.count %>
       </p>

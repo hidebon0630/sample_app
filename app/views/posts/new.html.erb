@@ -9,6 +9,10 @@
       <%= f.label :content %>
       <%= f.text_area :content, placeholder: "入力してください", class: 'form-control' %>
     </div>
+    <div class="form-group">
+      <%= f.label :tag_list %>
+      <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control" %>
+    </div>
     <span>
       <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
     </span>
