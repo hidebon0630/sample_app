@@ -10,9 +10,9 @@
           <% end %>
         <% end %>
       </p>
-        <p>
+        <div data-role="tagsinput"">
           <%= render 'posts/tag_list', tag_list: post.tag_list %>
-        </p>
+        </div>
       <p>
         <%= post.likes.count %>
       </p>
