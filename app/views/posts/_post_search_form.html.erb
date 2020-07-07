@@ -1,0 +1,15 @@
+<div class="mb-3">
+  <button class="btn bmd-btn-icon" for="search" data-toggle="collapse" data-target="#collapse-search" aria-expanded="false" aria-controls="collapse-search">
+    <i class="material-icons">search</i>
+  </button>
+</div>
+<span id="collapse-search" class="collapse">
+    <%= search_form_for q, url: url do |f| %>
+    <div class="input-group mb-3">
+      <%= f.search_field :title_or_content_cont, class: "form-control", type:"text", id:"search", placeholder: "Enter your query..." %>
+      <div class="input-group-append">
+        <%= f.submit '検索する', class: "btn btn-secondary btn-raised" %>
+      </div>
+    </div>
+  <% end %>
+</span>

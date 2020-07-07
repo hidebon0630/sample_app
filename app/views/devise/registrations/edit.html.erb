@@ -16,17 +16,17 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :name %>
+      <%= f.label :name, class:"bmd-label-floating" %>
       <%= f.text_field :name, class: 'form-control' %>
     </div>
 
     <div class="form-group">
-      <%= f.label :email %>
+      <%= f.label :email, class:"bmd-label-floating" %>
       <%= f.email_field :email, class: 'form-control' %>
     </div>
 
     <div class="form-group">
-      <%= f.label :password %>
+      <%= f.label :password, class:"bmd-label-floating" %>
       <%= f.password_field :password, autocomplete: 'new-password',
                            class: 'form-control' %>
 
@@ -34,13 +34,13 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :password_confirmation %>
+      <%= f.label :password_confirmation, class:"bmd-label-floating" %>
       <%= f.password_field :password_confirmation, autocomplete: 'new-password',
                            class: 'form-control' %>
     </div>
 
     <div class="form-group">
-      <%= f.label :current_password %>
+      <%= f.label :current_password, class:"bmd-label-floating" %>
       <%= f.password_field :current_password, autocomplete: 'current-password',
                            class: 'form-control',
                            required: true %>
@@ -49,12 +49,22 @@
     </div>
 
     <div class="form-group">
-      <%= f.submit t('.update'), class: 'btn btn-primary btn-block' %>
+      <% if current_user.email != "guest@example.com" %>
+        <%= f.submit t('.update'), class: 'btn btn-raised btn-primary btn-block' %>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <% if current_user.email != "guest@example.com" %>
+        <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: {confirm: t('.are_you_sure')}, method: :delete, class: 'btn btn-danger btn-block btn-raised' %>
+      <% else %>
+        <fieldset disabled>
+          <button type="button" class="btn btn-raised btn-block btn-danger">ゲストユーザーは変更出来ません。</button>
+        </fieldset>
+      <% end %>
     </div>
   <% end %>
-  <hr class="devise-link my-5">
   <div class="form-group">
-    <%= link_to "トップページ", root_path, class: 'btn btn-info btn-block mb-4' %>
-    <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: {confirm: t('.are_you_sure')}, method: :delete, class: 'btn btn-danger btn-block' %>
+    <%= link_to "トップページ", root_path, class: 'btn btn-info btn-raised btn-block mb-4' %>
   </div>
 </div>

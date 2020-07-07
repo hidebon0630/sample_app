@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   require 'happybirthday'
 
   def index
-    @users = User.page(params[:page]).per(10)
+    @q = User.ransack(params[:q])
+    @users = @q.result.page(params[:page]).per(10)
   end
 
   def show

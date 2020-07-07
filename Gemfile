@@ -76,7 +76,8 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'annotate'
-gem 'bootstrap'
+gem 'bootstrap',     '4.1.1'
+gem 'material-sass', '4.1.1'
 gem 'cancancan'
 gem 'carrierwave'
 gem 'chartkick'

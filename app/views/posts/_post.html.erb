@@ -10,7 +10,7 @@
           <% end %>
         <% end %>
       </p>
-        <div data-role="tagsinput"">
+        <div data-role="tagsinput">
           <%= render 'posts/tag_list', tag_list: post.tag_list %>
         </div>
       <p>
@@ -19,17 +19,17 @@
       <% if current_user != post.user %>
         <p>
           <% if current_user.already_liked?(post) %>
-            <%= link_to post_likes_path(post), method: :delete do %>
-              <i class="fas fa-thumbs-up"></i>
+            <%= button_to post_likes_path(post), method: :delete, class:"btn btn-success bmd-btn-fab" do %>
+              <i class="material-icons">grade</i>
             <% end %>
           <% else %>
-            <%= link_to post_likes_path(post), method: :post do %>
-              <i class="far fa-thumbs-up"></i>
+            <%= button_to post_likes_path(post), method: :post, class:"btn btn-secondary bmd-btn-fab" do %>
+              <i class="material-icons">grade</i>
             <% end %>
           <% end %>
         </p>
       <% end %>
-      <a href="/posts/<%= post.id %>" class="btn btn-primary">回答する</a>
+      <a href="/posts/<%= post.id %>" class="btn btn-primary btn-raised">回答する</a>
     </div>
   </div>
 </li>

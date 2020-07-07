@@ -5,12 +5,12 @@
     <%= bootstrap_devise_error_messages! %>
 
     <div class="form-group">
-      <%= f.label :sex  %>
+      <%= f.label :sex, class:"bmd-label-floating" %>
       <%= f.select :sex, User.sexes.keys.map {|k| [I18n.t("enums.user.sex.#{k}"), k]}, {}, class: 'form-control' %>
     </div>
 
     <div class="form-group">
-      <%= f.label :birth_date %>
+      <%= f.label :birth_date, class:"bmd-label-floating" %>
       <%= f.date_select :birth_date, {use_month_numbers: true,
                         start_year: 1990,
                         end_year: (Time.now.year - 10),
@@ -18,7 +18,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :name %>
+      <%= f.label :name, class:"bmd-label-floating" %>
       <%= f.text_field :name, autofocus: true,
                         autocomplete: 'name',
                         class: 'form-control',
@@ -27,7 +27,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :email %>
+      <%= f.label :email, class:"bmd-label-floating" %>
       <%= f.email_field :email, autofocus: true,
                         autocomplete: 'email',
                         class: 'form-control',
@@ -36,7 +36,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :password %>
+      <%= f.label :password, class:"bmd-label-floating" %>
       <%= f.password_field :password,
                            autocomplete: 'current-password',
                            class: 'form-control',
@@ -48,7 +48,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :password_confirmation %>
+      <%= f.label :password_confirmation, class:"bmd-label-floating" %>
       <%= f.password_field :password_confirmation,
                            autocomplete: 'current-password',
                            class: 'form-control',
@@ -56,7 +56,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.submit t('.sign_up'), class: 'btn btn-primary btn-block' %>
+      <%= f.submit t('.sign_up'), class: 'btn btn-primary btn-raised btn-block' %>
     </div>
   <% end %>
 

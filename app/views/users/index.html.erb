@@ -1,9 +1,21 @@
 <% provide(:title, '全てのユーザー') %>
 <% breadcrumb :users %>
 <div class="md-page">
-  <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
+  <div class="mb-3">
+    <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
+  </div>
+  <button type="button" class="btn btn-secondary" data-toggle="snackbar" data-style="toast" data-content="Fried chicken out of stock.">
+  Toast
+</button>
+
+  <%= render 'user_search_form', url: users_path, q: @q %>
   <ul class="user-list jscroll">
-    <%= render @users %>
-    <%= paginate @users %>
+    <% if @users.any? %>
+      <%= render @users %>
+      <%= paginate @users %>
+    <% else %>
+      <p><%= '検索結果がありません' %></p>
+    <% end %>
   </ul>
+  <%= render "posts/post_btn" %>
 </div>
