@@ -1,8 +1,10 @@
 <%= form_for [@post, @comment] do |f| %>
-  <%= f.label :content %>
-  <%= f.text_field :content, placeholder: "30文字以内で入力してください",
-                             class: 'form-control',
-                             required: true %>
-  <%= f.hidden_field :post_id, value: @post.id %>
+  <div class="form-group">
+    <%= f.label :content, class:"bmd-label-floating" %>
+    <%= f.text_field :content, class: 'form-control',
+                               required: true %>
+    <%= f.hidden_field :post_id, value: @post.id %>
+    <span class="bmd-help">30文字以内でコメントして下さい</span>
+  </div>
   <%= f.submit 'コメントする', class: "btn btn-secondary btn-raised" %>
 <% end %>

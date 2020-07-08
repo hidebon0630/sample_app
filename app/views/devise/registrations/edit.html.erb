@@ -10,8 +10,8 @@
       <% else %>
         <%= image_tag "/assets/default.png", :size => '120x120', class: "user_icon" %>
       <% end %>
-      <button type="button" class="btn btn-outline-secondary">
-         <%= f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png' %>
+      <button type="button" class="btn">
+         <%= f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png', class:"bmd-label-floating" %>
       </button>
     </div>
 

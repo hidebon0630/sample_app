@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     birthday = Happybirthday.born_on(@user.birth_date)
     @birthday = birthday.age.years_old
     @posts = @user.posts.page(params[:page]).per(10)
+    @liked_posts = @user.liked_posts.page(params[:page]).per(10)
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
     return if @user.id == current_user.id

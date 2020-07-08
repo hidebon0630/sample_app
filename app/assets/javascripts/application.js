@@ -12,11 +12,12 @@
 //
 //= require jquery
 //= require popper
+//= require bootstrap
+//= require material
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require bootstrap-tagsinput.min
 //= require_tree .
-//= require bootstrap
 //= require chartkick
 //= require Chart.bundle

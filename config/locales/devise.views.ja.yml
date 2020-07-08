@@ -27,6 +27,7 @@ ja:
         title: タイトル
         content: 内容
         tag_list: タグ
+        image: 画像
       comment:
         content: 内容
   devise:

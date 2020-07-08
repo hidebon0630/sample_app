@@ -4,10 +4,6 @@
   <div class="mb-3">
     <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
   </div>
-  <button type="button" class="btn btn-secondary" data-toggle="snackbar" data-style="toast" data-content="Fried chicken out of stock.">
-  Toast
-</button>
-
   <%= render 'user_search_form', url: users_path, q: @q %>
   <ul class="user-list jscroll">
     <% if @users.any? %>

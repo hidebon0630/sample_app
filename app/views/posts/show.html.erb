@@ -5,10 +5,9 @@
   <%= render "posts/post", post: @post %>
   <p>コメント一覧</p>
   <% @comments.each do |comment| %>
-    <%= render "comment", comment: comment %>
+    <div id="comment-<%= comment.id %>">
+      <%= render "comment", comment: comment %>
+    </div>
   <% end %>
-
-  <% if user_signed_in? %>
-    <%= render "comment_form" %>
-  <% end %>
+  <%= render "comment_form" %>
 </div>

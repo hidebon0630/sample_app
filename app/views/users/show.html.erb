@@ -33,7 +33,10 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" id="item3-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="false">
-        フォロー <%= @user.following.count %>
+        フォロー
+        <span id="followers">
+          <%= @user.following.count %>
+        </span>
       </a>
     </li>
     <li class="nav-item">
@@ -52,9 +55,12 @@
       </ul>
     </div>
     <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
-      <% @user.liked_posts.each do |post| %>
-        <%= render "posts/post", post: post %>
-      <% end %>
+      <ul class="post-list jscroll">
+        <% @liked_posts.each do |post| %>
+          <%= render "posts/post", post: post %>
+        <% end %>
+        <%= paginate @liked_posts %>
+      </ul>
     </div>
     <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">
       <% if @following.any? %>
