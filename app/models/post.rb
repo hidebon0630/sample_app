@@ -35,6 +35,7 @@ class Post < ApplicationRecord
   has_many :notifications, dependent: :destroy
   acts_as_taggable
   enum status: { published: 0, draft: 1 }
+  is_impressionable
 
   def liked_by?(user)
     likes.exists?(user_id: user.id)

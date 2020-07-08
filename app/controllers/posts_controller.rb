@@ -13,6 +13,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    impressionist(@post, nil, :unique => [:session_hash.to_s])
     @comments = @post.comments
     @comment = current_user.comments.build
   end

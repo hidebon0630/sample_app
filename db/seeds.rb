@@ -26,7 +26,7 @@ User.create!(name: 'ゲストユーザー',
 end
 
 users = User.order(:created_at).take(6)
-15.times do
+10.times do
   title = Faker::Lorem.sentence(word_count: 3)
   content = Faker::Lorem.sentence(word_count: 5)
   image = "#{Rails.root}/db/fixtures/sample1.png"
