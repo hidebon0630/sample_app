@@ -9,11 +9,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @following = @user.following.page(params[:page]).per(10)
-    @followers = @user.followers.page(params[:page]).per(10)
     birthday = Happybirthday.born_on(@user.birth_date)
     @birthday = birthday.age.years_old
-    @posts = @user.posts.page(params[:page]).per(10)
+    @following = @user.following.page(params[:page]).per(10)
+    @followers = @user.followers.page(params[:page]).per(10)
+    @posts = @user.posts.published.page(params[:page]).per(10)
+    @draft_posts = @user.posts.draft.page(params[:page]).per(10)
     @liked_posts = @user.liked_posts.page(params[:page]).per(10)
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)

@@ -5,6 +5,7 @@
 #  id         :bigint           not null, primary key
 #  content    :text(65535)
 #  image      :string(255)
+#  status     :integer          default("published"), not null
 #  title      :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -33,6 +34,7 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :notifications, dependent: :destroy
   acts_as_taggable
+  enum status: { published: 0, draft: 1 }
 
   def liked_by?(user)
     likes.exists?(user_id: user.id)

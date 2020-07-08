@@ -28,6 +28,7 @@ ja:
         content: 内容
         tag_list: タグ
         image: 画像
+        status: ステータス
       comment:
         content: 内容
   devise:

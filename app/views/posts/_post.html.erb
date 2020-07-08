@@ -5,9 +5,6 @@
       <p class="card-text"><%= post.content %></p>
       <p>
         <% if current_user == post.user %>
-          <button type="button" class="btn btn-secondary" data-toggle="snackbar" data-style="toast" data-content="Fried chicken out of stock.">
-            Toast
-          </button>
           <%= link_to post, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
             <i class="fas fa-trash-alt"></i>
           <% end %>

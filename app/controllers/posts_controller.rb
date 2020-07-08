@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result.page(params[:page]).per(10)
+    @posts = @q.result.published.order("created_at DESC").page(params[:page]).per(10)
   end
 
   def new
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :image, :title, :tag_list)
+    params.require(:post).permit(:content, :image, :title, :tag_list, :status)
   end
 
   def correct_user
