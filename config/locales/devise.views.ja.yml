@@ -31,6 +31,8 @@ ja:
         status: ステータス
       comment:
         content: 内容
+      message:
+        content: メッセージ
   devise:
     failure:
       already_authenticated: すでにログインしています。

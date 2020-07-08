@@ -1,9 +1,9 @@
 <% if @messages.present? %>
   <% @messages.each do |m| %>
-    <strong><%= m.content %></strong>
-    <a href="/users/<%= m.user_id %>">
-      <%= m.user.name %>さん
-    </a>
+    <li>
+      <%= m.content %>
+      <%= link_to m.user.name, m.user %>さん
+    </li>
   <% end %>
 <% else %>
   <p class="text-center">メッセージはまだありません</p>

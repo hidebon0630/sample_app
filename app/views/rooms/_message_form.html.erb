@@ -1,8 +1,10 @@
+<div class="form-group">
 <%= form_for @message do |f| %>
-  <%= f.text_field :content,placeholder: "メッセージを入力してください",
-                             class: 'form-control',
+  <%= f.label :content, class:"bmd-label-floating" %>
+  <%= f.text_field :content, class: 'form-control',
                              required: true %>
   <%= f.hidden_field :room_id, :value => @room.id %>
   <br>
-  <%= f.submit "投稿する" %>
+  <%= f.submit "送信する", class: "btn btn-secondary btn-raised" %>
 <% end %>
+</div>
