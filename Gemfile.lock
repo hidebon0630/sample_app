@@ -147,6 +147,8 @@ GEM
       activesupport (>= 4.2.0)
     gretel (3.0.9)
       rails (>= 3.1.0)
+    groupdate (5.0.0)
+      activesupport (>= 5)
     haml (5.1.2)
       temple (>= 0.8.0)
       tilt
@@ -399,6 +401,7 @@ DEPENDENCIES
   fog-aws
   font-awesome-sass
   gretel
+  groupdate
   happybirthday
   impressionist (~> 1.6.1)
   jbuilder (~> 2.5)
