@@ -27,6 +27,11 @@
               <% end %>
             </li>
             <li class="nav-item">
+              <%= link_to pv_path, class: "nav-link" do %>
+                <i class="fas fa-apple">PV</i>
+              <% end %>
+            </li>
+            <li class="nav-item">
               <%= link_to notifications_path, class: "nav-link" do %>
                 <% if unchecked_notifications.any? %>
                   <span class="fa-stack">
