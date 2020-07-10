@@ -34,6 +34,8 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   has_many :comments
   has_many :notifications, dependent: :destroy
+  has_many :options
+  has_many :votes
   acts_as_taggable
   enum status: { published: 0, draft: 1 }
   is_impressionable counter_cache: true

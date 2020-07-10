@@ -9,10 +9,13 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.build
+    @option = current_user.options.build
   end
 
   def show
     @post = Post.find(params[:id])
+    @votes = @post.votes
+    @vote = current_user.votes.build
     impressionist(@post, nil, :unique => [:session_hash.to_s])
     @comments = @post.comments
     @comment = current_user.comments.build
@@ -25,6 +28,15 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
+      params[:options].each do |option|
+        if option[:title] != ""
+          new_option = Option.new
+          new_option.title = option[:title]
+          new_option.post_id = @post.id
+          new_option.user_id = current_user.id
+          new_option.save!
+        end
+      end
       flash[:success] = '投稿が完了しました'
       redirect_to root_url
     else

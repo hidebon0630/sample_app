@@ -1,0 +1,18 @@
+<div>
+  <h1><%= @post.title %></h1>
+  <h1><%= @post.content %></h1>
+  <%= form_tag "/votes", method: :put do %>
+    <%= hidden_field(:vote, :post_id, value: @post.id) %>
+    <fieldset>
+      <% @post.options.each do |option| %>
+        <div class="field">
+          <%= label_tag "質問" do %>
+            <%= radio_button("vote", "option_id", option.id) %>
+            <%= option.title %>
+          <% end %>
+        </div>
+      <% end %>
+    </fieldset>
+    <%= submit_tag "投稿", class: "btn btn-primary btn-raised btn-block" %>
+  <% end %>
+</div>

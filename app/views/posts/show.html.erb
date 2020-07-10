@@ -10,4 +10,33 @@
     </div>
   <% end %>
   <%= render "comment_form" %>
+
+<div>
+  <h1><%= @post.title %></h1>
+  <h1><%= @post.content %></h1>
+  <%= form_for [@post, @vote] do |f| %>
+    <%= f.hidden_field :post_id, value: @post.id %>
+    <% @post.options.each do |option| %>
+      <%= option.id %>
+      <label>
+        <%= radio_button("vote", "option_id", option.id) %>
+        <%= option.title %>
+      </label>
+    <% end %>
+    <%= f.submit "回答", class: "btn btn-primary btn-raised btn-block" %>
+  <% end %>
+</div>
+
+<li>
+<% @votes.each do |vote| %>
+  <span class="user">
+    <a href="/users/<%= vote.user.id %>"><%= vote.user.name %></a>
+  </span>
+  <span class="content">
+    <%= vote.option_id %>
+    <%= vote.option.title %>
+  </span>
+<% end %>
+</li>
+
 </div>

@@ -10,17 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_052700) do
-
-  create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "content"
-    t.bigint "user_id"
-    t.bigint "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_answers_on_post_id"
-    t.index ["user_id"], name: "index_answers_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2020_07_09_125726) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
@@ -101,6 +91,16 @@ ActiveRecord::Schema.define(version: 2020_07_09_052700) do
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
+  create_table "options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "user_id"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_options_on_post_id"
+    t.index ["user_id"], name: "index_options_on_user_id"
+  end
+
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id"
@@ -174,8 +174,18 @@ ActiveRecord::Schema.define(version: 2020_07_09_052700) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "answers", "posts"
-  add_foreign_key "answers", "users"
+  create_table "votes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "option_id"
+    t.bigint "post_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_id"], name: "index_votes_on_option_id"
+    t.index ["post_id"], name: "index_votes_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_votes_on_user_id_and_post_id", unique: true
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "entries", "rooms"
@@ -184,6 +194,11 @@ ActiveRecord::Schema.define(version: 2020_07_09_052700) do
   add_foreign_key "likes", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "options", "posts"
+  add_foreign_key "options", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "votes", "options"
+  add_foreign_key "votes", "posts"
+  add_foreign_key "votes", "users"
 end
