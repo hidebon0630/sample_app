@@ -3,15 +3,23 @@
     <div class="card-body">
       <h5 class="card-title">質問：<%= @post.title %></h5>
         <% @post.options.each_with_index do |option, i| %>
-            <li>
-              <%= i + 1 %>：
-              <%= option.title %>
-            </li>
+          <li>
+            <%= i + 1 %>：
+            <%= option.title %>
+          </li>
         <% end %>
     </div>
   </div>
 </div>
-<%= pie_chart @chart %>
+<% if @chart.any? %>
+  <%= pie_chart @chart %>
+<% else %>
+  <div class="card">
+    <div class="card-body">
+      まだ回答がありません。
+    </div>
+  </div>
+<% end %>
 <div>
   <p>コメント一覧</p>
   <% @comments.each do |comment| %>
