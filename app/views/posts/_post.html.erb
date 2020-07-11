@@ -1,9 +1,17 @@
 <li id="post-<%= post.id %>">
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title"><%= post.title %></h5>
-      <p class="card-text"><%= link_to post.user.name, post.user %></p>
-      <p>視聴者数：<%= post.impressionist_count(:filter=>:session_hash) %></p>
+      <h5 class="card-title">
+        <% if post.user.avatar? %>
+          <%= link_to image_tag(post.user.avatar.thumb.url, :size => '120x120', class: "user_icon"), post.user %>
+        <% else %>
+          <%= link_to image_tag("/assets/default.png", :size => '120x120', class: "user_icon"), post.user %>
+        <% end %>
+        <%= post.user.name %>
+      </h5>
+      <p class="card-text">
+        <%= post.title %>
+        視聴者数：<%= post.impressionist_count(:filter=>:session_hash) %></p>
       <p>
         <% if current_user == post.user %>
           <%= link_to post, method: :delete, data: { confirm: "本当に削除しますか？" } do %>

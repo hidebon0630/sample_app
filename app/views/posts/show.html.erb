@@ -2,6 +2,9 @@
 <% breadcrumb :post_show %>
 <div class="md-page">
   <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
+  <% if current_user.already_voted?(@post) %>
+    回答してまっせ
+  <% end %>
 <div>
   <div class="card">
     <div class="card-body">
@@ -20,11 +23,4 @@
     </div>
   </div>
 </div>
-  <p>コメント一覧</p>
-  <% @comments.each do |comment| %>
-    <div id="comment-<%= comment.id %>">
-      <%= render "comment", comment: comment %>
-    </div>
-  <% end %>
-  <%= render "comment_form" %>
 </div>

@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create destroy]
   before_action :correct_user, only: :destroy
+  before_action :already_voted_user, only: :show
 
   def index
     @q = Post.ransack(params[:q])
@@ -13,11 +14,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     @vote = current_user.votes.build
     impressionist(@post, nil, :unique => [:session_hash.to_s])
-    @comments = @post.comments
-    @comment = current_user.comments.build
   end
 
   def edit
@@ -66,5 +64,14 @@ class PostsController < ApplicationController
   def correct_user
     @post = current_user.posts.find_by(id: params[:id])
     redirect_to root_url if @post.nil?
+  end
+
+  def already_voted_user
+    @post = Post.find(params[:id])
+    voted = current_user.votes.find_by(post_id: params[:id])
+    unless voted.nil?
+      redirect_to post_votes_path(@post)
+      flash[:notice] = "回答済みです"
+    end
   end
 end

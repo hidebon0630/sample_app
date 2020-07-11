@@ -9,3 +9,26 @@
   </span>
 <% end %>
 </li>
+<div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">質問：<%= @post.title %></h5>
+        <% @post.options.each_with_index do |option, i| %>
+            <li>
+              <%= i + 1 %>：
+              <%= option.title %>
+            </li>
+        <% end %>
+    </div>
+  </div>
+</div>
+<%= pie_chart @chart %>
+<div>
+  <p>コメント一覧</p>
+  <% @comments.each do |comment| %>
+    <div id="comment-<%= comment.id %>">
+      <%= render "posts/comment", comment: comment %>
+    </div>
+  <% end %>
+  <%= render "posts/comment_form" %>
+</div>

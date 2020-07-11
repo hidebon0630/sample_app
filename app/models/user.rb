@@ -71,6 +71,10 @@ class User < ApplicationRecord
     likes.exists?(post_id: post.id)
   end
 
+  def already_voted?(post)
+    votes.exists?(post_id: post.id)
+  end
+
   def create_notification_follow!(current_user)
     temp = Notification.where(['visitor_id = ? and visited_id = ? and action = ? ', current_user.id, id, 'follow'])
     return unless temp.blank?
