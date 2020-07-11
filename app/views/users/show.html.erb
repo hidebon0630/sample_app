@@ -16,8 +16,10 @@
       <li>メール：<%= @user.email %></li>
       <li>性別：<%= @user.sex_i18n %></li>
       <li>年齢：<%= @birthday %></li>
-      <%= render 'follow_form' if user_signed_in? %>
-      <%= render 'chat' %>
+      <% if user_signed_in? %>
+        <%= render 'follow_form', user: @user %>
+        <%= render 'chat' %>
+      <% end %>
     </aside>
   </div>
   <ul class="nav nav-tabs bg-dark" role="tablist">

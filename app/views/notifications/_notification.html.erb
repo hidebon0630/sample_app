@@ -13,11 +13,11 @@
  <% when 'follow' then %>
   <%= "あなたをフォローしました" %>
 <% when 'like' then %>
-  <%= link_to 'あなたの投稿', notification.post %>
+  <%= link_to 'あなたの投稿', post_votes_path(notification.post) %>
   <%= "にいいねしました" %>
 <% when 'comment' then %>
   <% if notification.post.user_id == visited.id %>
-    <%= link_to "あなたの投稿", notification.post %>
+    <%= link_to "あなたの投稿", post_votes_path(notification.post) %>
   <% else %>
     <%= link_to post_path(notification.post) do %>
       <%= notification.post.user.name + 'さんの投稿' %>

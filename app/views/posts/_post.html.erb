@@ -28,9 +28,9 @@
         </div>
       <% end %>
       <% if current_user == post.user || current_user.already_voted?(post) %>
-        <a href="/posts/<%= post.id %>/votes" class="btn btn-success btn-raised">結果を見る</a>
+        <%= link_to "結果を見る", post_votes_path(post), class:"btn btn-success btn-raised" %>
       <% else %>
-        <a href="/posts/<%= post.id %>" class="btn btn-primary btn-raised">回答する</a>
+        <%= link_to "回答する", post_path(post), class:"btn btn-primary btn-raised" %>
       <% end %>
     </div>
   </div>
