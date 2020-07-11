@@ -71,7 +71,7 @@ class PostsController < ApplicationController
     voted = current_user.votes.find_by(post_id: params[:id])
     unless voted.nil?
       redirect_to post_votes_path(@post)
-      flash[:notice] = "回答済みです"
+      flash[:notice] = "既に回答しています"
     end
   end
 end

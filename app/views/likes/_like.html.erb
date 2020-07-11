@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
   <% if current_user.already_liked?(post) %>
     <p>
-      <%= button_to post_likes_path(post), method: :delete, class:"btn btn-success bmd-btn-fab", remote: true do %>
+      <%= button_to post_likes_path(post), method: :delete, class:"btn btn-warning bmd-btn-fab", remote: true do %>
         <i class="material-icons">grade</i>
       <% end %>
     </p>
