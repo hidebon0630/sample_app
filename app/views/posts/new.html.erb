@@ -6,17 +6,16 @@
       <%= f.text_field :title, class: 'form-control' %>
     </div>
     <div class="form-group">
-      <%= f.label :content, class:"bmd-label-floating" %>
-      <%= f.text_field :content, class: 'form-control' %>
+      <%= f.label :option, class:"bmd-label-floating" %>
+      <%= text_field_tag "options[][title]", @option.title, autocomplete: "off", class: 'form-control' %>
     </div>
     <div class="form-group">
-      <%= text_field_tag "options[][title]", @option.title, autocomplete: "off" %>
+      <%= f.label :option, class:"bmd-label-floating" %>
+      <%= text_field_tag "options[][title]", @option.title, autocomplete: "off", class: 'form-control' %>
     </div>
     <div class="form-group">
-      <%= text_field_tag "options[][title]", @option.title, autocomplete: "off" %>
-    </div>
-    <div class="form-group">
-      <%= text_field_tag "options[][title]", @option.title, autocomplete: "off" %>
+      <%= f.label :option, class:"bmd-label-floating" %>
+      <%= text_field_tag "options[][title]", @option.title, autocomplete: "off", class: 'form-control' %>
     </div>
     <div class="form-group">
       <%= f.label :tag_list, class:"bmd-label-floating" %>

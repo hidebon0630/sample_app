@@ -14,7 +14,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @votes = @post.votes
     @vote = current_user.votes.build
     impressionist(@post, nil, :unique => [:session_hash.to_s])
     @comments = @post.comments

@@ -1,0 +1,11 @@
+<li>
+<% @votes.each do |vote| %>
+  <span class="user">
+    <a href="/users/<%= vote.user.id %>"><%= vote.user.name %></a>
+  </span>
+  <span class="content">
+    <%= vote.option_id %>
+    <%= vote.option.title %>
+  </span>
+<% end %>
+</li>

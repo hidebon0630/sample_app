@@ -2,7 +2,24 @@
 <% breadcrumb :post_show %>
 <div class="md-page">
   <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
-  <%= render "posts/post", post: @post %>
+<div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">質問：<%= @post.title %></h5>
+      <%= form_for [@post, @vote] do |f| %>
+        <%= f.hidden_field :post_id, value: @post.id %>
+        <% @post.options.each_with_index do |option, i| %>
+            <li>
+              <%= radio_button("vote", "option_id", i + 1) %>
+              <%= i + 1 %>：
+              <%= option.title %>
+            </li>
+        <% end %>
+        <%= f.submit "回答", class: "btn btn-primary btn-raised btn-block" %>
+      <% end %>
+    </div>
+  </div>
+</div>
   <p>コメント一覧</p>
   <% @comments.each do |comment| %>
     <div id="comment-<%= comment.id %>">
@@ -10,33 +27,4 @@
     </div>
   <% end %>
   <%= render "comment_form" %>
-
-<div>
-  <h1><%= @post.title %></h1>
-  <h1><%= @post.content %></h1>
-  <%= form_for [@post, @vote] do |f| %>
-    <%= f.hidden_field :post_id, value: @post.id %>
-    <% @post.options.each do |option| %>
-      <%= option.id %>
-      <label>
-        <%= radio_button("vote", "option_id", option.id) %>
-        <%= option.title %>
-      </label>
-    <% end %>
-    <%= f.submit "回答", class: "btn btn-primary btn-raised btn-block" %>
-  <% end %>
-</div>
-
-<li>
-<% @votes.each do |vote| %>
-  <span class="user">
-    <a href="/users/<%= vote.user.id %>"><%= vote.user.name %></a>
-  </span>
-  <span class="content">
-    <%= vote.option_id %>
-    <%= vote.option.title %>
-  </span>
-<% end %>
-</li>
-
 </div>

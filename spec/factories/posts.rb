@@ -3,7 +3,6 @@
 # Table name: posts
 #
 #  id                :bigint           not null, primary key
-#  content           :text(65535)
 #  image             :string(255)
 #  impressions_count :integer          default(0)
 #  status            :integer          default("published"), not null

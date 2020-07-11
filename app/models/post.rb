@@ -3,7 +3,6 @@
 # Table name: posts
 #
 #  id                :bigint           not null, primary key
-#  content           :text(65535)
 #  image             :string(255)
 #  impressions_count :integer          default(0)
 #  status            :integer          default("published"), not null
@@ -26,16 +25,14 @@ class Post < ApplicationRecord
   belongs_to :owner, class_name: 'User', foreign_key: :user_id
   mount_uploader :image, ImageUploader
   validates :user_id, presence: true
-  validates :content, presence: true, length: { maximum: 100 }
   validates :title, presence: true, length: { maximum: 15 }
-  validates :image, presence: true
   validate :image_size
   has_many :likes
   has_many :liked_users, through: :likes, source: :user
   has_many :comments
   has_many :notifications, dependent: :destroy
-  has_many :options
-  has_many :votes
+  has_many :options, dependent: :destroy
+  has_many :votes, dependent: :destroy
   acts_as_taggable
   enum status: { published: 0, draft: 1 }
   is_impressionable counter_cache: true

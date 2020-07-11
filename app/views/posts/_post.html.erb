@@ -3,8 +3,7 @@
     <div class="card-body">
       <h5 class="card-title"><%= post.title %></h5>
       <p class="card-text"><%= link_to post.user.name, post.user %></p>
-      <p class="card-text"><%= post.content %></p>
-      <p><%= post.impressionist_count(:filter=>:session_hash) %></p>
+      <p>視聴者数：<%= post.impressionist_count(:filter=>:session_hash) %></p>
       <p>
         <% if current_user == post.user %>
           <%= link_to post, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
