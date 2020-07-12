@@ -24,9 +24,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { create(:user)}
-  let(:other_user) { create(:user)}
-  describe "バリデーション" do
+  let(:user) { create(:user) }
+  let(:other_user) { create(:user) }
+  describe 'バリデーション' do
     it '名前、メールアドレス、パスワードが有効' do
       expect(build(:user)).to be_valid
     end
@@ -93,8 +93,8 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "関連性" do
-    it "フォロー、アンフォロー" do
+  describe '関連性' do
+    it 'フォロー、アンフォロー' do
       expect(user.following?(other_user)).to be_falsey
       user.follow(other_user)
       expect(user.following?(other_user)).to be_truthy
@@ -102,7 +102,7 @@ RSpec.describe User, type: :model do
       expect(user.following?(other_user)).to be_falsey
     end
 
-    it "フォロー時に通知が飛ぶ" do
+    it 'フォロー時に通知が飛ぶ' do
       expect do
         other_user.create_notification_follow!(user)
       end.to change(Notification, :count).by(1)

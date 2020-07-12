@@ -13,10 +13,10 @@ class VotesController < ApplicationController
     @vote = current_user.votes.build(vote_params)
     if @vote.save
       redirect_to post_votes_path
-      flash[:notice] = "回答ありがとうございました！"
+      flash[:notice] = '回答ありがとうございました！'
     else
       redirect_back(fallback_location: root_path)
-      flash[:notice] = "回答は一人一回までです。"
+      flash[:notice] = '回答は一人一回までです。'
     end
   end
 
@@ -29,11 +29,11 @@ class VotesController < ApplicationController
   def yet_voted_user
     @post = Post.find(params[:post_id])
     voted = current_user.votes.find_by(post_id: params[:post_id])
-    unless @post.user
-      if voted.nil?
-        redirect_back(fallback_location: root_path)
-        flash[:notice] = "回答後のみ結果を確認出来ます。"
-      end
-    end
+    return unless @post.user != current_user
+
+    return unless voted.nil?
+
+    redirect_back(fallback_location: root_path)
+    flash[:notice] = '回答後のみ結果を確認出来ます。'
   end
 end

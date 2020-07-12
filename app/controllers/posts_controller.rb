@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result.published.order("created_at DESC").page(params[:page]).per(10)
+    @posts = @q.result.published.order('created_at DESC').page(params[:page]).per(10)
   end
 
   def new
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
   def show
     @vote = current_user.votes.build
-    impressionist(@post, nil, :unique => [:session_hash.to_s])
+    impressionist(@post, nil, unique: [:session_hash.to_s])
   end
 
   def edit
@@ -26,13 +26,13 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       params[:options].each do |option|
-        if option[:title] != ""
-          new_option = Option.new
-          new_option.title = option[:title]
-          new_option.post_id = @post.id
-          new_option.user_id = current_user.id
-          new_option.save!
-        end
+        next unless option[:title] != ''
+
+        new_option = Option.new
+        new_option.title = option[:title]
+        new_option.post_id = @post.id
+        new_option.user_id = current_user.id
+        new_option.save!
       end
       flash[:success] = '投稿が完了しました'
       redirect_to root_url
@@ -52,7 +52,7 @@ class PostsController < ApplicationController
   end
 
   def pv
-    @posts = Post.order('impressions_count DESC').take(3)
+    @posts = Post.order(impressions_count: 'DESC').take(3)
   end
 
   private
@@ -69,9 +69,9 @@ class PostsController < ApplicationController
   def already_voted_user
     @post = Post.find(params[:id])
     voted = current_user.votes.find_by(post_id: params[:id])
-    unless voted.nil?
-      redirect_to post_votes_path(@post)
-      flash[:notice] = "既に回答しています"
-    end
+    return if voted.nil?
+
+    redirect_to post_votes_path(@post)
+    flash[:notice] = '既に回答しています'
   end
 end

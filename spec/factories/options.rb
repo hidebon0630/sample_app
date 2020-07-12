@@ -22,6 +22,6 @@
 FactoryBot.define do
   factory :option do
     post { nil }
-    title { "MyString" }
+    title { 'MyString' }
   end
 end

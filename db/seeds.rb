@@ -29,7 +29,7 @@ users = User.order(:created_at).take(6)
 10.times do
   title = Faker::Lorem.sentence(word_count: 3)
   image = "#{Rails.root}/db/fixtures/sample1.png"
-  tag_list = "サンプル,テスト"
+  tag_list = 'サンプル,テスト'
   users.each { |user| user.posts.create!(title: title, image: File.open(image), tag_list: tag_list) }
 end
 

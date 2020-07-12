@@ -1,3 +1,8 @@
+<% @votes.each do |vote| %>
+  <%= vote.user.name %>
+  <%= vote.user.sex_i18n %>
+<% end %>
+<%= column_chart User.group(:sex).count %>
 <div>
   <div class="card">
     <div class="card-body">
@@ -21,7 +26,7 @@
   </div>
 <% end %>
 <div>
-  <p>コメント一覧</p>
+  <h4>コメント一覧</h4>
   <% @comments.each do |comment| %>
     <div id="comment-<%= comment.id %>">
       <%= render "posts/comment", comment: comment %>
