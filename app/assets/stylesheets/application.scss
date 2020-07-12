@@ -11,7 +11,10 @@
  * It is generally better to create a new file per style scope.
  *
  */
-@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import "tagsinput";
+@import "material";
 
 .sm-page {
   @extend .container-fluid;
@@ -65,4 +68,23 @@ ul.user-list {
 
 ul.post-list {
   padding: 0;
+}
+
+.user_icon {
+  border-radius: 50%;
+}
+
+.n-circle {
+  position: absolute;
+  padding-left: 1rem;
+  padding-top: 0rem;
+  color: #efa04c;
+}
+
+.new-post-btn {
+  font-size: 100px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 6px 100px;
 }

@@ -2,28 +2,99 @@
 <% breadcrumb :user_show %>
 <div class="md-page">
   <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
+
   <div class="row">
-    <aside class="col-md-4">
-      <li>ユーザー：<%= @user.name %></li>
-      <li>ユーザー：<%= @user.email %></li>
-      <%= render 'shared/stats' %>
-      <%= render 'follow_form' if user_signed_in? %>
-      <%= render 'chat' %>
+    <aside class="col-md-6">
+      <% if @user.avatar? %>
+        <%= image_tag @user.avatar.thumb.url, :size => '120x120', class: "user_icon" %>
+      <% else %>
+        <%= image_tag "/assets/default.png", :size => '120x120', class: "user_icon" %>
+      <% end %>
     </aside>
-    <aside class="col-md-4">
+    <aside class="col-md-6">
+      <li>名前：<%= @user.name %></li>
+      <li>メール：<%= @user.email %></li>
+      <li>性別：<%= @user.sex_i18n %></li>
+      <li>年齢：<%= @birthday %></li>
+      <% if user_signed_in? %>
+        <%= render 'follow_form', user: @user %>
+        <%= render 'chat' %>
+      <% end %>
+    </aside>
+  </div>
+  <ul class="nav nav-tabs bg-dark" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">
+        公開投稿 <%= @posts.count %>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">
+        いいねした投稿 <%= @user.liked_posts.count %>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="item3-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="false">
+        フォロー <%= @user.following.count %>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="item4-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="false">
+        フォロワー <%= @user.followers.count %>
+      </a>
+    </li>
+    <% if current_user == @user %>
+      <li class="nav-item">
+        <a class="nav-link" id="item5-tab" data-toggle="tab" href="#item5" role="tab" aria-controls="item5" aria-selected="false">
+          非公開投稿 <%= @draft_posts.count %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
       <ul class="post-list jscroll">
         <% if @user.posts.any? %>
           <%= render @posts %>
           <%= paginate @posts %>
         <% end %>
       </ul>
-    </aside>
-    <aside class="col-md-4">
-      <p>いいねしている投稿</p>
-      <% @user.liked_posts.each do |post| %>
-        <%= image_tag post.image.url if post.image? %>
-      <% end %>
+    </div>
+    <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
+      <ul class="post-list jscroll">
+        <% @liked_posts.each do |post| %>
+          <%= render "posts/post", post: post %>
+        <% end %>
+        <%= paginate @liked_posts %>
       </ul>
-    </aside>
+    </div>
+    <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">
+      <% if @following.any? %>
+        <ul class="user-list jscroll">
+          <% @following.each do |follow| %>
+            <%= render 'user', user: follow %>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="item4-tab">
+      <% if @followers.any? %>
+        <ul class="user-list jscroll">
+          <% @followers.each do |followed| %>
+            <%= render 'user', user: followed %>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="item5" role="tabpanel" aria-labelledby="item5-tab">
+      <ul class="post-list jscroll">
+        <% if @draft_posts.any? %>
+          <% @draft_posts.each do |post| %>
+            <%= render "posts/post", post: post %>
+          <% end %>
+          <%= paginate @draft_posts %>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>

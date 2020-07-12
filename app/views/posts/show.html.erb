@@ -2,14 +2,5 @@
 <% breadcrumb :post_show %>
 <div class="md-page">
   <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
-  <%= render "posts/post", post: @post %>
-
-  <p>コメント一覧</p>
-  <% @comments.each do |comment| %>
-    <%= render "comment", comment: comment %>
-  <% end %>
-
-  <% if user_signed_in? %>
-    <%= render "comment_form" %>
-  <% end %>
+  <%= render "option" %>
 </div>

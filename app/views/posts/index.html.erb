@@ -1,7 +1,7 @@
 <% provide(:title, '全ての投稿') %>
 <% breadcrumb :root %>
 <div class="md-page">
-  <%= render 'search_form', url: posts_path, q: @q %>
+  <%= render 'post_search_form', url: posts_path, q: @q %>
   <ul class="post-list jscroll">
     <% if @posts.any? %>
       <%= render @posts %>
@@ -10,4 +10,5 @@
       <p><%= '検索結果がありません' %></p>
     <% end %>
   </ul>
+  <%= render "post_btn" %>
 </div>

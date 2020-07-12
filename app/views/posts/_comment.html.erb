@@ -1,8 +1,10 @@
-<li id="comment-<%= comment.id %>">
-  <span class="user">
-    <a href="/users/<%= @post.user.id %>"><%= comment.user.name %></a>
-  </span>
-  <span class="content">
+<li class="list-group">
+  <div class="list-group-item">
+    <i class="material-icons">sms</i>
     <%= comment.content %>
-  </span>
+    <span class="label label-default label-pill">
+      <%= link_to comment.user.name, comment.user %>
+      <i class="material-icons">face</i>
+    </span>
+  </div>
 </li>

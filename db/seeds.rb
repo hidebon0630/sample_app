@@ -9,25 +9,28 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create!(name: 'ゲストユーザー',
              email: 'guest@example.com',
+             birth_date: Date.new(1990, 1, 1),
              password: 'password',
              password_confirmation: 'password')
 
-100.times do |n|
+10.times do |n|
   name = Faker::Name.name
   email = "sample-#{n + 1}@example.com"
   password = 'password'
+  birth_date = Date.new(1990, 1, 1)
   User.create!(name: name,
                email: email,
+               birth_date: birth_date,
                password: password,
                password_confirmation: password)
 end
 
 users = User.order(:created_at).take(6)
-3.times do
+10.times do
   title = Faker::Lorem.sentence(word_count: 3)
-  content = Faker::Lorem.sentence(word_count: 5)
   image = "#{Rails.root}/db/fixtures/sample1.png"
-  users.each { |user| user.posts.create!(title: title, content: content, image: File.open(image)) }
+  tag_list = 'サンプル,テスト'
+  users.each { |user| user.posts.create!(title: title, image: File.open(image), tag_list: tag_list) }
 end
 
 users = User.all

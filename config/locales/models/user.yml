@@ -1,0 +1,7 @@
+ja:
+  enums:
+    user:
+      sex:
+        man: 男性
+        woman: 女性
+        sex_not_known: 無選択

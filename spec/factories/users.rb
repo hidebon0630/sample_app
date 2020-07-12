@@ -5,12 +5,14 @@
 #  id                     :bigint           not null, primary key
 #  admin_flg              :boolean
 #  avatar                 :string(255)
+#  birth_date             :date             not null
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
 #  name                   :string(255)      default(""), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string(255)
+#  sex                    :integer          default("sex_not_known")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -24,6 +26,7 @@ FactoryBot.define do
     name { 'テストユーザー' }
     sequence(:email) { |n| "tester#{n}@example.com" }
     password { 'password' }
+    birth_date { Date.new(1990, 1, 1) }
 
     trait :sample do
       name { 'サンプルユーザー' }

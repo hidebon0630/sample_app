@@ -3,6 +3,7 @@ ja:
     attributes:
       user:
         name: 名前
+        birth_date: 生年月日
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
         confirmed_at: パスワード確認時刻
@@ -21,13 +22,17 @@ ja:
         remember_me: ログインを記憶する
         sign_in_count: ログイン回数
         updated_at: 更新日
+        sex: 性別
       post:
         title: タイトル
         content: 内容
+        tag_list: タグ
+        image: 画像
+        status: ステータス
       comment:
         content: 内容
-    models:
-      user: ユーザ
+      message:
+        content: メッセージ
   devise:
     failure:
       already_authenticated: すでにログインしています。

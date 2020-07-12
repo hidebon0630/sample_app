@@ -1,13 +1,37 @@
 <li id="post-<%= post.id %>">
-  <p>投稿ユーザー：<%= link_to post.user.name, user_path(post.user) %></p>
-  <p>タイトル：<%= post.title %></p>
-  <p>内容：<%= post.content %></p>
-  <p><%= link_to image_tag(post.image.url), post %></p>
-  <span class="timestamp">
-  投稿時間：<%= time_ago_in_words(post.created_at) %>前
-    <% if current_user == post.user %>
-      <%= link_to "delete", post, method: :delete,
-                                       data: { confirm: "本当に削除しますか？" } %>
-    <% end %>
-  </span>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">
+        <% if post.user.avatar? %>
+          <%= link_to image_tag(post.user.avatar.thumb.url, :size => '120x120', class: "user_icon"), post.user %>
+        <% else %>
+          <%= link_to image_tag("/assets/default.png", :size => '120x120', class: "user_icon"), post.user %>
+        <% end %>
+        <%= post.user.name %>
+      </h5>
+      <p class="card-text">
+        <%= post.title %>
+        視聴者数：<%= post.impressionist_count(:filter=>:session_hash) %></p>
+      <p>
+        <% if current_user == post.user %>
+          <%= link_to post, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        <% end %>
+      </p>
+      <div data-role="tagsinput">
+        <%= render 'posts/tag_list', tag_list: post.tag_list %>
+      </div>
+      <% if current_user != post.user %>
+        <div id="likes_buttons_<%= post.id %>">
+          <%= render partial: 'likes/like', locals: { post: post} %>
+        </div>
+      <% end %>
+      <% if current_user == post.user || current_user.already_voted?(post) %>
+        <%= link_to "結果を見る", post_votes_path(post), class:"btn btn-success btn-raised" %>
+      <% else %>
+        <%= link_to "回答する", post_path(post), class:"btn btn-primary btn-raised" %>
+      <% end %>
+    </div>
+  </div>
 </li>

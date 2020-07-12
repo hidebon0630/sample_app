@@ -1,0 +1,5 @@
+<% if user_signed_in? %>
+  <%= link_to new_post_path, class: "new-post-btn" do %>
+    <i class="fas fa-plus-circle"></i>
+  <% end %>
+<% end %>

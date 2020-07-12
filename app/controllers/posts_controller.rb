@@ -1,20 +1,21 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create destroy]
   before_action :correct_user, only: :destroy
+  before_action :already_voted_user, only: :show
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result.page(params[:page]).per(10)
+    @posts = @q.result.published.order('created_at DESC').page(params[:page]).per(10)
   end
 
   def new
     @post = current_user.posts.build
+    @option = current_user.options.build
   end
 
   def show
-    @post = Post.find(params[:id])
-    @comments = @post.comments
-    @comment = current_user.comments.build
+    @vote = current_user.votes.build
+    impressionist(@post, nil, unique: [:session_hash.to_s])
   end
 
   def edit
@@ -24,6 +25,15 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
+      params[:options].each do |option|
+        next unless option[:title] != ''
+
+        new_option = Option.new
+        new_option.title = option[:title]
+        new_option.post_id = @post.id
+        new_option.user_id = current_user.id
+        new_option.save!
+      end
       flash[:success] = '投稿が完了しました'
       redirect_to root_url
     else
@@ -37,14 +47,31 @@ class PostsController < ApplicationController
     redirect_back(fallback_location: root_url)
   end
 
+  def ranking
+    @posts = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+  end
+
+  def pv
+    @posts = Post.order(impressions_count: 'DESC').take(3)
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:content, :image, :title)
+    params.require(:post).permit(:content, :image, :title, :tag_list, :status)
   end
 
   def correct_user
     @post = current_user.posts.find_by(id: params[:id])
     redirect_to root_url if @post.nil?
+  end
+
+  def already_voted_user
+    @post = Post.find(params[:id])
+    voted = current_user.votes.find_by(post_id: params[:id])
+    return if voted.nil?
+
+    redirect_to post_votes_path(@post)
+    flash[:notice] = '既に回答しています'
   end
 end
