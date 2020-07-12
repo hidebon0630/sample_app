@@ -8,9 +8,10 @@ RSpec.feature 'Posts', type: :feature do
     visit posts_path
 
     expect do
-      click_link '新規投稿'
+      link = find('.new-post-btn')
+      expect(link[:href]).to eq new_post_path
+      link.click
       fill_in 'タイトル', with: 'テストタイトル'
-      fill_in '内容', with: 'テスト書いてます'
       attach_file 'post[image]', "#{Rails.root}/spec/fixtures/sample1.png"
       click_button '投稿'
 

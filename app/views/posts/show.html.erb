@@ -9,11 +9,15 @@
       <%= form_for [@post, @vote] do |f| %>
         <%= f.hidden_field :post_id, value: @post.id %>
         <% @post.options.each_with_index do |option, i| %>
-            <li>
-              <%= radio_button("vote", "option_id", i + 1) %>
-              <%= i + 1 %>：
-              <%= option.title %>
-            </li>
+          <div class="form-group">
+            <div class="radio radio-primary">
+              <label>
+                <%= radio_button("vote", "option_id", i + 1) %>
+                回答 <%= i + 1 %>：
+                <%= option.title %>
+              </label>
+            </div>
+          </div>
         <% end %>
         <%= f.submit "回答", class: "btn btn-primary btn-raised btn-block" %>
       <% end %>
