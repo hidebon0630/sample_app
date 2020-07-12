@@ -2,26 +2,5 @@
 <% breadcrumb :post_show %>
 <div class="md-page">
   <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
-<div>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">質問：<%= @post.title %></h5>
-      <%= form_for [@post, @vote] do |f| %>
-        <%= f.hidden_field :post_id, value: @post.id %>
-        <% @post.options.each_with_index do |option, i| %>
-          <div class="form-group">
-            <div class="radio radio-primary">
-              <label>
-                <%= radio_button("vote", "option_id", i + 1) %>
-                回答 <%= i + 1 %>：
-                <%= option.title %>
-              </label>
-            </div>
-          </div>
-        <% end %>
-        <%= f.submit "回答", class: "btn btn-primary btn-raised btn-block" %>
-      <% end %>
-    </div>
-  </div>
-</div>
+  <%= render "option" %>
 </div>
