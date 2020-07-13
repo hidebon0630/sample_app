@@ -23,4 +23,8 @@ class Option < ApplicationRecord
   belongs_to :post
   belongs_to :user
   has_many :vote
+
+  def votes
+    Vote.where({ option_id: id }).count
+  end
 end
