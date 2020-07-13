@@ -25,7 +25,7 @@ class Post < ApplicationRecord
   belongs_to :owner, class_name: 'User', foreign_key: :user_id
   mount_uploader :image, ImageUploader
   validates :user_id, presence: true
-  validates :title, presence: true, length: { maximum: 15 }
+  validates :title, presence: true, length: { maximum: 30 }
   validate :image_size
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user

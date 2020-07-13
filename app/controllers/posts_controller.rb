@@ -28,10 +28,9 @@ class PostsController < ApplicationController
       params[:options].each do |option|
         next unless option[:title] != ''
 
-        new_option = Option.new
+        new_option = current_user.options.build
         new_option.title = option[:title]
         new_option.post_id = @post.id
-        new_option.user_id = current_user.id
         new_option.save!
       end
       flash[:success] = '投稿が完了しました'
@@ -52,7 +51,7 @@ class PostsController < ApplicationController
   end
 
   def pv
-    @posts = Post.order(impressions_count: 'DESC').take(3)
+    @posts = Post.order(impressions_count: 'DESC').take(5)
   end
 
   private

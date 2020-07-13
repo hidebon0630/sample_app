@@ -3,12 +3,11 @@
     <h5 class="card-title">質問：<%= @post.title %></h5>
     <%= form_for [@post, @vote] do |f| %>
       <%= f.hidden_field :post_id, value: @post.id %>
-      <% @post.options.each_with_index do |option, i| %>
+      <% @post.options.each do |option| %>
         <div class="form-group">
           <div class="radio radio-primary">
             <label>
-              <%= radio_button("vote", "option_id", i + 1) %>
-              回答 <%= i + 1 %>：
+              <%= radio_button("vote", "option_id", option.id) %>
               <%= option.title %>
             </label>
           </div>

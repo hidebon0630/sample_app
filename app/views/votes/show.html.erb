@@ -2,7 +2,7 @@
   <%= vote.user.name %>
   <%= vote.user.sex_i18n %>
 <% end %>
-<%= column_chart User.group(:sex).count %>
+
 <div>
   <div class="card">
     <div class="card-body">
@@ -18,7 +18,7 @@
   </div>
 </div>
 <% if @chart.any? %>
-  <%= pie_chart @chart %>
+  <%= pie_chart @chart, donut: true %>
 <% else %>
   <div class="card">
     <div class="card-body">

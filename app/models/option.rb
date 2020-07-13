@@ -22,7 +22,7 @@
 class Option < ApplicationRecord
   belongs_to :post
   belongs_to :user
-  has_many :vote
+  has_many :vote, dependent: :destroy
 
   def votes
     Vote.where({ option_id: id }).count
