@@ -8,6 +8,6 @@ RSpec.feature 'Comments', type: :feature do
     sign_in user
     visit posts_path
     click_link href: post_path(post)
-    expect(page).to have_content '投稿詳細'
+    expect(page).to have_button '回答'
   end
 end

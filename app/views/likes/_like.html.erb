@@ -1,16 +1,12 @@
 <% if user_signed_in? %>
   <% if current_user.already_liked?(post) %>
-    <p>
-      <%= button_to post_likes_path(post), method: :delete, class:"btn btn-warning bmd-btn-fab", remote: true do %>
-        <i class="material-icons">grade</i>
-      <% end %>
-    </p>
+    <%= link_to post_likes_path(post), method: :delete, remote: true do %>
+      <i class="material-icons">favorite</i>
+    <% end %>
   <% else %>
-    <p>
-      <%= button_to post_likes_path(post), method: :post, class:"btn btn-secondary bmd-btn-fab", remote: true do %>
-        <i class="material-icons">grade</i>
-      <% end %>
-    </p>
+    <%= link_to post_likes_path(post), method: :post, remote: true do %>
+      <i class="material-icons">favorite_border</i>
+    <% end %>
   <% end %>
-  <p><span>お気に入り数:</span><%= post.likes.count %></p>
+  <%= post.likes.count %>
 <% end %>

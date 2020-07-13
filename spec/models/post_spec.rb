@@ -27,8 +27,7 @@ RSpec.describe Post, type: :model do
     @user = User.create(
       name: 'tester',
       email: 'tester@example.com',
-      password: 'password',
-      birth_date: Date.new(1990, 1, 1)
+      password: 'password'
     )
 
     @post = @user.posts.build(
@@ -54,15 +53,15 @@ RSpec.describe Post, type: :model do
     expect(@post.errors[:title]).to include('を入力してください')
   end
 
-  it 'タイトルが15字以内の場合は有効' do
-    @post.title = 'a' * 15
+  it 'タイトルが30字以内の場合は有効' do
+    @post.title = 'a' * 30
     @post.valid?
     expect(@post).to be_valid
   end
 
-  it 'タイトルが16文字以上の場合は無効' do
-    @post.title = 'a' * 16
+  it 'タイトルが31文字以上の場合は無効' do
+    @post.title = 'a' * 31
     @post.valid?
-    expect(@post.errors[:title]).to include('は15文字以内で入力してください')
+    expect(@post.errors[:title]).to include('は30文字以内で入力してください')
   end
 end

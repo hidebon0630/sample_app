@@ -4,15 +4,12 @@ RSpec.feature 'Users', type: :feature do
   scenario '新規登録' do
     visit root_path
     click_link '新規登録'
-    select '男性', from: '性別'
-    select_date '2000/1/1', from: '生年月日'
     fill_in '名前', with: 'テストユーザー'
     fill_in 'メールアドレス', with: 'aiueo@aiueo'
     fill_in 'パスワード', with: 'password'
     fill_in 'パスワード（確認用）', with: 'password'
     click_button '新規登録'
     expect(page).to have_content 'メールアドレスは不正な値です'
-    fill_in '名前', with: 'テストユーザー'
     fill_in '名前', with: 'テストユーザー'
     fill_in 'メールアドレス', with: 'aiueo@example.com'
     fill_in 'パスワード', with: 'password'

@@ -5,26 +5,28 @@
         <%= post.title %>
       </h5>
       <p class="card-text">
-        視聴者数：<%= post.impressionist_count(:filter=>:session_hash) %></p>
-      <p>
+        <p>
+          <i class="material-icons">remove_red_eye</i>
+          <%= post.impressionist_count(:filter=>:session_hash) %>
+        </p>
         <% if current_user == post.user %>
           <%= link_to post, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-            <i class="fas fa-trash-alt"></i>
+            <i class="material-icons">delete_forever</i>
           <% end %>
         <% end %>
       </p>
-      <div data-role="tagsinput">
-        <%= render 'posts/tag_list', tag_list: post.tag_list %>
-      </div>
       <% if current_user != post.user %>
         <div id="likes_buttons_<%= post.id %>">
           <%= render partial: 'likes/like', locals: { post: post} %>
         </div>
       <% end %>
+      <div data-role="tagsinput">
+        <%= render 'posts/tag_list', tag_list: post.tag_list %>
+      </div>
       <% if current_user == post.user || current_user.already_voted?(post) %>
-        <%= link_to "結果を見る", post_votes_path(post), class:"btn btn-success btn-raised btn-block" %>
+        <%= link_to "結果を見る", post_votes_path(post), class:"btn btn-primary btn-raised btn-block" %>
       <% else %>
-        <%= link_to "回答する", post_path(post), class:"btn btn-primary btn-raised btn-block" %>
+        <%= link_to "回答する", post_path(post), class:"btn btn-secondary btn-raised btn-block" %>
       <% end %>
     </div>
   </div>
