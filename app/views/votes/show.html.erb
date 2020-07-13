@@ -17,15 +17,7 @@
     </div>
   </div>
 </div>
-<% if @chart.any? %>
-  <%= pie_chart @chart, donut: true %>
-<% else %>
-  <div class="card">
-    <div class="card-body">
-      まだ回答がありません。
-    </div>
-  </div>
-<% end %>
+<%= pie_chart @chart, donut: true, messages: {empty: "No data"} %>
 <div>
   <h4>コメント一覧</h4>
   <% @comments.each do |comment| %>

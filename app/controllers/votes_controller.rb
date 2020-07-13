@@ -5,7 +5,7 @@ class VotesController < ApplicationController
     @post = Post.find(params[:post_id])
     @options = @post.options
     @votes = @post.votes
-    @chart = @votes.group(:option).count
+    @chart = @votes.eager_load(:option).group(:title).count
     @comments = @post.comments
     @comment = current_user.comments.build
   end
