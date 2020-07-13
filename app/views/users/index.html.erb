@@ -1,9 +1,5 @@
 <% provide(:title, '全てのユーザー') %>
-<% breadcrumb :users %>
 <div class="md-page">
-  <div class="mb-3">
-    <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
-  </div>
   <%= render 'user_search_form', url: users_path, q: @q %>
   <ul class="user-list jscroll">
     <% if @users.any? %>

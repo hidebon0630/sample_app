@@ -1,8 +1,5 @@
 <% provide(:title, 'ユーザー詳細') %>
-<% breadcrumb :user_show %>
 <div class="md-page">
-  <%= breadcrumbs pretext: "現在地:", separator: " &rsaquo; " %>
-
   <div class="row">
     <aside class="col-md-6">
       <% if @user.avatar? %>
@@ -13,9 +10,6 @@
     </aside>
     <aside class="col-md-6">
       <li>名前：<%= @user.name %></li>
-      <li>メール：<%= @user.email %></li>
-      <li>性別：<%= @user.sex_i18n %></li>
-      <li>年齢：<%= @birthday %></li>
       <% if user_signed_in? %>
         <%= render 'follow_form', user: @user %>
         <%= render 'chat' %>

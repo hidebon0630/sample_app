@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i[following followers]
-  require 'happybirthday'
 
   def index
     @q = User.ransack(params[:q])
@@ -9,8 +8,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    birthday = Happybirthday.born_on(@user.birth_date)
-    @birthday = birthday.age.years_old
     @following = @user.following.page(params[:page]).per(10)
     @followers = @user.followers.page(params[:page]).per(10)
     @posts = @user.posts.published.page(params[:page]).per(10)

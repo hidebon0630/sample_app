@@ -2,15 +2,9 @@
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">
-        <% if post.user.avatar? %>
-          <%= link_to image_tag(post.user.avatar.thumb.url, :size => '120x120', class: "user_icon"), post.user %>
-        <% else %>
-          <%= link_to image_tag("/assets/default.png", :size => '120x120', class: "user_icon"), post.user %>
-        <% end %>
-        <%= post.user.name %>
+        <%= post.title %>
       </h5>
       <p class="card-text">
-        <%= post.title %>
         視聴者数：<%= post.impressionist_count(:filter=>:session_hash) %></p>
       <p>
         <% if current_user == post.user %>
@@ -28,9 +22,9 @@
         </div>
       <% end %>
       <% if current_user == post.user || current_user.already_voted?(post) %>
-        <%= link_to "結果を見る", post_votes_path(post), class:"btn btn-success btn-raised" %>
+        <%= link_to "結果を見る", post_votes_path(post), class:"btn btn-success btn-raised btn-block" %>
       <% else %>
-        <%= link_to "回答する", post_path(post), class:"btn btn-primary btn-raised" %>
+        <%= link_to "回答する", post_path(post), class:"btn btn-primary btn-raised btn-block" %>
       <% end %>
     </div>
   </div>
