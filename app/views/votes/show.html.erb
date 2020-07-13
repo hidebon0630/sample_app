@@ -7,10 +7,11 @@
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">質問：<%= @post.title %></h5>
-        <% @post.options.each_with_index do |option, i| %>
+        <% @options.each_with_index do |option, i| %>
           <li>
             <%= i + 1 %>：
             <%= option.title %>
+            <%= option.votes %>
           </li>
         <% end %>
     </div>

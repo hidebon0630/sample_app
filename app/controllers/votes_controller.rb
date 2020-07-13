@@ -3,6 +3,7 @@ class VotesController < ApplicationController
 
   def show
     @post = Post.find(params[:post_id])
+    @options = @post.options
     @votes = @post.votes
     @chart = @votes.group(:option_id).count
     @comments = @post.comments
