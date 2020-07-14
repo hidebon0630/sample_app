@@ -1,26 +1,29 @@
 <div class="md-page">
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title"><%= @post.title %></h5>
-    <aside>
-      <% if @post.image? %>
-        <%= image_tag @post.image.url, :size => '120x120' %>
-      <% end %>
-    </aside>
-      <% @options.each_with_index do |option, i| %>
-        <li>
-          <%= i + 1 %>：
-          <%= option.title %>
-          <%= option.vote_count %>
-        </li>
-      <% end %>
-      <% @votes.each do |vote| %>
-        <li>
-          <%= vote.user.name %>
-        </li>
-      <% end %>
-      回答者数<%= @votes.count %>
-      <%= pie_chart @chart, donut: true, messages: {empty: "まだ回答がありません。"} %>
+      <div class="row">
+        <div class="col-md-4">
+        <h5 class="card-title post-title"><%= @post.title %></h5>
+          <%= pie_chart @chart, donut: true, messages: {empty: "まだ回答がありません。"} %>
+        </div>
+        <div class="col-md-4">
+        <h5 class="card-title post-title"><%= @post.title %></h5>
+          <%= pie_chart @chart, donut: true, messages: {empty: "まだ回答がありません。"} %>
+        </div>
+        <div class="col-md-4">
+        <h5 class="card-title post-title">回答</h5>
+          <aside>
+            <% if @post.image? %>
+              <%= image_tag @post.image.url %>
+            <% end %>
+          </aside>
+          <% @options.each do |option| %>
+              <%= option.title %>
+              <%= option.vote_count %>
+          <% end %>
+          回答者数<%= @votes.count %>
+        </div>
+      </div>
     </div>
   </div>
   <h4>コメント一覧</h4>

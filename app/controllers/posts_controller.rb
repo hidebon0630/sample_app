@@ -33,7 +33,7 @@ class PostsController < ApplicationController
         new_option.post_id = @post.id
         new_option.save!
       end
-      flash[:success] = '投稿が完了しました'
+      flash[:notice] = '投稿が完了しました'
       redirect_to root_url
     else
       render 'posts/new'
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    flash[:success] = '投稿を削除しました'
+    flash[:notice] = '投稿を削除しました'
     redirect_back(fallback_location: root_url)
   end
 
