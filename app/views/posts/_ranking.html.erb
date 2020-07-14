@@ -1,0 +1,39 @@
+<li id="post-<%= post.id %>">
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <%= index + 1 %>位
+        <%= link_to post.user.name, post.user %>
+        <%= post.title %>
+      </h5>
+      <p class="card-text">
+        <p>
+          <i class="material-icons">remove_red_eye</i>
+          <%= post.impressionist_count(:filter=>:session_hash) %>
+        </p>
+        <% if current_user == post.user %>
+          <%= link_to post, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+            <i class="material-icons">delete_forever</i>
+          <% end %>
+        <% end %>
+      </p>
+      <% if current_user != post.user %>
+        <div id="likes_buttons_<%= post.id %>">
+          <%= render partial: 'likes/like', locals: { post: post} %>
+        </div>
+      <% end %>
+      <div data-role="tagsinput">
+        <%= render 'posts/tag_list', tag_list: post.tag_list %>
+      </div>
+      <% if current_user == post.user || current_user.already_voted?(post) %>
+        <%= link_to post_votes_path(post), class:"btn btn-primary btn-raised btn-block" do %>
+          結果を見る<i class="material-icons">equalizer</i>
+        <% end %>
+      <% else %>
+        <%= link_to post_path(post), class:"btn btn-secondary btn-raised btn-block" do %>
+          回答する<i class="material-icons">check</i>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</li>
