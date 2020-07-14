@@ -14,10 +14,10 @@ class VotesController < ApplicationController
     @vote = current_user.votes.build(vote_params)
     if @vote.save
       redirect_to post_votes_path
-      flash[:notice] = '回答ありがとうございました！'
+      flash[:success] = '回答ありがとうございました！'
     else
       redirect_back(fallback_location: root_path)
-      flash[:notice] = '回答は一人一回までです。'
+      flash[:danger] = '回答は一人一回までです。'
     end
   end
 

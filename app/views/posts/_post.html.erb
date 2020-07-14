@@ -1,7 +1,8 @@
 <li id="post-<%= post.id %>">
-  <div class="card">
+  <div class="card mb-3">
     <div class="card-body">
       <h5 class="card-title">
+        <%= link_to post.user.name, post.user %>
         <%= post.title %>
       </h5>
       <p class="card-text">
@@ -24,9 +25,13 @@
         <%= render 'posts/tag_list', tag_list: post.tag_list %>
       </div>
       <% if current_user == post.user || current_user.already_voted?(post) %>
-        <%= link_to "結果を見る", post_votes_path(post), class:"btn btn-primary btn-raised btn-block" %>
+        <%= link_to post_votes_path(post), class:"btn btn-primary btn-raised btn-block" do %>
+          結果を見る<i class="material-icons">equalizer</i>
+        <% end %>
       <% else %>
-        <%= link_to "回答する", post_path(post), class:"btn btn-secondary btn-raised btn-block" %>
+        <%= link_to post_path(post), class:"btn btn-secondary btn-raised btn-block" do %>
+          回答する<i class="material-icons">check</i>
+        <% end %>
       <% end %>
     </div>
   </div>

@@ -1,9 +1,26 @@
+<p>メッセージ一覧</p>
 <% if @messages.present? %>
   <% @messages.each do |m| %>
-    <li>
-      <%= m.content %>
-      <%= link_to m.user.name, m.user %>さん
-    </li>
+    <ul class="list-group">
+      <div class="list-group-item">
+        <% if m.user == current_user %>
+          <i class="material-icons icon-right">person</i>
+          <%= m.user.name %>
+          <span class="label label-default label-pill">
+            <span><%= m.content %></span>
+            <i class="material-icons icon-right">sms</i>
+          </span>
+        <% else %>
+          <i class="material-icons">sms</i>
+          <%= m.content %>
+          <span class="label label-default label-pill">
+            <%= link_to m.user.name, m.user %>
+            <i class="material-icons">person_outline</i>
+          </span>
+        <% end %>
+      </div>
+    </ul>
+    <%= time_ago_in_words(m.created_at).upcase %>前
   <% end %>
 <% else %>
   <p class="text-center">メッセージはまだありません</p>

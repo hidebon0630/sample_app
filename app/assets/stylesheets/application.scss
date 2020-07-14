@@ -11,46 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  */
-@import 'font-awesome-sprockets';
-@import 'font-awesome';
 @import "tagsinput";
-@import "material";
-
-.sm-page {
-  @extend .container-fluid;
-  max-width: 576px;
-  padding: 2rem;
-}
-
-.md-page {
-  @extend .container-fluid;
-  max-width: 768px;
-  padding: 2rem;
-}
-
-body {
-  padding-top: 40px;
-}
-
-// フラッシュ
-
-.alert-notice {
-  @extend .alert-info;
-}
-
-.alert-alert {
-  @extend .alert-danger;
-}
-
-// エラーメッセージ
-
-#error_explanation {
-  color: red;
-  ul {
-    color: red;
-    margin: 0 0 30px 0;
-  }
-}
 
 // 無限スクロール
 
@@ -75,9 +36,8 @@ ul.post-list {
 }
 
 .n-circle {
-  position: absolute;
+
   padding-left: 1rem;
-  padding-top: 0rem;
   color: #efa04c;
 }
 
@@ -86,5 +46,9 @@ ul.post-list {
   position: fixed;
   bottom: 10px;
   right: 10px;
-  padding: 6px 100px;
+  padding: 15px 180px;
+}
+
+body {
+  padding: 70px;
 }
