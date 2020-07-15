@@ -8,7 +8,7 @@ RSpec.feature 'Posts', type: :feature do
     visit posts_path
 
     expect do
-      link = find('.new-post-btn')
+      link = find('.new-post-link')
       expect(link[:href]).to eq new_post_path
       link.click
       fill_in 'タイトル', with: 'テストタイトル'
@@ -24,6 +24,6 @@ RSpec.feature 'Posts', type: :feature do
     post = FactoryBot.create(:post, owner: user)
     sign_in user
     visit post_path(post)
-    expect(page).to have_content '投稿詳細'
+    expect(page).to have_button '回答'
   end
 end

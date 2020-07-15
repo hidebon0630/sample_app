@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
   get '/home', to: 'static_pages#home'
-  get '/ranking', to: 'posts#ranking'
+  get '/favorite', to: 'posts#favorite'
   get '/pv', to: 'posts#pv'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users,
@@ -18,13 +18,14 @@ Rails.application.routes.draw do
                registrations: 'users/registrations'
              }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users
+  resources :users do
+    resource :relationships, only: %i[create destroy]
+  end
   resources :posts do
     resource :likes, only: %i[create destroy]
     resources :comments, only: [:create]
     resource :votes, only: %i[show create]
   end
-  resources :relationships, only: %i[create destroy]
   resources :notifications, only: :index
   resources :messages, only: [:create]
   resources :rooms, only: %i[create show]

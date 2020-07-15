@@ -9,7 +9,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create!(name: 'ゲストユーザー',
              email: 'guest@example.com',
-             birth_date: Date.new(1990, 1, 1),
              password: 'password',
              password_confirmation: 'password')
 
@@ -17,10 +16,8 @@ User.create!(name: 'ゲストユーザー',
   name = Faker::Name.name
   email = "sample-#{n + 1}@example.com"
   password = 'password'
-  birth_date = Date.new(1990, 1, 1)
   User.create!(name: name,
                email: email,
-               birth_date: birth_date,
                password: password,
                password_confirmation: password)
 end

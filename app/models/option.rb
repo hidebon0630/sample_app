@@ -22,9 +22,10 @@
 class Option < ApplicationRecord
   belongs_to :post
   belongs_to :user
-  has_many :vote
+  has_many :vote, dependent: :destroy
+  validates :title, uniqueness: { scope: %i[post_id user_id] }
 
-  def votes
+  def vote_count
     Vote.where({ option_id: id }).count
   end
 end

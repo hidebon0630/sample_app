@@ -1,4 +1,16 @@
 <p>参加者</p>
-<% @entries.each do |e| %>
-  <li><%= link_to e.user.name, e.user %>さん</li>
+<% @entries.each do |entry| %>
+  <ul class="list-group">
+    <div class="list-group-item">
+    <% if entry.user == current_user %>
+      <i class="material-icons">person</i>
+      <%= link_to entry.user.name, entry.user %>
+    <% else %>
+      <span class="label label-default label-pill pull-xs-right">
+        <%= link_to entry.user.name, entry.user %>
+        <i class="material-icons">person_outline</i>
+      </span>
+    <% end %>
+    </div>
+  </ul>
 <% end %>

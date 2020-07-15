@@ -28,13 +28,12 @@ class PostsController < ApplicationController
       params[:options].each do |option|
         next unless option[:title] != ''
 
-        new_option = Option.new
+        new_option = current_user.options.build
         new_option.title = option[:title]
         new_option.post_id = @post.id
-        new_option.user_id = current_user.id
         new_option.save!
       end
-      flash[:success] = '投稿が完了しました'
+      flash[:notice] = '投稿が完了しました'
       redirect_to root_url
     else
       render 'posts/new'
@@ -43,16 +42,16 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    flash[:success] = '投稿を削除しました'
+    flash[:notice] = '投稿を削除しました'
     redirect_back(fallback_location: root_url)
   end
 
-  def ranking
+  def favorite
     @posts = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
   end
 
   def pv
-    @posts = Post.order(impressions_count: 'DESC').take(3)
+    @posts = Post.order(impressions_count: 'DESC').take(5)
   end
 
   private
