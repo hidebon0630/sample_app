@@ -12,10 +12,10 @@ executors:
             - BUNDLER_VERSION: 2.1.4
             - RAILS_ENV: test
             - DB_HOST: 127.0.0.1
-            - DB_USERNAME: 'root'
-            - DB_PASSWORD: 'password'
         - image: circleci/mysql:5.7
-
+          environment:
+            - MYSQL_USER: root
+            - MYSQL_ROOT_PASSWORD: password
 commands:
   restore_rails_package:
     description: bundle installの結果をリストア
