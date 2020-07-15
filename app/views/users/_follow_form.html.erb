@@ -1,9 +1,9 @@
 <% unless current_user == user %>
-  <div id="follow_form">
-  <% if current_user.following?(user) %>
-    <%= render 'unfollow', user: user %>
-  <% else %>
-    <%= render 'follow', user: user %>
-  <% end %>
+  <div id="follow_form_<%= user.id %>">
+    <% if current_user.following?(user) %>
+      <%= link_to "フォロー中", user_relationships_path(user.id), method: :delete, remote: true, class:'btn btn-primary btn-raised btn-block' %>
+    <% else %>
+      <%= link_to "フォロー", user_relationships_path(user.id), method: :post, remote: true, class:'btn btn-secondary btn-raised btn-block' %>
+    <% end %>
   </div>
 <% end %>
