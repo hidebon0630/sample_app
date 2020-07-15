@@ -2,19 +2,13 @@
   <div class="card mb-3">
     <div class="card-body">
       <h5 class="card-text">
-        <div class="row">
-          <div class="col-md-8">
-            <% if user.avatar? %>
-              <%= image_tag user.avatar.thumb.url, :size => '120x120', class: "user_icon" %>
-            <% else %>
-              <%= image_tag "/assets/default.png", :size => '120x120', class: "user_icon" %>
-            <% end %>
-            <span><%= link_to user.name, user %></span>
-          </div>
-          <div class="col-md-4">
-            <%= render 'follow_form', user: user %>
-          </div>
-        </div>
+        <% if user.avatar? %>
+          <%= image_tag user.avatar.thumb.url, :size => '120x120', class: "user_icon" %>
+        <% else %>
+          <%= image_tag "/assets/default.png", :size => '120x120', class: "user_icon" %>
+        <% end %>
+        <%= link_to user.name, user %>
+        <%= render 'follow_form', user: user %>
       </h5>
     </div>
   </div>

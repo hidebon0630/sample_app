@@ -51,9 +51,12 @@ body {
   background-attachment: fixed;
 }
 
-.container {
+.container-fluid {
   background-color: white;
   padding:10px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 768px;
 }
 
 .post-title {
