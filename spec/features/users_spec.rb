@@ -32,7 +32,7 @@ RSpec.feature 'Users', type: :feature do
     fill_in 'パスワード', with: 'password'
     click_button 'ログイン'
     expect(page).to have_content 'ログインしました。'
-    click_link 'プロフィール編集'
+    click_link '設定'
     expect(page).to have_button '更新'
     visit root_path
     click_link 'ログアウト'
@@ -47,7 +47,7 @@ RSpec.feature 'Users', type: :feature do
     fill_in 'パスワード', with: 'password'
     click_button 'ログイン'
     expect(page).to have_content 'ログインしました。'
-    click_link 'プロフィール編集'
+    click_link '設定'
     expect(page).to have_content 'ゲストユーザーは変更出来ません。'
   end
 
@@ -57,7 +57,7 @@ RSpec.feature 'Users', type: :feature do
     click_link 'ログイン'
     click_button 'かんたんログイン'
     expect(page).to have_content 'ログインしました。'
-    click_link 'プロフィール編集'
+    click_link '設定'
     expect(page).to have_content 'ゲストユーザーは変更出来ません。'
   end
 

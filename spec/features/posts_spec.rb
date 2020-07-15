@@ -8,7 +8,7 @@ RSpec.feature 'Posts', type: :feature do
     visit posts_path
 
     expect do
-      link = find('.new-post-btn')
+      link = find('.new-post-link')
       expect(link[:href]).to eq new_post_path
       link.click
       fill_in 'タイトル', with: 'テストタイトル'
