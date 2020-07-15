@@ -6,9 +6,10 @@
     <% else %>
       <%= image_tag "default.png", :size => '120x120', id: :img_prev, class: "rounded-circle" %>
     <% end %>
-    <button type="button" class="btn btn-outline-secondary">
-       <%= f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png', id: :user_img %>
-    </button>
+    <label>
+      <span class="btn btn-raised btn-secondary">画像変更</span>
+      <%= f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png', id: :user_img, class: "d-none" %>
+    </label>
   </div>
   <div class="form-group">
     <%= f.label :name, class:"bmd-label-floating" %>
@@ -46,7 +47,7 @@
       <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: {confirm: t('.are_you_sure')}, method: :delete, class: 'btn btn-danger btn-block btn-raised' %>
     <% else %>
       <fieldset disabled>
-        <button type="button" class="btn btn-raised btn-block btn-danger">ゲストユーザーは変更出来ません。</button>
+        <button type="button" class="btn btn-raised btn-block btn-danger active">ゲストユーザーは変更出来ません。</button>
       </fieldset>
     <% end %>
   </div>

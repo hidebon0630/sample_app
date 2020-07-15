@@ -27,14 +27,15 @@
   </div>
   <div class="form-group">
     <%= f.label :image, class:"bmd-label-floating" %>
-      <% if @post.image.present? %>
-        <%= image_tag @post.image_url, id: :img_prev %>
-      <% else %>
-        <%= image_tag "default.png", :size => '300x300', id: :img_prev %>
-      <% end %>
-    <button type="button" class="btn btn-outline-secondary">
-      <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: :post_img %>
-    </button>
+    <% if @post.image.present? %>
+      <%= image_tag @post.image_url, id: :img_prev, class: "form-control" %>
+    <% else %>
+      <%= image_tag "default.png", id: :img_prev, class: "form-control" %>
+    <% end %>
+    <label>
+      <span class="btn btn-raised btn-secondary">画像変更</span>
+      <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: :post_img, class: "d-none" %>
+    </label>
   </div>
   <div class="form-group">
     <%= f.label :status, class:"bmd-label-floating" %>
