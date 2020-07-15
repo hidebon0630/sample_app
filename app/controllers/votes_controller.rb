@@ -18,7 +18,7 @@ class VotesController < ApplicationController
       flash[:notice] = '回答ありがとうございました！'
     else
       redirect_back(fallback_location: root_path)
-      flash[:alert] = '回答は一人一回までです。'
+      flash[:warning] = '回答は一人一回までです。'
     end
   end
 
@@ -36,6 +36,6 @@ class VotesController < ApplicationController
     return unless voted.nil?
 
     redirect_back(fallback_location: root_path)
-    flash[:alert] = '回答後のみ結果を確認出来ます。'
+    flash[:warning] = '回答後のみ結果を確認出来ます。'
   end
 end

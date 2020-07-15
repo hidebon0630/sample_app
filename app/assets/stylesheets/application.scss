@@ -12,6 +12,7 @@
  *
  */
 @import "tagsinput";
+@import "toastr";
 
 // 無限スクロール
 
@@ -45,6 +46,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  font-family:  sans-serif,'arial black';
 }
 
 .container-fluid {

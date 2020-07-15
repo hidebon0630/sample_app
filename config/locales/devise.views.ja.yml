@@ -24,7 +24,7 @@ ja:
       post:
         title: タイトル
         content: 内容
-        tag_list: タグ
+        tag_list: タグ（任意）
         image: 画像
         status: ステータス
       comment:

@@ -15,6 +15,7 @@
 //= require activestorage
 //= require turbolinks
 //= require bootstrap-tagsinput.min
-//= require_tree .
+//= require toastr
 //= require chartkick
 //= require Chart.bundle
+//= require_tree .

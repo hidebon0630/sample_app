@@ -1,71 +1,58 @@
-<div class="sm-page">
-  <h1>アカウント編集</h1>
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-    <div class="form-group">
-      <% if current_user.avatar.present? %>
-        <%= image_tag current_user.avatar.thumb.url, id: :img_prev, class: "rounded-circle" %>
-      <% else %>
-        <%= image_tag "default.png", :size => '120x120', id: :img_prev, class: "rounded-circle" %>
-      <% end %>
-      <button type="button" class="btn btn-outline-secondary">
-         <%= f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png', id: :user_img %>
-      </button>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :name, class:"bmd-label-floating" %>
-      <%= f.text_field :name, class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :email, class:"bmd-label-floating" %>
-      <%= f.email_field :email, class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :password, class:"bmd-label-floating" %>
-      <%= f.password_field :password, autocomplete: 'new-password',
-                           class: 'form-control' %>
-
-      <small class="form-text text-muted"><%= t('.leave_blank_if_you_don_t_want_to_change_it') %></small>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :password_confirmation, class:"bmd-label-floating" %>
-      <%= f.password_field :password_confirmation, autocomplete: 'new-password',
-                           class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :current_password, class:"bmd-label-floating" %>
-      <%= f.password_field :current_password, autocomplete: 'current-password',
-                           class: 'form-control',
-                           required: true %>
-
-      <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
-    </div>
-
-    <div class="form-group">
-      <% if current_user.email != "guest@example.com" %>
-        <%= f.submit t('.update'), class: 'btn btn-raised btn-primary btn-block' %>
-      <% end %>
-    </div>
-
-    <div class="form-group">
-      <% if current_user.email != "guest@example.com" %>
-        <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: {confirm: t('.are_you_sure')}, method: :delete, class: 'btn btn-danger btn-block btn-raised' %>
-      <% else %>
-        <fieldset disabled>
-          <button type="button" class="btn btn-raised btn-block btn-danger">ゲストユーザーは変更出来ません。</button>
-        </fieldset>
-      <% end %>
-    </div>
-  <% end %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
   <div class="form-group">
-    <%= link_to "トップページ", root_path, class: 'btn btn-info btn-raised btn-block mb-4' %>
+    <% if current_user.avatar.present? %>
+      <%= image_tag current_user.avatar.thumb.url, id: :img_prev, class: "rounded-circle" %>
+    <% else %>
+      <%= image_tag "default.png", :size => '120x120', id: :img_prev, class: "rounded-circle" %>
+    <% end %>
+    <button type="button" class="btn btn-outline-secondary">
+       <%= f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png', id: :user_img %>
+    </button>
   </div>
+  <div class="form-group">
+    <%= f.label :name, class:"bmd-label-floating" %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, class:"bmd-label-floating" %>
+    <%= f.email_field :email, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password, class:"bmd-label-floating" %>
+    <%= f.password_field :password, autocomplete: 'new-password',
+                         class: 'form-control' %>
+    <small class="form-text text-muted"><%= t('.leave_blank_if_you_don_t_want_to_change_it') %></small>
+  </div>
+  <div class="form-group">
+    <%= f.label :password_confirmation, class:"bmd-label-floating" %>
+    <%= f.password_field :password_confirmation, autocomplete: 'new-password',
+                         class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :current_password, class:"bmd-label-floating" %>
+    <%= f.password_field :current_password, autocomplete: 'current-password',
+                         class: 'form-control',
+                         required: true %>
+    <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
+  </div>
+  <div class="form-group">
+    <% if current_user.email != "guest@example.com" %>
+      <%= f.submit t('.update'), class: 'btn btn-raised btn-primary btn-block' %>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <% if current_user.email != "guest@example.com" %>
+      <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: {confirm: t('.are_you_sure')}, method: :delete, class: 'btn btn-danger btn-block btn-raised' %>
+    <% else %>
+      <fieldset disabled>
+        <button type="button" class="btn btn-raised btn-block btn-danger">ゲストユーザーは変更出来ません。</button>
+      </fieldset>
+    <% end %>
+  </div>
+<% end %>
+<div class="form-group">
+  <%= link_to "トップページ", root_path, class: 'btn btn-info btn-raised btn-block mb-4' %>
 </div>
 
 <script type="text/javascript">
