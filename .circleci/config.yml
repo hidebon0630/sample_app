@@ -11,6 +11,7 @@ executors:
           environment:
             - BUNDLER_VERSION: 2.1.4
             - RAILS_ENV: test
+            - DB_HOST: 127.0.0.1
         - image: circleci/mysql:5.7
           environment:
             - MYSQL_ALLOW_EMPTY_PASSWORD: yes
@@ -52,12 +53,6 @@ commands:
       - run:
           name: Mysqlの起動を待機
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
-  change_database_setup:
-    description: データベースのテスト環境を変更
-    steps:
-      - run:
-          name: database.ymlとdatabase.yml.ciの入れ替え
-          command: mv config/database.yml.ci config/database.yml
   create_database:
     description: データベースの作成
     steps:
@@ -107,7 +102,6 @@ jobs:
       - install_dependencies
       - save_rails_package
       - wait_mysql_run
-      - change_database_setup
       - create_database
       - setup_database
       - run_rubocop
