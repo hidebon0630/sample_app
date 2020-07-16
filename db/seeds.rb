@@ -12,7 +12,7 @@ User.create!(name: 'ゲストユーザー',
              password: 'password',
              password_confirmation: 'password')
 
-10.times do |n|
+30.times do |n|
   name = Faker::Name.name
   email = "sample-#{n + 1}@example.com"
   password = 'password'
@@ -32,7 +32,7 @@ end
 
 users = User.all
 user  = users.first
-following = users[1..10]
-followers = users[1..10]
+following = users[1..20]
+followers = users[1..20]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }

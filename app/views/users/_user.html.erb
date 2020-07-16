@@ -1,15 +1,11 @@
-<li id="user-<%= user.id %>">
-  <div class="card mb-3">
-    <div class="card-body">
-      <h5 class="card-text">
-        <% if user.avatar? %>
-          <%= image_tag user.avatar.thumb.url, :size => '120x120', class: "user_icon" %>
-        <% else %>
-          <%= image_tag "/assets/default.png", :size => '120x120', class: "user_icon" %>
-        <% end %>
-        <%= link_to user.name, user %>
-        <%= render 'follow_form', user: user %>
-      </h5>
-    </div>
+<div class="col-md-6">
+  <div class="card align-items-center">
+    <% if user.avatar? %>
+      <%= link_to image_tag(user.avatar.thumb.url, class: "rounded-circle"), user %>
+    <% else %>
+      <%= link_to image_tag("default.png", :size => '120x120', class: "rounded-circle"), user %>
+    <% end %>
+    <%= link_to user.name, user %>
+    <%= render 'follow_form', user: user %>
   </div>
-</li>
+</div>

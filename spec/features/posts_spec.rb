@@ -15,7 +15,7 @@ RSpec.feature 'Posts', type: :feature do
       attach_file 'post[image]', "#{Rails.root}/spec/fixtures/sample1.png"
       click_button '投稿'
 
-      expect(page).to have_content '投稿が完了しました'
+      # expect(page).to have_content '投稿が完了しました'
     end.to change(user.posts, :count).by(1)
   end
 

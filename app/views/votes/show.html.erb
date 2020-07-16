@@ -1,11 +1,11 @@
 <div class="card">
   <div class="card-body">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-5">
         <h5 class="card-title post-title"><%= @post.title %></h5>
         <%= pie_chart @chart, donut: true, messages: {empty: "まだ回答がありません。"} %>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-7">
         <h5 class="card-title post-title">回答</h5>
         <aside>
           <% if @post.image? %>

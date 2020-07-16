@@ -1,13 +1,13 @@
 <% provide(:title, '全てのユーザー') %>
-<div class="md-page">
-  <%= render 'user_search_form', url: users_path, q: @q %>
-  <ul class="user-list jscroll">
-    <% if @users.any? %>
+<%= render 'user_search_form', url: users_path, q: @q %>
+<ul class="user-list jscroll">
+  <% if @users.any? %>
+    <div class="row">
       <%= render @users %>
       <%= paginate @users %>
-    <% else %>
-      <p><%= '検索結果がありません' %></p>
-    <% end %>
-  </ul>
-  <%= render "posts/post_btn" %>
-</div>
+    </div>
+  <% else %>
+    <p><%= '検索結果がありません' %></p>
+  <% end %>
+</ul>
+<%= render "posts/post_btn" %>

@@ -12,6 +12,7 @@
  *
  */
 @import "tagsinput";
+@import "toastr";
 
 // 無限スクロール
 
@@ -31,10 +32,6 @@ ul.post-list {
   padding: 0;
 }
 
-.user_icon {
-  border-radius: 50%;
-}
-
 .new-post-btn {
   font-size: 100px;
   position: fixed;
@@ -49,6 +46,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  font-family:  sans-serif,'arial black';
 }
 
 .container-fluid {
