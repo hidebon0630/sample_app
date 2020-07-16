@@ -1,6 +1,7 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">質問：<%= @post.title %></h5>
+    <%= image_tag @post.image.url %>
     <%= form_for [@post, @vote] do |f| %>
       <%= f.hidden_field :post_id, value: @post.id %>
       <% @post.options.each do |option| %>

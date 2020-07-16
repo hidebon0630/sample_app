@@ -3,8 +3,6 @@
   <div class="form-group">
     <% if current_user.avatar.present? %>
       <%= image_tag current_user.avatar.thumb.url, id: :img_prev, class: "rounded-circle" %>
-    <% else %>
-      <%= image_tag "default.png", :size => '120x120', id: :img_prev, class: "rounded-circle" %>
     <% end %>
     <label>
       <span class="btn btn-raised btn-secondary">画像ファイルを変更する</span>
