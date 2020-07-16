@@ -4,7 +4,6 @@ RUN apt-get update -qq && \
   apt-get install -y --no-install-recommends build-essential \
   libpq-dev \
   nodejs \
-   imagemagick \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 

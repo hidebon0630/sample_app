@@ -9,7 +9,7 @@
         <h5 class="card-title post-title">回答</h5>
         <aside>
           <% if @post.image? %>
-            <%= image_tag @post.image.url %>
+            <%= image_tag @post.image.url, class: "img-fluid" %>
           <% end %>
         </aside>
         <% @options.each do |option| %>
