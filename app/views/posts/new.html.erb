@@ -32,8 +32,8 @@
     <% else %>
       <%= image_tag "default.png", id: :img_prev, class: "form-control" %>
     <% end %>
-    <label>
-      <span class="btn btn-raised btn-secondary">画像ファイルを追加する</span>
+    <label class="form-control">
+      <span class="btn btn-raised btn-secondary btn-block">画像ファイルを追加する</span>
       <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: :post_img, class: "d-none" %>
     </label>
   </div>
