@@ -5,9 +5,9 @@
 #  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  option_id  :bigint
-#  post_id    :bigint
-#  user_id    :bigint
+#  option_id  :integer
+#  post_id    :integer
+#  user_id    :integer
 #
 # Indexes
 #
@@ -15,12 +15,6 @@
 #  index_votes_on_post_id              (post_id)
 #  index_votes_on_user_id              (user_id)
 #  index_votes_on_user_id_and_post_id  (user_id,post_id) UNIQUE
-#
-# Foreign Keys
-#
-#  fk_rails_...  (option_id => options.id)
-#  fk_rails_...  (post_id => posts.id)
-#  fk_rails_...  (user_id => users.id)
 #
 FactoryBot.define do
   factory :vote do

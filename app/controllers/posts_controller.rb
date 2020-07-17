@@ -34,7 +34,7 @@ class PostsController < ApplicationController
         new_option.save!
       end
       flash[:notice] = '投稿が完了しました'
-      redirect_to root_url
+      redirect_to posts_path
     else
       render 'posts/new'
     end
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:notice] = '投稿を削除しました'
-    redirect_back(fallback_location: root_url)
+    redirect_back(fallback_location: posts_path)
   end
 
   def favorite
@@ -57,7 +57,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :image, :title, :tag_list, :status)
+    params.require(:post).permit(:content, :image, :title, :status)
   end
 
   def correct_user
