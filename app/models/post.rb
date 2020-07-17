@@ -29,7 +29,6 @@ class Post < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :options, dependent: :destroy
   has_many :votes, dependent: :destroy
-  acts_as_taggable
   enum status: { published: 0, draft: 1 }
   is_impressionable counter_cache: true
 

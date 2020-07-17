@@ -21,9 +21,7 @@
           <%= render partial: 'likes/like', locals: { post: post} %>
         </div>
       <% end %>
-      <div data-role="tagsinput">
-        <%= render 'posts/tag_list', tag_list: post.tag_list %>
-      </div>
+
       <% if current_user == post.user || current_user.already_voted?(post) %>
         <%= link_to post_votes_path(post), class:"btn btn-primary btn-raised btn-block" do %>
           結果を見る<i class="material-icons">equalizer</i>
