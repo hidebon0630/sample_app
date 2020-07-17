@@ -17,7 +17,7 @@ class VotesController < ApplicationController
       redirect_to post_votes_path
       flash[:notice] = '回答ありがとうございました！'
     else
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: posts_path)
       flash[:warning] = '回答は一人一回までです。'
     end
   end
@@ -35,7 +35,7 @@ class VotesController < ApplicationController
 
     return unless voted.nil?
 
-    redirect_back(fallback_location: root_path)
+    redirect_back(fallback_location: posts_path)
     flash[:warning] = '回答後のみ結果を確認出来ます。'
   end
 end

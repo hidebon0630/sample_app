@@ -14,8 +14,8 @@ ActiveRecord::Schema.define(version: 2020_07_09_125726) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
-    t.bigint "user_id"
-    t.bigint "post_id"
+    t.integer "post_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 2020_07_09_125726) do
   end
 
   create_table "entries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "room_id"
+    t.integer "user_id"
+    t.integer "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_entries_on_room_id"
@@ -58,17 +58,18 @@ ActiveRecord::Schema.define(version: 2020_07_09_125726) do
   end
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "post_id"
-    t.bigint "user_id"
+    t.integer "post_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id", "user_id"], name: "index_likes_on_post_id_and_user_id", unique: true
     t.index ["post_id"], name: "index_likes_on_post_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "room_id"
+    t.integer "user_id"
+    t.integer "room_id"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -92,8 +93,8 @@ ActiveRecord::Schema.define(version: 2020_07_09_125726) do
   end
 
   create_table "options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "post_id"
-    t.bigint "user_id"
+    t.integer "post_id"
+    t.integer "user_id"
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -102,7 +103,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_125726) do
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
@@ -172,9 +173,9 @@ ActiveRecord::Schema.define(version: 2020_07_09_125726) do
   end
 
   create_table "votes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "option_id"
-    t.bigint "post_id"
-    t.bigint "user_id"
+    t.integer "option_id"
+    t.integer "post_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["option_id"], name: "index_votes_on_option_id"
@@ -183,19 +184,5 @@ ActiveRecord::Schema.define(version: 2020_07_09_125726) do
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
-  add_foreign_key "comments", "posts"
-  add_foreign_key "comments", "users"
-  add_foreign_key "entries", "rooms"
-  add_foreign_key "entries", "users"
-  add_foreign_key "likes", "posts"
-  add_foreign_key "likes", "users"
-  add_foreign_key "messages", "rooms"
-  add_foreign_key "messages", "users"
-  add_foreign_key "options", "posts"
-  add_foreign_key "options", "users"
-  add_foreign_key "posts", "users"
   add_foreign_key "taggings", "tags"
-  add_foreign_key "votes", "options"
-  add_foreign_key "votes", "posts"
-  add_foreign_key "votes", "users"
 end
