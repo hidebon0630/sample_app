@@ -27,12 +27,12 @@ class PostsController < ApplicationController
     if @post.save
       params[:options].each do |option|
         next unless option[:title] != ''
-
         new_option = current_user.options.build
         new_option.title = option[:title]
         new_option.post_id = @post.id
         new_option.save!
       end
+      logger.info(@post)
       flash[:notice] = '投稿が完了しました'
       redirect_to posts_path
     else
