@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_125726) do
     t.integer "visited_id", null: false
     t.integer "post_id"
     t.integer "comment_id"
+    t.integer "vote_id"
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_125726) do
     t.index ["post_id"], name: "index_notifications_on_post_id"
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
+    t.index ["vote_id"], name: "index_notifications_on_vote_id"
   end
 
   create_table "options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

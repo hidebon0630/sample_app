@@ -13,7 +13,9 @@ class VotesController < ApplicationController
 
   def create
     @vote = current_user.votes.build(vote_params)
+    @post = @vote.post
     if @vote.save
+      @post.create_notification_vote!(current_user, @vote.id)
       redirect_to post_votes_path
       flash[:notice] = '回答ありがとうございました'
     else

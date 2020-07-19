@@ -9,23 +9,23 @@
     </div>
   </ul>
   <% case notification.action %>
-    <% when 'follow' then %>
-      <ul class="list-group">
-        <div class="list-group-item">
-          <i class="material-icons">face</i>
-          <%= "あなたをフォローしました" %>
-          <i class="material-icons">group_add</i>
-        </div>
-      </ul>
-    <% when 'like' then %>
-      <ul class="list-group">
-        <div class="list-group-item">
-          <i class="material-icons">inbox</i>
-          <%= link_to notification.post.title, post_votes_path(notification.post) %>
-          <%= "にいいねしました" %>
-          <i class="material-icons">favorite</i>
-        </div>
-      </ul>
+  <% when 'follow' then %>
+    <ul class="list-group">
+      <div class="list-group-item">
+        <i class="material-icons">face</i>
+        <%= "あなたをフォローしました" %>
+        <i class="material-icons">group_add</i>
+      </div>
+    </ul>
+  <% when 'like' then %>
+    <ul class="list-group">
+      <div class="list-group-item">
+        <i class="material-icons">inbox</i>
+        <%= link_to notification.post.title, post_votes_path(notification.post) %>
+        <%= "にいいねしました" %>
+        <i class="material-icons">favorite</i>
+      </div>
+    </ul>
   <% when 'comment' then %>
     <ul class="list-group">
       <div class="list-group-item">
@@ -39,6 +39,15 @@
           <% end %>
         <% end %>
         <%= "にコメントしました" %>
+        <i class="material-icons">sms</i>
+      </div>
+    </ul>
+  <% when 'vote' then %>
+    <ul class="list-group">
+      <div class="list-group-item">
+        <i class="material-icons">inbox</i>
+        <%= link_to "あなたの投稿", post_votes_path(notification.post) %>
+        <%= "に回答しました" %>
         <i class="material-icons">sms</i>
       </div>
     </ul>
