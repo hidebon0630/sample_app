@@ -23,3 +23,17 @@ User.create!(name: 'ゲストユーザー',
                password: password,
                password_confirmation: password)
 end
+
+users = User.order(:created_at).take(6)
+10.times do
+  title = Faker::Lorem.sentence(word_count: 3)
+  image = "#{Rails.root}/db/fixtures/sample1.png"
+  users.each { |user| user.posts.create!(title: title, image: File.open(image)) }
+end
+
+users = User.all
+user  = users.first
+following = users[1..20]
+followers = users[1..20]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
