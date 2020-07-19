@@ -31,6 +31,7 @@ class Post < ApplicationRecord
   has_many :votes, dependent: :destroy
   enum status: { published: 0, draft: 1 }
   is_impressionable counter_cache: true
+  acts_as_taggable
 
   def liked_by?(user)
     likes.exists?(user_id: user.id)

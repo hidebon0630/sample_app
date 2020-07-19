@@ -7,6 +7,9 @@ class PostsController < ApplicationController
   def index
     @q = Post.ransack(params[:q])
     @posts = @q.result.published.order('created_at DESC').page(params[:page]).per(10)
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+    end
   end
 
   def new
@@ -58,7 +61,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :image, :title, :status)
+    params.require(:post).permit(:content, :image, :title, :status, :tag_list)
   end
 
   def correct_user
