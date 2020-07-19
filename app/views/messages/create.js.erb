@@ -1,0 +1,2 @@
+$("#messages_area").html("<%= escape_javascript(render partial: 'rooms/message', locals: { messages: @messages }) %>")
+$('#message_content').val("");
