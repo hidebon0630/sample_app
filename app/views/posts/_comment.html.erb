@@ -1,10 +1,12 @@
-<li class="list-group">
-  <div class="list-group-item border border-primary">
-    <i class="material-icons">sms</i>
-    <%= comment.content %>
-    <span class="label label-default label-pill">
-      <%= link_to comment.user.name, comment.user %>
-      <i class="material-icons">face</i>
-    </span>
-  </div>
-</li>
+<% comments.each do |comment| %>
+  <li class="list-group">
+    <div class="list-group-item border border-primary">
+      <i class="material-icons">sms</i>
+      <%= comment.content %>
+      <span class="label label-default label-pill">
+        <%= link_to comment.user.name, comment.user %>
+        <i class="material-icons">face</i>
+      </span>
+    </div>
+  </li>
+<% end %>

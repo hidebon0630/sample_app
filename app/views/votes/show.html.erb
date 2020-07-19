@@ -33,11 +33,9 @@
   <div class="card mt-3">
     <div class="card-body">
       <div class="card-title text-center"><h4>コメント一覧</h4></div>
-      <% @comments.each do |comment| %>
-        <div id="comment-<%= comment.id %>">
-          <%= render "posts/comment", comment: comment %>
+        <div id="comments_area">
+          <%= render "posts/comment", comments: @comments %>
         </div>
-      <% end %>
       <%= render "posts/comment_form" %>
     </div>
   </div>
