@@ -1,7 +1,8 @@
-<p>メッセージ一覧</p>
+<div class="mt-3">
+<p class="text-center">メッセージ一覧</p>
 <% if @messages.present? %>
   <% @messages.each do |m| %>
-    <ul class="list-group">
+    <ul class="list-group border border-primary">
       <div class="list-group-item">
         <% if m.user == current_user %>
           <i class="material-icons icon-right">person</i>
@@ -20,7 +21,7 @@
         <% end %>
       </div>
     </ul>
-    <%= time_ago_in_words(m.created_at).upcase %>前
+    <p class="text-right"><%= time_ago_in_words(m.created_at).upcase %>前</p>
   <% end %>
 <% else %>
   <p class="text-center">メッセージはまだありません</p>

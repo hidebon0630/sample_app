@@ -20,15 +20,14 @@
     <%= text_field_tag "options[][title]", @option.title, autocomplete: "off", class: 'form-control', required: true %>
     <span class="bmd-help">同じ質問は結果が重複されます。</span>
   </div>
-  <div class="form-group mt-5">
-    <%= f.label :image, class:"bmd-label-floating" %>
-    <% if @post.image.present? %>
-      <%= image_tag @post.image_url, id: :img_prev, class: "form-control" %>
-    <% else %>
-      <%= image_tag "default.png", id: :img_prev, class: "form-control" %>
-    <% end %>
+  <div class="form-group">
     <label class="form-control">
-      <span class="btn btn-raised btn-secondary btn-block">画像ファイルを追加する</span>
+    <% if @post.image.present? %>
+      <%= image_tag @post.image_url, id: :img_prev, :size => '300x300', class: "form-control" %>
+    <% else %>
+      <%= image_tag "noimage.png", :size => '300x300', id: :img_prev %>
+    <% end %>
+      <span class="btn btn-raised btn-secondary">画像ファイルを追加する</span>
       <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: :post_img, class: "d-none" %>
     </label>
   </div>

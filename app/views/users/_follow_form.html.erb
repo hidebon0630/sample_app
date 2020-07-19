@@ -6,6 +6,4 @@
       <%= link_to "フォロー", user_relationships_path(user), method: :post, remote: true, class:'btn btn-secondary btn-raised btn-block' %>
     <% end %>
   </div>
-<% else %>
-  <%= link_to "マイページ", user_path(current_user), class:'btn btn-dark btn-raised' %>
 <% end %>

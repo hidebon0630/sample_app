@@ -1,15 +1,13 @@
-<p>参加者</p>
+<p class="text-center">参加者</p>
 <% @entries.each do |entry| %>
   <ul class="list-group">
-    <div class="list-group-item">
+    <div class="list-group-item list-group-item-primary">
     <% if entry.user == current_user %>
       <i class="material-icons">person</i>
       <%= link_to entry.user.name, entry.user %>
     <% else %>
-      <span class="label label-default label-pill pull-xs-right">
-        <%= link_to entry.user.name, entry.user %>
-        <i class="material-icons">person_outline</i>
-      </span>
+      <i class="material-icons">person_outline</i>
+      <%= link_to entry.user.name, entry.user %>
     <% end %>
     </div>
   </ul>

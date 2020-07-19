@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
   <% if current_user.already_liked?(post) %>
     <%= link_to post_likes_path(post), method: :delete, remote: true do %>
-      <i class="material-icons">favorite</i>
+      <i class="material-icons favorite">favorite</i>
     <% end %>
   <% else %>
     <%= link_to post_likes_path(post), method: :post, remote: true do %>
-      <i class="material-icons">favorite_border</i>
+      <i class="material-icons favorite">favorite_border</i>
     <% end %>
   <% end %>
   <%= post.likes.count %>

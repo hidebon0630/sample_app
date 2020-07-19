@@ -1,6 +1,11 @@
-<div class="md-page">
-  <p>ダイレクトメッセージ</p>
-  <%= render 'entry_user' %>
-  <%= render 'message' %>
-  <%= render 'message_form' %>
-</div>
+<% provide(:title, 'DM') %>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/posts">Home</a></li>
+    <li class="breadcrumb-item active">User</li>
+    <li class="breadcrumb-item active" aria-current="page">DM</li>
+  </ol>
+</nav>
+<%= render 'entry_user' %>
+<%= render 'message' %>
+<%= render 'message_form' %>

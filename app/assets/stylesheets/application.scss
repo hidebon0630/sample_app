@@ -12,6 +12,7 @@
  *
  */
 @import "toastr";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap');
 
 // 無限スクロール
 
@@ -40,22 +41,29 @@ ul.post-list {
 }
 
 body {
-  padding: 100px;
-  background-image: image-url('1.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  font-family:  sans-serif,'arial black';
+  padding: 100px 0;
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: #FFFAFA	;
 }
 
 .container-fluid {
-  background-color: white;
-  padding:10px;
   margin-right: auto;
   margin-left: auto;
   max-width: 960px;
 }
+.favorite {
+  color: #FF5F17;
+}
 
-.post-title {
-  text-align: center;
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+  top: -20px;
+  left: 47.4%;
+}
+
+.breadcrumb {
+  background-color: #FFFAFA	;
 }

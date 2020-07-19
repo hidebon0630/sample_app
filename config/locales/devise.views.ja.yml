@@ -28,7 +28,7 @@ ja:
         image: 画像（任意）
         status: ステータス
       comment:
-        content: 内容
+        content: コメント
       message:
         content: メッセージ
   devise:
@@ -46,6 +46,7 @@ ja:
         leave_blank_if_you_don_t_want_to_change_it: 空欄のままなら変更しません
         title: "%{resource}編集"
         update: 更新
+        setting: 設定
         we_need_your_current_password_to_confirm_your_changes: 変更を反映するには現在のパスワードを入力してください
       new:
         sign_up: 新規登録

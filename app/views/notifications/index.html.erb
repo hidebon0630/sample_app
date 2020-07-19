@@ -1,12 +1,16 @@
-<div class="md-page">
-  <h4 class="sub-title">通知</h4>
-  <% if @notifications.exists? %>
-    <div class="users-index">
-      <%= render @notifications %>
-      <%= paginate @notifications %>
-    </div>
-  <% else %>
-    <p>通知はありません</p>
-  <% end %>
-  <%= render "posts/post_btn" %>
-</div>
+<% provide(:title, '通知') %>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/posts">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Notifications</li>
+  </ol>
+</nav>
+<% if @notifications.exists? %>
+  <div class="users-index">
+    <%= render @notifications %>
+    <%= paginate @notifications %>
+  </div>
+<% else %>
+  <p class="text-center">通知はありません</p>
+<% end %>
+<%= render "posts/post_btn" %>

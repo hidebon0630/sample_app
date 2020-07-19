@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: :destroy
   before_action :already_voted_user, only: :show
+  before_action :reject_current_user, only: :show
 
   def index
     @q = Post.ransack(params[:q])
@@ -72,5 +73,13 @@ class PostsController < ApplicationController
 
     redirect_to post_votes_path(@post)
     flash[:notice] = '既に回答しています'
+  end
+
+  def reject_current_user
+    post = Post.find_by(id: params[:id])
+    if post.user == current_user
+      redirect_back(fallback_location: posts_path)
+      flash[:warning] = "自分で回答は出来ません。"
+    end
   end
 end

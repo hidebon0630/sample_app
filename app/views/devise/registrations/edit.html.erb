@@ -1,10 +1,18 @@
+<% provide(:title, '設定') %>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/posts">Home</a></li>
+    <li class="breadcrumb-item"><a href="/users/<%= current_user.id %>">User</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Setting</li>
+  </ol>
+</nav>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
   <div class="form-group">
     <% if current_user.avatar.present? %>
-      <%= image_tag current_user.avatar.thumb.url, :size => '120x120', id: :img_prev, class: "rounded-circle" %>
+      <%= image_tag current_user.avatar.thumb.url, :size => '150x150', id: :img_prev, class: "rounded-circle" %>
     <% else %>
-      <%= image_tag "default.png", :size => '120x120', id: :img_prev, class: "rounded-circle" %>
+      <%= image_tag "default.png", :size => '150x150', id: :img_prev, class: "rounded-circle" %>
     <% end %>
     <label class='form-control'>
       <span class="btn btn-raised btn-secondary btn-block">画像ファイルを変更する</span>

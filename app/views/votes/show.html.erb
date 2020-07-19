@@ -1,12 +1,20 @@
+<% provide(:title, '回答') %>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/posts">Home</a></li>
+    <li class="breadcrumb-item"><a href="/posts/<%= @post.id %>">Post</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Answer</li>
+  </ol>
+</nav>
 <div class="card">
   <div class="card-body">
     <div class="row">
       <div class="col-md-5">
-        <h5 class="card-title post-title"><%= @post.title %></h5>
+        <h5 class="card-title text-center"><%= @post.title %></h5>
         <%= pie_chart @chart, donut: true, messages: {empty: "まだ回答がありません。"} %>
       </div>
       <div class="col-md-7">
-        <h5 class="card-title post-title">回答</h5>
+        <h5 class="card-title text-center">回答</h5>
         <aside>
           <% if @post.image? %>
             <%= image_tag @post.image.url, class: "img-fluid" %>
@@ -21,14 +29,16 @@
     </div>
   </div>
 </div>
-<div class="card">
-  <div class="card-body">
-    <div class="card-title"><h4>コメント一覧</h4></div>
-    <% @comments.each do |comment| %>
-      <div id="comment-<%= comment.id %>">
-        <%= render "posts/comment", comment: comment %>
-      </div>
-    <% end %>
-    <%= render "posts/comment_form" %>
+<div class="comments">
+  <div class="card mt-3">
+    <div class="card-body">
+      <div class="card-title text-center"><h4>コメント一覧</h4></div>
+      <% @comments.each do |comment| %>
+        <div id="comment-<%= comment.id %>">
+          <%= render "posts/comment", comment: comment %>
+        </div>
+      <% end %>
+      <%= render "posts/comment_form" %>
+    </div>
   </div>
 </div>
