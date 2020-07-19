@@ -35,7 +35,7 @@
   </li>
   <li class="nav-item">
     <a class="nav-link" id="item4-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="false">
-      フォロワー <%= @user.followers.count %>
+      フォロワー <span id="followers"><%= @user.followers.count %></span>
     </a>
   </li>
   <% if current_user == @user %>

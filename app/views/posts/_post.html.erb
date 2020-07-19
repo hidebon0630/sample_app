@@ -1,14 +1,16 @@
-<li id="post-<%= post.id %> relative">
+<li id="post-<%= post.id %>">
   <div class="card mb-5">
     <div class="card-body">
-      <h5 class="card-title">
+      <h5 class="card-title text-center">
+        <%= post.title %>
+      </h5>
+      <h5 class="card-subtitle mt-3">
         <% if post.user.avatar? %>
-          <%= link_to image_tag(post.user.avatar.thumb.url, :size => '50x50', class: "rounded-circle absolute"), post.user %>
+          <%= link_to image_tag(post.user.avatar.thumb.url, :size => '50x50', class: "rounded-circle"), post.user %>
         <% else %>
-          <%= link_to image_tag("nouser.png", :size => '50x50', class: "rounded-circle absolute"), post.user %>
+          <%= link_to image_tag("nouser.png", :size => '50x50', class: "rounded-circle"), post.user %>
         <% end %>
       </h5>
-      <h5 class="card-subtitle text-center mt-3"><%= post.title %></h5>
       <p class="card-text">
         <p>
         <i class="material-icons">remove_red_eye</i>

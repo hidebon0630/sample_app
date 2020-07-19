@@ -13,7 +13,6 @@
  */
 @import "toastr";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap');
-@import "tagsinput";
 // 無限スクロール
 
 li {
@@ -59,15 +58,16 @@ body {
   color: #222222 !important;
 }
 
-.relative {
-  position: relative;
-}
-.absolute {
-  position: absolute;
-  top: -20px;
-  left: 47.4%;
-}
-
 .breadcrumb {
   background-color: #FFFAFA	;
+}
+
+.tag {
+  font-size:15px;
+}
+
+.new_post_page {
+  @extend .container-fluid;
+  max-width: 768px;
+  padding: 2rem;
 }
