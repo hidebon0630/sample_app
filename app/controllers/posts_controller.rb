@@ -79,7 +79,7 @@ class PostsController < ApplicationController
     post = Post.find_by(id: params[:id])
     if post.user == current_user
       redirect_back(fallback_location: posts_path)
-      flash[:warning] = "自分で回答は出来ません。"
+      flash[:warning] = "自分で回答は出来ません"
     end
   end
 end

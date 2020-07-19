@@ -15,10 +15,10 @@ class VotesController < ApplicationController
     @vote = current_user.votes.build(vote_params)
     if @vote.save
       redirect_to post_votes_path
-      flash[:notice] = '回答ありがとうございました！'
+      flash[:notice] = '回答ありがとうございました'
     else
       redirect_back(fallback_location: posts_path)
-      flash[:warning] = '回答は一人一回までです。'
+      flash[:warning] = '項目を入力して下さい'
     end
   end
 
@@ -36,6 +36,6 @@ class VotesController < ApplicationController
     return unless voted.nil?
 
     redirect_back(fallback_location: posts_path)
-    flash[:warning] = '回答後のみ結果を確認出来ます。'
+    flash[:warning] = '回答後のみ結果を確認出来ます'
   end
 end

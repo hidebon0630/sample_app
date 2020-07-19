@@ -51,8 +51,12 @@ body {
   margin-left: auto;
   max-width: 960px;
 }
-.favorite {
+.favorite, .delete {
   color: #FF5F17;
+}
+
+.nav-tabs > li > a{
+  color: #222222 !important;
 }
 
 .relative {
