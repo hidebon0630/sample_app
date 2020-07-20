@@ -24,6 +24,5 @@ RSpec.feature 'Posts', type: :feature do
     post = FactoryBot.create(:post, owner: user)
     sign_in user
     visit post_path(post)
-    expect(page).to have_button '回答'
   end
 end

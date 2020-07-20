@@ -4,11 +4,10 @@ class CommentsController < ApplicationController
     @post = @comment.post
     post = Post.find_by(id: params[:post_id])
     @comments = post.comments
-    if @comment.save
-      @post.create_notification_comment!(current_user, @comment.id)
-      respond_to do |format|
-        format.js
-      end
+    eturn unless @comment.save
+    @post.create_notification_comment!(current_user, @comment.id)
+    respond_to do |format|
+      format.js
     end
   end
 

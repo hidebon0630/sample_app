@@ -7,9 +7,7 @@ class PostsController < ApplicationController
   def index
     @q = Post.ransack(params[:q])
     @posts = @q.result.published.order('created_at DESC').page(params[:page]).per(10)
-    if params[:tag_name]
-      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
-    end
+    @posts = Post.tagged_with(params[:tag_name].to_s).page(params[:page]).per(10) if params[:tag_name]
   end
 
   def new
@@ -31,6 +29,7 @@ class PostsController < ApplicationController
     if @post.save
       params[:options].each do |option|
         next unless option[:title] != ''
+
         new_option = current_user.options.build
         new_option.title = option[:title]
         new_option.post_id = @post.id
@@ -80,9 +79,9 @@ class PostsController < ApplicationController
 
   def reject_current_user
     post = Post.find_by(id: params[:id])
-    if post.user == current_user
-      redirect_back(fallback_location: posts_path)
-      flash[:warning] = "自分で回答は出来ません"
-    end
+    return unless post.user == current_user
+
+    redirect_back(fallback_location: posts_path)
+    flash[:warning] = '自分で回答は出来ません'
   end
 end
