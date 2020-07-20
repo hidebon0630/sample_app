@@ -26,7 +26,7 @@
             <%= render partial: 'likes/like', locals: { post: post} %>
           </div>
         <% end %>
-        <div data-role="tagsinput">
+        <div>
           <%= render 'posts/tag_list', tag_list: post.tag_list %>
         </div>
         <% if current_user == post.user || current_user.already_voted?(post) %>

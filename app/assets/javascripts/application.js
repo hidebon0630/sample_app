@@ -14,6 +14,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require toastr
+//= require bootstrap-tagsinput.min
 //= require chartkick
 //= require Chart.bundle
 //= require_tree .
