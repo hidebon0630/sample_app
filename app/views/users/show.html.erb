@@ -1,21 +1,23 @@
 <% provide(:title, 'ユーザー詳細') %>
-<div class="row">
-  <aside class="col-md-6">
-    <% if @user.avatar? %>
-      <%= image_tag @user.avatar.thumb.url, class: "rounded-circle" %>
-    <% else %>
-      <%= image_tag "default.png", :size => '120x120', class: "rounded-circle" %>
-    <% end %>
-  </aside>
-  <aside class="col-md-6">
-    <li>名前：<%= @user.name %></li>
-    <% if user_signed_in? %>
-      <%= render 'follow_form', user: @user %>
-      <%= render 'chat', user: @user %>
-    <% end %>
-  </aside>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/posts">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">User</li>
+  </ol>
+</nav>
+<div class="text-center">
+  <% if @user.avatar? %>
+    <%= image_tag @user.avatar.thumb.url, class: "rounded-circle" %>
+  <% else %>
+    <%= image_tag "nouser.png", :size => '120x120', class: "rounded-circle" %>
+  <% end %>
+  <li><%= @user.name %></li>
+  <% if user_signed_in? %>
+    <%= render 'follow_form', user: @user %>
+    <%= render 'chat', user: @user %>
+  <% end %>
 </div>
-<ul class="nav nav-tabs bg-dark justify-content-center mt-3" role="tablist">
+<ul class="nav nav-tabs justify-content-center mt-3 mb-5" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">
       公開投稿 <%= @posts.count %>
@@ -33,7 +35,7 @@
   </li>
   <li class="nav-item">
     <a class="nav-link" id="item4-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="false">
-      フォロワー <%= @user.followers.count %>
+      フォロワー <span id="followers"><%= @user.followers.count %></span>
     </a>
   </li>
   <% if current_user == @user %>

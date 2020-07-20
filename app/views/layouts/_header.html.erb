@@ -1,17 +1,19 @@
-<header>
-  <nav class="navbar navbar-expand-lg bg-white fixed-top">
-    <div class="container">
-      <%= link_to root_path, class: "navbar-brand" do %>
-        <i class="material-icons">home</i>
-        <span>ホーム</span>
-      <% end %>
-      <a class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+<header class="fixed-top">
+  <nav class="navbar navbar-expand-lg bg-white">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
               aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="material-icons">settings</i>
-      </a>
+          <i class="material-icons">menu</i>
+      </button>
       <% if user_signed_in? %>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav mr-auto">　
+          <ul class="nav nav-tabs mr-auto">　
+            <li class="nav-item">
+              <%= link_to posts_path, class: "nav-link" do %>
+                <i class="material-icons">home</i>
+                <span>ホーム</span>
+              <% end %>
+            </li>
             <li class="nav-item">
               <%= link_to users_path, class: "nav-link" do %>
                 <i class="material-icons">face</i>
@@ -48,11 +50,11 @@
               <% end %>
             </li>
           </ul>
-          <ul class="navbar-nav">
+          <ul class="nav nav-tabs">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button class="btn bmd-btn-icon dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="material-icons">more_vert</i>
-              </a>
+              </button>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <%= link_to user_path(current_user), class: "dropdown-item" do %>
                   <i class="material-icons">account_circle</i>
@@ -73,7 +75,15 @@
         </div>
       <% else %>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-          <ul class="navbar-nav">
+          <ul class="nav nav-tabs mr-auto">
+            <li class="nav-item">
+              <%= link_to root_path, class: "nav-link" do %>
+                <i class="material-icons">home</i>
+                <span>ホーム</span>
+              <% end %>
+            </li>
+          </ul>
+          <ul class="nav nav-tabs">
             <li class="nav-item">
               <%= link_to new_user_session_path, class: "nav-link" do %>
                 <i class="material-icons">lock_open</i>

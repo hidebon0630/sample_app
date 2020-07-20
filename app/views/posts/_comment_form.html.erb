@@ -1,12 +1,12 @@
-<%= form_for [@post, @comment] do |f| %>
+<%= form_for [@post, @comment], remote: true do |f| %>
   <div class="form-group">
     <%= f.label :content, class:"bmd-label-floating" %>
     <%= f.text_field :content, class: 'form-control',
                                required: true, maxlength:'30' %>
     <%= f.hidden_field :post_id, value: @post.id %>
-    <span class="bmd-help">30文字以内でコメントして下さい</span>
+    <span class="bmd-help">30文字以内で入力して下さい</span>
   </div>
   <div class="form-group">
-    <%= f.submit 'コメントする', class: "btn btn-secondary btn-block btn-raised" %>
+    <%= f.submit '送信する', class: "btn btn-secondary btn-block btn-raised" %>
   </div>
 <% end %>

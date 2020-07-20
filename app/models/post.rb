@@ -31,6 +31,7 @@ class Post < ApplicationRecord
   has_many :votes, dependent: :destroy
   enum status: { published: 0, draft: 1 }
   is_impressionable counter_cache: true
+  acts_as_taggable
 
   def liked_by?(user)
     likes.exists?(user_id: user.id)
@@ -54,7 +55,6 @@ class Post < ApplicationRecord
     temp_ids.each do |temp_id|
       save_notification_comment!(current_user, comment_id, temp_id['user_id'])
     end
-    save_notification_comment!(current_user, comment_id, user_id) if temp_ids.blank?
   end
 
   def save_notification_comment!(current_user, comment_id, visited_id)
@@ -65,6 +65,16 @@ class Post < ApplicationRecord
       action: 'comment'
     )
     notification.checked = true if notification.visitor_id == notification.visited_id
+    notification.save if notification.valid?
+  end
+
+  def create_notification_vote!(current_user, vote_id)
+    notification = current_user.active_notifications.new(
+      post_id: id,
+      vote_id: vote_id,
+      visited_id: user_id,
+      action: 'vote'
+    )
     notification.save if notification.valid?
   end
 

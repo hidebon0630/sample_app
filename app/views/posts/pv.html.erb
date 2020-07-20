@@ -1,4 +1,10 @@
 <% provide(:title, 'PVランキング') %>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/posts">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">PV</li>
+  </ol>
+</nav>
 <ul class="post-list jscroll">
   <% @posts.each_with_index do |post, index| %>
     <%= render "ranking", post: post, index: index %>

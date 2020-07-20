@@ -2,10 +2,12 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: :destroy
   before_action :already_voted_user, only: :show
+  before_action :reject_current_user, only: :show
 
   def index
     @q = Post.ransack(params[:q])
     @posts = @q.result.published.order('created_at DESC').page(params[:page]).per(10)
+    @posts = Post.tagged_with(params[:tag_name].to_s).page(params[:page]).per(10) if params[:tag_name]
   end
 
   def new
@@ -33,6 +35,7 @@ class PostsController < ApplicationController
         new_option.post_id = @post.id
         new_option.save!
       end
+      logger.info(@post)
       flash[:notice] = '投稿が完了しました'
       redirect_to posts_path
     else
@@ -57,7 +60,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :image, :title, :status)
+    params.require(:post).permit(:content, :image, :title, :status, :tag_list)
   end
 
   def correct_user
@@ -72,5 +75,13 @@ class PostsController < ApplicationController
 
     redirect_to post_votes_path(@post)
     flash[:notice] = '既に回答しています'
+  end
+
+  def reject_current_user
+    post = Post.find_by(id: params[:id])
+    return unless post.user == current_user
+
+    redirect_back(fallback_location: posts_path)
+    flash[:warning] = '自分で回答は出来ません'
   end
 end

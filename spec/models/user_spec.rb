@@ -22,8 +22,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { create(:user) }
-  let(:other_user) { create(:user) }
   describe 'バリデーション' do
     it '名前、メールアドレス、パスワードが有効' do
       expect(build(:user)).to be_valid
@@ -92,6 +90,8 @@ RSpec.describe User, type: :model do
   end
 
   describe '関連性' do
+    let(:user) { create(:user) }
+    let(:other_user) { create(:user) }
     it 'フォロー、アンフォロー' do
       expect(user.following?(other_user)).to be_falsey
       user.follow(other_user)

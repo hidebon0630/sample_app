@@ -1,13 +1,11 @@
-<% provide(:title, '全ての投稿') %>
-<div class="md-page">
-  <%= render 'post_search_form', url: posts_path, q: @q %>
-  <ul class="post-list jscroll">
-    <% if @posts.any? %>
-      <%= render @posts %>
-      <%= paginate @posts %>
-    <% else %>
-      <p><%= '検索結果がありません' %></p>
-    <% end %>
-  </ul>
-  <%= render "post_btn" %>
-</div>
+<% provide(:title, 'アンケートを探す') %>
+<%= render 'post_search_form', url: posts_path, q: @q %>
+<ul class="post-list jscroll">
+  <% if @posts.any? %>
+    <%= render @posts %>
+    <%= paginate @posts %>
+  <% else %>
+    <p class="text-center"><%= '検索結果がありません' %></p>
+  <% end %>
+</ul>
+<%= render "post_btn" %>

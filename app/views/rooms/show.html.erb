@@ -1,6 +1,19 @@
-<div class="md-page">
-  <p>ダイレクトメッセージ</p>
-  <%= render 'entry_user' %>
-  <%= render 'message' %>
-  <%= render 'message_form' %>
+<% provide(:title, 'DM') %>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/posts">Home</a></li>
+    <li class="breadcrumb-item active">User</li>
+    <li class="breadcrumb-item active" aria-current="page">DM</li>
+  </ol>
+</nav>
+<div class="messages">
+  <div class="card mt-3">
+    <div class="card-body">
+      <div class="card-title text-center"><%= render 'entry_user' %></div>
+      <div id="messages_area">
+        <%= render 'message', messages: @messages %>
+      </div>
+      <%= render 'message_form' %>
+    </div>
+  </div>
 </div>

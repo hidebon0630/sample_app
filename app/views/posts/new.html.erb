@@ -1,3 +1,4 @@
+<div class="new_post_page border border-primary">
 <%= form_for(@post) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="form-group">
@@ -20,14 +21,20 @@
     <%= text_field_tag "options[][title]", @option.title, autocomplete: "off", class: 'form-control', required: true %>
     <span class="bmd-help">同じ質問は結果が重複されます。</span>
   </div>
-  <div class="form-group mt-5">
+  <div class="form-group">
+    <%= f.label :tag_list, class:"bmd-label-floating" %>
+    <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control" %>
+    <span class="bmd-help">" , "で区切ると複数選択出来ます。</span>
+  </div>
+  <div class="form-group">
     <%= f.label :image, class:"bmd-label-floating" %>
-    <% if @post.image.present? %>
-      <%= image_tag @post.image_url, id: :img_prev, class: "form-control" %>
-    <% else %>
-      <%= image_tag "default.png", id: :img_prev, class: "form-control" %>
-    <% end %>
     <label class="form-control">
+    <% if @post.image.present? %>
+      <%= image_tag @post.image_url, id: :img_prev, :size => '300x300', class: "form-control" %>
+    <% else %>
+      <%= image_tag "noimage.png", id: :img_prev, :size => '300x300', class: "form-control"  %>
+    <% end %>
+    <br>
       <span class="btn btn-raised btn-secondary btn-block">画像ファイルを追加する</span>
       <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: :post_img, class: "d-none" %>
     </label>
@@ -38,6 +45,7 @@
   </div>
   <%= f.submit "投稿", class: "btn btn-primary btn-raised btn-block" %>
 <% end %>
+</div>
 
 <script type="text/javascript">
   $('#post_image').bind('change', function() {

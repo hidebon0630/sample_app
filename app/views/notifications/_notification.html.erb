@@ -1,13 +1,14 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
 
-<ul class="list-group">
-  <div class="list-group-item">
-    <i class="material-icons">face</i>
-    <%= link_to visitor.name, user_path(notification.visitor) %>が
-  </div>
-</ul>
-<% case notification.action %>
+<div class="border border-primary">
+  <ul class="list-group">
+    <div class="list-group-item">
+      <i class="material-icons">face</i>
+      <%= link_to visitor.name, user_path(notification.visitor) %>が
+    </div>
+  </ul>
+  <% case notification.action %>
   <% when 'follow' then %>
     <ul class="list-group">
       <div class="list-group-item">
@@ -25,21 +26,31 @@
         <i class="material-icons">favorite</i>
       </div>
     </ul>
-<% when 'comment' then %>
-  <ul class="list-group">
-    <div class="list-group-item">
-      <% if notification.post.user_id == visited.id %>
+  <% when 'comment' then %>
+    <ul class="list-group">
+      <div class="list-group-item">
+        <% if notification.post.user_id == visited.id %>
+          <i class="material-icons">inbox</i>
+          <%= link_to "あなたの投稿", post_votes_path(notification.post) %>
+        <% else %>
+          <i class="material-icons">inbox</i>
+          <%= link_to post_votes_path(notification.post) do %>
+            <%= notification.post.user.name + 'の投稿' %>
+          <% end %>
+        <% end %>
+        <%= "にコメントしました" %>
+        <i class="material-icons">sms</i>
+      </div>
+    </ul>
+  <% when 'vote' then %>
+    <ul class="list-group">
+      <div class="list-group-item">
         <i class="material-icons">inbox</i>
         <%= link_to "あなたの投稿", post_votes_path(notification.post) %>
-      <% else %>
-        <i class="material-icons">inbox</i>
-        <%= link_to post_votes_path(notification.post) do %>
-          <%= notification.post.user.name + 'の投稿' %>
-        <% end %>
-      <% end %>
-      <%= "にコメントしました" %>
-      <i class="material-icons">sms</i>
-    </div>
-  </ul>
-<% end %>
-<%= time_ago_in_words(notification.created_at).upcase %>前
+        <%= "に回答しました" %>
+        <i class="material-icons">sms</i>
+      </div>
+    </ul>
+  <% end %>
+</div>
+<p class="text-right"><%= time_ago_in_words(notification.created_at).upcase %>前</p>
