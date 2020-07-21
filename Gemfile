@@ -89,3 +89,4 @@ gem 'rails_admin'
 gem 'rails-i18n'
 gem 'ransack'
 gem 'toastr_rails'
+gem "cocoon"

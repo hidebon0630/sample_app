@@ -27,8 +27,9 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
-  has_many :options, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :options, dependent: :destroy, inverse_of: :post
+  accepts_nested_attributes_for :options, reject_if: :all_blank, allow_destroy: true
   enum status: { published: 0, draft: 1 }
   is_impressionable counter_cache: true
   acts_as_taggable

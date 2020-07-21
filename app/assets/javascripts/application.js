@@ -17,6 +17,7 @@
 //= require bootstrap-tagsinput.min
 //= require chartkick
 //= require Chart.bundle
+//= require cocoon
 //= require_tree .
 
 toastr.options = {

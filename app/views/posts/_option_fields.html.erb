@@ -1,0 +1,7 @@
+<div class="nested-fields">
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= text_field_tag "options[][title]", @option.title, class: 'form-control', required: true %>
+    <%= link_to_remove_association "削除", f %>
+  </div>
+</div>
