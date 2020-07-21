@@ -5,37 +5,43 @@
     <li class="breadcrumb-item active" aria-current="page">User</li>
   </ol>
 </nav>
-<div class="text-center">
-  <% if @user.avatar? %>
-    <%= image_tag @user.avatar.thumb.url, class: "rounded-circle" %>
-  <% else %>
-    <%= image_tag "nouser.png", :size => '120x120', class: "rounded-circle" %>
-  <% end %>
-  <li><%= @user.name %></li>
-  <% if user_signed_in? %>
-    <%= render 'follow_form', user: @user %>
-    <%= render 'chat', user: @user %>
+<div class="user_info">
+  <%= render 'profile', object: @user %>
+  <%= render 'follow_form', user: @user %>
+  <% unless current_user?(@user) %>
+    <% if (current_user.following?(@user)) && (@user.following?(current_user))  %>
+      <% if @is_room == true %>
+        <p class="user-show-room"><a href="/rooms/<%= @room_id %>" class="btn btn-secondary btn-raised btn-block">チャットへ</a>
+      <% else %>
+        <%= form_for @room do |f| %>
+          <%= fields_for @entry do |e| %>
+            <%= e.hidden_field :user_id, value: @user.id %>
+          <% end %>
+          <%= f.submit "チャットを始める", class:"btn btn-secondary btn-raised btn-block user-show-chat"%>
+        <% end %>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
 <ul class="nav nav-tabs justify-content-center mt-3 mb-5" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">
-      公開投稿 <%= @posts.count %>
+      投稿<span><%= @posts.count %></span>
     </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">
-      いいねした投稿 <%= @user.liked_posts.count %>
+      お気に入り<span><%= @user.liked_posts.count %></span>
     </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="item3-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="false">
-      フォロー <%= @user.following.count %>
+      フォロー<span><%= @user.following.count %></span>
     </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="item4-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="false">
-      フォロワー <span id="followers"><%= @user.followers.count %></span>
+      フォロワー<span id="followers"><%= @user.followers.count %></span>
     </a>
   </li>
 </ul>

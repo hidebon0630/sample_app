@@ -16,7 +16,7 @@ services:
     tty: true
     stdin_open: true
     volumes:
-      - .:/sample_app
+      - .:/sample_app:delegated
       - public_data:/sample_app/public
       - tmp_data:/sample_app/tmp
       - log_data:/sample_app/log

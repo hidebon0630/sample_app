@@ -25,10 +25,10 @@ User.create!(name: 'ゲストユーザー',
 end
 
 users = User.order(:created_at).take(3)
-post_title = "アンケートタイトル"
+post_title = 'アンケートタイトル'
 image = "#{Rails.root}/db/fixtures/sample1.png"
 tag_list = 'サンプル,テスト'
-option_titles = ["あいうえお","かきくけこ","さしすせそ","にふぇいふbw","jぢあふぃえ","bふいbふぃわ"]
+option_titles = %w[あいうえお かきくけこ さしすせそ にふぇいふbw jぢあふぃえ bふいbふぃわ]
 option_title = option_titles.sample(3)
 users.each do |user|
   post = user.posts.create!(title: post_title, image: File.open(image), tag_list: tag_list)

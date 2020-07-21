@@ -32,11 +32,23 @@
 <div class="comments">
   <div class="card mt-3">
     <div class="card-body">
-      <div class="card-title text-center"><h4>コメント一覧</h4></div>
-        <div id="comments_area">
-          <%= render "posts/comment", comments: @comments %>
+      <div class="card-title text-center">
+        <h4>コメント一覧</h4>
+      </div>
+      <div id="comments_area">
+        <%= render "posts/comment", comments: @comments %>
+      </div>
+      <%= form_for [@post, @comment], remote: true do |f| %>
+        <div class="form-group">
+          <%= f.label :content, class:"bmd-label-floating" %>
+          <%= f.text_field :content, class: 'form-control', required: true, maxlength:'30' %>
+          <%= f.hidden_field :post_id, value: @post.id %>
+          <span class="bmd-help">30文字以内で入力して下さい</span>
         </div>
-      <%= render "posts/comment_form" %>
+        <div class="form-group">
+          <%= f.submit '送信する', class: "btn btn-secondary btn-block btn-raised" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

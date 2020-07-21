@@ -1,18 +1,11 @@
 <div class="col-md-6">
   <div class="card pt-3 mb-3">
-    <div class="card-title text-center">
-      <% if user.avatar? %>
-        <%= link_to image_tag(user.avatar.thumb.url, class: "rounded-circle"), user %>
-      <% else %>
-        <%= link_to image_tag("nouser.png", :size => '150x150', class: "rounded-circle"), user %>
+    <div class="card-title">
+      <%= render 'profile', object: user %>
+      <%= render 'follow_form', user: user %>
+      <% if current_user?(user) %>
+        <%= link_to "マイページ", user_path(current_user), class:'btn btn-dark btn-raised btn-block' %>
       <% end %>
-      <p><%= user.name %></p>
-      <div class="card-text">
-        <%= render 'follow_form', user: user %>
-        <% if current_user == user %>
-          <%= link_to "マイページ", user_path(current_user), class:'btn btn-dark btn-raised btn-block' %>
-        <% end %>
-      </div>
     </div>
   </div>
 </div>

@@ -1,13 +1,13 @@
 class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(comment_params)
-    @post = @comment.post
-    post = Post.find_by(id: params[:post_id])
-    @comments = post.comments
-    eturn unless @comment.save
-    @post.create_notification_comment!(current_user, @comment.id)
-    respond_to do |format|
-      format.js
+    @post = Post.find_by(id: params[:post_id])
+    @comments = @post.comments
+    if @comment.save
+      @post.create_notification_comment!(current_user, @comment.id)
+      respond_to do |format|
+        format.js
+      end
     end
   end
 

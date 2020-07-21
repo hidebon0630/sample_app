@@ -9,11 +9,36 @@
 <div class="messages">
   <div class="card mt-3">
     <div class="card-body">
-      <div class="card-title text-center"><%= render 'entry_user' %></div>
+      <div class="card-title text-center">
+        <p class="text-center">参加者</p>
+        <% @entries.each do |entry| %>
+          <ul class="list-group">
+            <div class="list-group-item list-group-item-primary">
+            <% if entry.user == current_user %>
+              <i class="material-icons">person</i>
+              <%= link_to entry.user.name, entry.user %>
+            <% else %>
+              <i class="material-icons">person_outline</i>
+              <%= link_to entry.user.name, entry.user %>
+            <% end %>
+            </div>
+          </ul>
+        <% end %>
+      </div>
       <div id="messages_area">
         <%= render 'message', messages: @messages %>
       </div>
-      <%= render 'message_form' %>
+      <%= form_for @message, remote: true do |f| %>
+        <div class="form-group">
+          <%= f.label :content, class:"bmd-label-floating" %>
+          <%= f.text_field :content, class: 'form-control', required: true %>
+          <%= f.hidden_field :room_id, :value => @room.id %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "送信する", class: "btn btn-secondary btn-raised btn-block" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
+<%= render "posts/post_btn" %>

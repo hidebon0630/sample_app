@@ -1,0 +1,8 @@
+<div class="profile text-center">
+  <% if object.avatar.present? %>
+    <%= link_to image_tag(object.avatar.thumb.url, :size => '150x150', id: :img_prev, class: "rounded-circle"), object %>
+  <% else %>
+    <%= link_to image_tag("nouser.png", :size => '150x150', id: :img_prev, class: "rounded-circle"), object %>
+  <% end %>
+  <p><%= object.name %></p>
+</div>
