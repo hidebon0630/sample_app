@@ -38,13 +38,6 @@
       フォロワー <span id="followers"><%= @user.followers.count %></span>
     </a>
   </li>
-  <% if current_user == @user %>
-    <li class="nav-item">
-      <a class="nav-link" id="item5-tab" data-toggle="tab" href="#item5" role="tab" aria-controls="item5" aria-selected="false">
-        非公開投稿 <%= @draft_posts.count %>
-      </a>
-    </li>
-  <% end %>
 </ul>
 <div class="tab-content">
   <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
@@ -82,15 +75,6 @@
         </div>
       </ul>
     <% end %>
-  </div>
-  <div class="tab-pane fade" id="item5" role="tabpanel" aria-labelledby="item5-tab">
-    <ul class="post-list jscroll">
-      <% if @draft_posts.any? %>
-        <% @draft_posts.each do |post| %>
-          <%= render "posts/post", post: post %>
-        <% end %>
-      <% end %>
-    </ul>
   </div>
 </div>
 <%= render "posts/post_btn" %>

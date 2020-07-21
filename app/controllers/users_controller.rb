@@ -10,8 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @posts = @user.posts.published
-    @draft_posts = @user.posts.draft
+    @posts = @user.posts
     @liked_posts = @user.liked_posts
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)

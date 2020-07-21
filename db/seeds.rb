@@ -15,7 +15,7 @@ User.create!(name: 'ゲストユーザー',
 3.times do |n|
   name = Faker::Name.name
   email = "sample-#{n + 1}@example.com"
-  avatar = "#{Rails.root}/db/fixtures/nouser.png"
+  avatar = "#{Rails.root}/db/fixtures/avatar.png"
   password = 'password'
   User.create!(name: name,
                email: email,

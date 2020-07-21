@@ -5,7 +5,6 @@
 #  id                :bigint           not null, primary key
 #  image             :string(255)
 #  impressions_count :integer          default(0)
-#  status            :integer          default("published"), not null
 #  title             :string(255)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
@@ -30,7 +29,6 @@ class Post < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :options, dependent: :destroy, inverse_of: :post
   accepts_nested_attributes_for :options, reject_if: :all_blank, allow_destroy: true
-  enum status: { published: 0, draft: 1 }
   is_impressionable counter_cache: true
   acts_as_taggable
 

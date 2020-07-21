@@ -110,7 +110,6 @@ ActiveRecord::Schema.define(version: 2020_07_19_124942) do
     t.datetime "updated_at", null: false
     t.string "image"
     t.string "title"
-    t.integer "status", default: 0, null: false
     t.integer "impressions_count", default: 0
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_posts_on_user_id"

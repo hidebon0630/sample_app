@@ -31,10 +31,6 @@
       <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: :post_img, class: "d-none" %>
     </label>
   </div>
-  <div class="form-group">
-    <%= f.label :status, class:"bmd-label-floating" %>
-    <%= f.select :status, Post.statuses.keys.map {|k| [I18n.t("enums.post.status.#{k}"), k]}, {}, class: 'form-control' %>
-  </div>
   <%= f.submit "投稿", class: "btn btn-primary btn-raised btn-block" %>
 <% end %>
 </div>

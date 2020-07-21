@@ -5,7 +5,6 @@
 #  id                :bigint           not null, primary key
 #  image             :string(255)
 #  impressions_count :integer          default(0)
-#  status            :integer          default("published"), not null
 #  title             :string(255)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
