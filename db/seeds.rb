@@ -15,7 +15,7 @@ User.create!(name: 'ゲストユーザー',
 3.times do |n|
   name = Faker::Name.name
   email = "sample-#{n + 1}@example.com"
-  avatar = "#{Rails.root}/db/fixtures/avatar.png"
+  avatar = "#{Rails.root}/db/fixtures/avatar.jpeg"
   password = 'password'
   User.create!(name: name,
                email: email,
@@ -26,7 +26,7 @@ end
 
 users = User.order(:created_at).take(3)
 post_title = 'アンケートタイトル'
-image = "#{Rails.root}/db/fixtures/sample1.png"
+image = "#{Rails.root}/db/fixtures/sample1.jpeg"
 tag_list = 'サンプル,テスト'
 option_titles = %w[あいうえお かきくけこ さしすせそ にふぇいふbw jぢあふぃえ bふいbふぃわ]
 option_title = option_titles.sample(3)

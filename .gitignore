@@ -28,3 +28,5 @@
 
 development.env
 /public/uploads
+
+.DS_Store
