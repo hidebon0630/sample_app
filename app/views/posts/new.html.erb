@@ -24,7 +24,7 @@
     <% if @post.image.present? %>
       <%= image_tag @post.image_url, id: :img_prev, :size => '400x400', class: "form-control" %>
     <% else %>
-      <%= image_tag "noimage.png", id: :img_prev, :size => '400x400', class: "form-control"  %>
+      <%= image_tag "noimage.jpeg", id: :img_prev, :size => '400x400', class: "form-control"  %>
     <% end %>
     <br>
       <span class="btn btn-raised btn-secondary btn-block">画像ファイルを追加する</span>
