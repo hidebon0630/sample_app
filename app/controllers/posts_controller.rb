@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.build
-    @option = current_user.options.build
+    @post.options.build
   end
 
   def show
@@ -27,15 +27,6 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      params[:options].each do |option|
-        next unless option[:title] != ''
-
-        new_option = current_user.options.build
-        new_option.title = option[:title]
-        new_option.post_id = @post.id
-        new_option.save!
-      end
-      logger.info(@post)
       flash[:notice] = '投稿が完了しました'
       redirect_to posts_path
     else
@@ -60,7 +51,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :image, :title, :status, :tag_list, options_attributes: [:id, :title, :_destroy])
+    params.require(:post).permit(:content, :image, :title, :status, :tag_list, options_attributes: [:id, :title, :_destroy, :user_id])
   end
 
   def correct_user
