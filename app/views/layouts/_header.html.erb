@@ -1,104 +1,92 @@
-<header class="fixed-top">
-  <nav class="navbar navbar-expand-lg bg-white">
+<header class="bmd-layout-header fixed-top">
+  <div class="navbar navbar-light bg-white">
     <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-              aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="material-icons">menu</i>
-      </button>
-      <% if user_signed_in? %>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="nav nav-tabs mr-auto">　
-            <li class="nav-item">
-              <%= link_to posts_path, class: "nav-link" do %>
-                <i class="material-icons">home</i>
-                <span>ホーム</span>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to users_path, class: "nav-link" do %>
-                <i class="material-icons">face</i>
-                <span>ユーザーを探す</span>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to posts_path, class: "nav-link" do %>
-                <i class="material-icons">live_help</i>
-                  <span>アンケートを探す</span>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to favorite_path, class: "nav-link" do %>
-                <i class="material-icons">favorite</i>
-                  <span>いいねランキング</span>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to pv_path, class: "nav-link" do %>
-                <i class="material-icons">remove_red_eye</i>
-                <span>PVランキング</span>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to notifications_path, class: "nav-link" do %>
-                <% if unchecked_notifications.any? %>
-                  <i class="material-icons">notifications_active</i>
-                  <span>通知</span>
-                <% else %>
-                  <i class="material-icons">notifications</i>
-                  <span>通知</span>
-                <% end %>
-              <% end %>
-            </li>
-          </ul>
-          <ul class="nav nav-tabs">
-            <li class="nav-item dropdown">
-              <button class="btn bmd-btn-icon dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="material-icons">more_vert</i>
-              </button>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <%= link_to user_path(current_user), class: "dropdown-item" do %>
-                  <i class="material-icons">account_circle</i>
-                    <span>マイページ</span>
-                <% end %>
-                <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
-                  <i class="material-icons">supervisor_account</i>
-                    <span>設定</span>
-                <% end %>
-                <div class="dropdown-divider"></div>
-                <%= link_to destroy_user_session_path, class: "dropdown-item", method: :delete do %>
-                  <i class="material-icons">exit_to_app</i>
-                    ログアウト
-                <% end %>
-              </div>
-            </li>
-          </ul>
-        </div>
-      <% else %>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-          <ul class="nav nav-tabs mr-auto">
-            <li class="nav-item">
-              <%= link_to root_path, class: "nav-link" do %>
-                <i class="material-icons">home</i>
-                <span>ホーム</span>
-              <% end %>
-            </li>
-          </ul>
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <%= link_to new_user_session_path, class: "nav-link" do %>
-                <i class="material-icons">lock_open</i>
-                <span>ログイン</span>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to new_user_registration_path, class: "nav-link" do %>
-                <i class="material-icons">verified_user</i>
-                <span>新規登録</span>
-              <% end %>
-            </li>
-          </ul>
-        </div>
-      <% end %>
-    </div>
-  </nav>
+    <button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-s2">
+      <span class="sr-only">Toggle drawer</span>
+      <i class="material-icons">menu</i>
+    </button>
+  </div>
+  </div>
 </header>
+<div id="dw-s2" class="bmd-layout-drawer bg-faded">
+  <ul class="list-group">
+    <% if user_signed_in? %>
+      <li>
+        <%= link_to posts_path, class: "list-group-item" do %>
+          <i class="material-icons">home</i>
+          <span>ホーム</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to users_path, class: "list-group-item" do %>
+          <i class="material-icons">face</i>
+          <span>ユーザーを探す</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to posts_path, class: "list-group-item" do %>
+          <i class="material-icons">live_help</i>
+            <span>アンケートを探す</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to favorite_path, class: "list-group-item" do %>
+          <i class="material-icons">favorite</i>
+            <span>いいねランキング</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to pv_path, class: "list-group-item" do %>
+          <i class="material-icons">remove_red_eye</i>
+          <span>PVランキング</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to notifications_path, class: "list-group-item" do %>
+          <% if unchecked_notifications.any? %>
+            <i class="material-icons">notifications_active</i>
+            <span>通知</span>
+          <% else %>
+            <i class="material-icons">notifications</i>
+            <span>通知</span>
+          <% end %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to user_path(current_user), class: "list-group-item" do %>
+          <i class="material-icons">account_circle</i>
+            <span>マイページ</span>
+        <% end %>
+      </li>
+        <%= link_to edit_user_registration_path, class: "list-group-item" do %>
+          <i class="material-icons">supervisor_account</i>
+            <span>設定</span>
+        <% end %>
+      <li>
+        <%= link_to destroy_user_session_path, class: "list-group-item", method: :delete do %>
+          <i class="material-icons">exit_to_app</i>
+            <span>ログアウト</span>
+        <% end %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to root_path, class: "list-group-item" do %>
+          <i class="material-icons">home</i>
+          <span>ホーム</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_user_session_path, class: "list-group-item" do %>
+          <i class="material-icons">lock_open</i>
+          <span>ログイン</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_user_registration_path, class: "list-group-item" do %>
+          <i class="material-icons">verified_user</i>
+          <span>新規登録</span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

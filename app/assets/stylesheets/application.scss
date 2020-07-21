@@ -41,10 +41,16 @@ ul.post-list {
   padding: 15px 0px;
 }
 
-body {
-  padding: 100px 0;
-  font-family: 'Noto Sans JP', sans-serif;
-  background-color: white;
+body, html {
+  height: 100%;
+}
+
+.flex-grow {
+  flex: 1 0 auto;
+}
+
+.bmd-layout-canvas {
+flex-grow: 1;
 }
 
 .container-fluid {
@@ -68,4 +74,8 @@ body {
   @extend .container-fluid;
   max-width: 768px;
   padding: 2rem;
+}
+
+main {
+  padding-top: 80px;
 }
