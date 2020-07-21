@@ -7,17 +7,17 @@
     <span class="bmd-help">30文字以内で入力してください</span>
   </div>
   <div class="form-group">
-    <%= f.label :option, "質問1", class:"bmd-label-floating" %>
+    <%= label :option, "質問1", class:"bmd-label-floating" %>
     <%= text_field_tag "options[][title]", @option.title, autocomplete: "off", class: 'form-control', required: true %>
     <span class="bmd-help">同じ質問は結果が重複されます。</span>
   </div>
   <div class="form-group">
-    <%= f.label :option, "質問2", class:"bmd-label-floating" %>
+    <%= label :option, "質問2", class:"bmd-label-floating" %>
     <%= text_field_tag "options[][title]", @option.title, autocomplete: "off", class: 'form-control', required: true %>
     <span class="bmd-help">同じ質問は結果が重複されます。</span>
   </div>
   <div class="form-group">
-    <%= f.label :option, "質問3", class:"bmd-label-floating" %>
+    <%= label :option, "質問3", class:"bmd-label-floating" %>
     <%= text_field_tag "options[][title]", @option.title, autocomplete: "off", class: 'form-control', required: true %>
     <span class="bmd-help">同じ質問は結果が重複されます。</span>
   </div>
@@ -29,9 +29,9 @@
     <%= f.label :image, class:"bmd-label-floating" %>
     <label class="form-control">
     <% if @post.image.present? %>
-      <%= image_tag @post.image_url, id: :img_prev, :size => '300x300', class: "form-control" %>
+      <%= image_tag @post.image_url, id: :img_prev, :size => '400x400', class: "form-control" %>
     <% else %>
-      <%= image_tag "noimage.png", id: :img_prev, :size => '300x300', class: "form-control"  %>
+      <%= image_tag "noimage.png", id: :img_prev, :size => '400x400', class: "form-control"  %>
     <% end %>
     <br>
       <span class="btn btn-raised btn-secondary btn-block">画像ファイルを追加する</span>
@@ -45,6 +45,14 @@
   <%= f.submit "投稿", class: "btn btn-primary btn-raised btn-block" %>
 <% end %>
 </div>
+
+<script>
+  $(function() {
+    $("button").click(function() {
+      $("ul").append("<li>追加</li>");
+    });
+  });
+</script>
 
 <script type="text/javascript">
   $('#post_image').bind('change', function() {

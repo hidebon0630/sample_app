@@ -12,7 +12,7 @@ User.create!(name: 'ゲストユーザー',
              password: 'password',
              password_confirmation: 'password')
 
-10.times do |n|
+3.times do |n|
   name = Faker::Name.name
   email = "sample-#{n + 1}@example.com"
   avatar = "#{Rails.root}/db/fixtures/nouser.png"
@@ -24,17 +24,23 @@ User.create!(name: 'ゲストユーザー',
                password_confirmation: password)
 end
 
-users = User.order(:created_at).take(6)
-10.times do
-  title = Faker::Lorem.sentence(word_count: 3)
-  image = "#{Rails.root}/db/fixtures/sample1.png"
-  tag_list = 'サンプル,テスト'
-  users.each { |user| user.posts.create!(title: title, image: File.open(image), tag_list: tag_list) }
+users = User.order(:created_at).take(3)
+post_title = "アンケートタイトル"
+image = "#{Rails.root}/db/fixtures/sample1.png"
+tag_list = 'サンプル,テスト'
+option_titles = ["あいうえお","かきくけこ","さしすせそ","にふぇいふbw","jぢあふぃえ","bふいbふぃわ"]
+option_title = option_titles.sample(3)
+users.each do |user|
+  post = user.posts.create!(title: post_title, image: File.open(image), tag_list: tag_list)
+  3.times do |n|
+    option = option_title.fetch(n)
+    post.options.create!(title: option, post_id: post.id, user_id: user.id)
+  end
 end
 
 users = User.all
 user  = users.first
-following = users[1..20]
-followers = users[1..20]
+following = users[1..3]
+followers = users[1..3]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
