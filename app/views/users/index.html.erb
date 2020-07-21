@@ -7,13 +7,9 @@
 </nav>
 <%= render 'user_search_form', url: users_path, q: @q %>
 <ul class="user-list jscroll">
-  <% if @users.any? %>
-    <div class="row">
-      <%= render @users %>
-      <%= paginate @users %>
-    </div>
-  <% else %>
-    <p class="text-center"><%= '検索結果がありません' %></p>
-  <% end %>
+  <div class="row">
+    <%= render @users %>
+    <%= paginate @users %>
+  </div>
 </ul>
 <%= render "posts/post_btn" %>

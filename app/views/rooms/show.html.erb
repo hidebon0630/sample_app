@@ -14,19 +14,15 @@
         <% @entries.each do |entry| %>
           <ul class="list-group">
             <div class="list-group-item list-group-item-primary">
-            <% if entry.user == current_user %>
               <i class="material-icons">person</i>
               <%= link_to entry.user.name, entry.user %>
-            <% else %>
-              <i class="material-icons">person_outline</i>
-              <%= link_to entry.user.name, entry.user %>
-            <% end %>
             </div>
           </ul>
         <% end %>
       </div>
       <div id="messages_area">
-        <%= render 'message', messages: @messages %>
+        <p class="text-center">メッセージ一覧</p>
+        <%= render partial: 'message', collection: @messages %>
       </div>
       <%= form_for @message, remote: true do |f| %>
         <div class="form-group">

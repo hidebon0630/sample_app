@@ -6,11 +6,7 @@
 </nav>
 <%= render 'post_search_form', url: posts_path, q: @q %>
 <ul class="post-list jscroll">
-  <% if @posts.any? %>
-    <%= render @posts %>
-    <%= paginate @posts %>
-  <% else %>
-    <p class="text-center"><%= '検索結果がありません' %></p>
-  <% end %>
+  <%= render @posts %>
+  <%= paginate @posts %>
 </ul>
 <%= render "posts/post_btn" %>

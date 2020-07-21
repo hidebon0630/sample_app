@@ -21,8 +21,8 @@
           <% end %>
         </aside>
         <% @options.each do |option| %>
-            <%= option.title %>
-            <%= option.vote_count %>
+          <%= option.title %>
+          <%= option.vote_count %>
         <% end %>
         回答者数<%= @votes.count %>
       </div>
@@ -36,7 +36,7 @@
         <h4>コメント一覧</h4>
       </div>
       <div id="comments_area">
-        <%= render "posts/comment", comments: @comments %>
+        <%= render partial: "posts/comment", collection: @comments %>
       </div>
       <%= form_for [@post, @comment], remote: true do |f| %>
         <div class="form-group">

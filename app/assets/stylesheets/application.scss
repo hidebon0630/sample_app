@@ -48,11 +48,11 @@ ul.post-list {
 body, html {
   height: 100%;
   font-family: 'Noto Sans JP', sans-serif;
-  background-color: white;
 }
 
 main {
   padding-top: 80px;
+  background-color: white;
 }
 
 
@@ -80,6 +80,7 @@ flex-grow: 1;
   @extend .container-fluid;
   max-width: 768px;
   padding: 2rem;
+  background-color: white;
 }
 
 .container-fluid {

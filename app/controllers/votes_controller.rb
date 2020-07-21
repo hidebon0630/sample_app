@@ -3,7 +3,6 @@ class VotesController < ApplicationController
   before_action :yet_voted_user, only: :show
 
   def show
-    @post = Post.find(params[:post_id])
     @options = @post.options
     @votes = @post.votes
     @chart = @votes.eager_load(:option).group(:title).count
