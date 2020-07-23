@@ -25,6 +25,12 @@ RSpec.describe Post, type: :model do
       expect(post).to be_valid
     end
 
+    it 'ユーザーがない場合は無効' do
+      post.user = nil
+      post.valid?
+      expect(post).to_not be_valid
+    end
+
     it '画像が無い場合でも有効' do
       post.image = nil
       post.valid?

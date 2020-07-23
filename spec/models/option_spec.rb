@@ -24,19 +24,31 @@ RSpec.describe Option, type: :model do
       expect(option).to be_valid
     end
 
-    it '項目内容が無い場合は無効' do
+    it 'ユーザーがない場合は無効' do
+      option.user = nil
+      option.valid?
+      expect(option).to_not be_valid
+    end
+
+    it '投稿がない場合は無効' do
+      option.post = nil
+      option.valid?
+      expect(option).to_not be_valid
+    end
+
+    it '項目の内容が無い場合は無効' do
       option.title = nil
       option.valid?
       expect(option.errors[:title]).to include('を入力してください')
     end
 
-    it '項目内容が30字以内の場合は有効' do
+    it '項目の内容が30字以内の場合は有効' do
       option.title = 'a' * 30
       option.valid?
       expect(option).to be_valid
     end
 
-    it '項目内容が31文字以上の場合は無効' do
+    it '項目の内容が31文字以上の場合は無効' do
       option.title = 'a' * 31
       option.valid?
       expect(option.errors[:title]).to include('は30文字以内で入力してください')

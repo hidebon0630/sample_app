@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Users', type: :feature do
+RSpec.describe 'Users', type: :system do
   scenario '新規登録' do
     visit root_path
     click_link '新規登録'

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Comments', type: :feature do
+RSpec.describe 'Comments', type: :system do
   scenario 'コメント' do
     user = FactoryBot.create(:user)
     post = FactoryBot.create(:post)

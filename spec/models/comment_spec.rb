@@ -17,25 +17,40 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  it 'コメントファクトリが有効' do
-    expect(build(:comment)).to be_valid
-  end
+  describe "バリデーション" do
+    let!(:comment) { create(:comment) }
+    it 'コメントファクトリが有効' do
+      expect(comment).to be_valid
+    end
 
-  it '内容が無い場合は無効' do
-    comment = FactoryBot.build(:comment, content: nil)
-    comment.valid?
-    expect(comment.errors[:content]).to include('を入力してください')
-  end
+    it 'ユーザーがない場合は無効' do
+      comment.user = nil
+      comment.valid?
+      expect(comment).to_not be_valid
+    end
 
-  it '内容が30文字以下は有効' do
-    comment = FactoryBot.build(:comment, content: 'a' * 30)
-    comment.valid?
-    expect(comment).to be_valid
-  end
+    it '投稿がない場合は無効' do
+      comment.post = nil
+      comment.valid?
+      expect(comment).to_not be_valid
+    end
 
-  it '内容が31文字以上は無効' do
-    comment = FactoryBot.build(:comment, content: 'a' * 31)
-    comment.valid?
-    expect(comment.errors[:content]).to include('は30文字以内で入力してください')
+    it '内容が無い場合は無効' do
+      comment.content = nil
+      comment.valid?
+      expect(comment.errors[:content]).to include('を入力してください')
+    end
+
+    it '内容が30文字以下は有効' do
+      comment.content = 'a' * 30
+      comment.valid?
+      expect(comment).to be_valid
+    end
+
+    it '内容が31文字以上は無効' do
+      comment.content = 'a' * 31
+      comment.valid?
+      expect(comment.errors[:content]).to include('は30文字以内で入力してください')
+    end
   end
 end
