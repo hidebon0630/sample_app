@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   end
 
   def favorite
-    @posts = Post.includes(:taggings, :user).find(Like.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
+    @posts = Post.includes(:taggings, :user).find(Like.group(:post_id).order(Arel.sql('count(post_id) desc')).limit(5).pluck(:post_id))
   end
 
   def pv
