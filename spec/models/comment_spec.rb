@@ -18,7 +18,7 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
   it 'コメントファクトリが有効' do
-    FactoryBot.create(:comment)
+    expect(build(:comment)).to be_valid
   end
 
   it '内容が無い場合は無効' do

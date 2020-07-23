@@ -18,7 +18,8 @@
 #
 FactoryBot.define do
   factory :vote do
-    option { nil }
-    post { nil }
+    association :option
+    post { option.post }
+    user { post.user }
   end
 end

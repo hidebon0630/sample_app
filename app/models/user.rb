@@ -44,7 +44,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 30 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false },
@@ -61,6 +61,14 @@ class User < ApplicationRecord
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def like(post)
+    likes.find_or_create_by(post_id: post.id)
+  end
+
+  def unlike(post)
+    likes.find_by(post_id: post.id).destroy
   end
 
   def already_liked?(post)

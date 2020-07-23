@@ -18,6 +18,6 @@ FactoryBot.define do
   factory :comment do
     content { 'コメントテスト' }
     association :post
-    user { post.owner }
+    user { post.user }
   end
 end

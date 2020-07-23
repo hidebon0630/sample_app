@@ -17,5 +17,36 @@
 require 'rails_helper'
 
 RSpec.describe Option, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'バリデーション' do
+    let!(:option) { create(:option) }
+    it '項目ファクトリが有効' do
+      option.valid?
+      expect(option).to be_valid
+    end
+
+    it '項目内容が無い場合は無効' do
+      option.title = nil
+      option.valid?
+      expect(option.errors[:title]).to include('を入力してください')
+    end
+
+    it '項目内容が30字以内の場合は有効' do
+      option.title = 'a' * 30
+      option.valid?
+      expect(option).to be_valid
+    end
+
+    it '項目内容が31文字以上の場合は無効' do
+      option.title = 'a' * 31
+      option.valid?
+      expect(option.errors[:title]).to include('は30文字以内で入力してください')
+    end
+  end
+
+  describe '依存性' do
+    it '項目を削除すると回答も削除される' do
+      option = create(:option, :with_votes)
+      expect { option.destroy }.to change { Vote.count }.by(-1)
+    end
+  end
 end

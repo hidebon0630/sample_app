@@ -16,7 +16,18 @@
 #
 FactoryBot.define do
   factory :option do
-    post { nil }
-    title { 'MyString' }
+    title { %w[あいうえお かきくけこ さしすせそ] }
+    association :post
+    user { post.user }
+
+    trait :with_votes do
+      transient do
+        votes_count { 1 }
+      end
+
+      after(:create) do |option, evaluator|
+        create_list(:vote, evaluator.votes_count, option: option)
+      end
+    end
   end
 end

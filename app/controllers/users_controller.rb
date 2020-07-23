@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.includes(:taggings)
     @following = @user.following
     @followers = @user.followers
     @liked_posts = @user.liked_posts

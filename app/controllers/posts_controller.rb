@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: :destroy
-  before_action -> {
+  before_action lambda {
     set_post
     already_voted_user
     reject_current_user
@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @posts = if params[:tag_name]
                Post.tagged_with(params[:tag_name].to_s).page(params[:page]).per(10)
              else
-               @q.result.order('created_at DESC').page(params[:page]).per(10)
+               @q.result.includes(:taggings, :user).order('created_at DESC').page(params[:page]).per(10)
              end
   end
 
@@ -43,11 +43,11 @@ class PostsController < ApplicationController
   end
 
   def favorite
-    @posts = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
+    @posts = Post.includes(:taggings, :user).find(Like.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
   end
 
   def pv
-    @posts = Post.order(impressions_count: 'DESC').take(5)
+    @posts = Post.includes(:taggings, :user).order(impressions_count: 'DESC').take(5)
   end
 
   private
