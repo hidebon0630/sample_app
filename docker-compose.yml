@@ -28,6 +28,12 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - chrome
+
+  chrome:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - "4444:4444"
 
   nginx:
     build:
