@@ -18,7 +18,7 @@ RSpec.describe 'Posts', type: :system do
     end.to change(user.posts, :count).by(1)
   end
 
-  scenario '投稿詳細' do
+  scenario '投稿詳細', js: true do
     post = create(:post)
 
     sign_in post.user
