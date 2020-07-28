@@ -18,11 +18,12 @@ RSpec.describe 'Posts', type: :system do
     end.to change(user.posts, :count).by(1)
   end
 
-  scenario '投稿詳細', js: true do
+  scenario '投稿詳細' do
     post = create(:post)
 
     sign_in post.user
     visit posts_path
+    expect(current_path).to eq posts_path
     click_link href: post_path(post)
     expect(current_path).to eq posts_path
 
