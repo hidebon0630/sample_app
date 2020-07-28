@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Posts', type: :system do
-  scenario '新規投稿' do
+  it '新規投稿' do
     user = create(:user)
     sign_in user
 
@@ -18,22 +18,39 @@ RSpec.describe 'Posts', type: :system do
     end.to change(user.posts, :count).by(1)
   end
 
-  scenario '投稿詳細' do
+  describe "投稿詳細" do
+    it '自分の投稿の場合' do
+      option = create(:option)
+
+      sign_in option.user
+      visit posts_path
+      click_link href: post_votes_path(option.post)
+      expect(current_path).to eq post_votes_path(option.post)
+      expect(page).to have_content '回答者数'
+    end
+    it '他人の投稿の場合' do
+      user = create(:user)
+      option = create(:option)
+
+      sign_in user
+      visit posts_path
+      click_link href: post_path(option.post)
+      expect(current_path).to eq post_path(option.post)
+      choose 'あいうえお'
+      expect(page).to have_checked_field 'あいうえお'
+      click_button '回答'
+      expect(current_path).to eq post_votes_path(option.post)
+      expect(page).to have_content '回答者数'
+    end
+  end
+
+  it "投稿削除", js: true do
     post = create(:post)
 
     sign_in post.user
     visit posts_path
-    expect(current_path).to eq posts_path
-    click_link href: post_path(post)
-    expect(current_path).to eq posts_path
-
-    #other_user = create(:user)
-    #post = create(:post)
-#
-    #sign_in user
-    #visit posts_path
-    #click_link href: post_path(post)
-    #expect(current_path).to eq post_path(post)
-    #click_button '回答'
+    page.accept_confirm '本当に削除しますか？' do
+      click_on :delete_button
+    end
   end
 end

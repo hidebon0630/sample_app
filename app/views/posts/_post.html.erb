@@ -18,7 +18,7 @@
         </div>
         <% if current_user?(post.user) %>
           <div class="delete_button">
-            <%= link_to post, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+            <%= link_to post, method: :delete, id: "delete_button", data: { confirm: "本当に削除しますか？" } do %>
               <i class="material-icons delete">delete_forever</i>
             <% end %>
           </div>

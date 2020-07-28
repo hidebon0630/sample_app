@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
 
     @post.create_notification_comment!(current_user, @comment.id)
     respond_to do |format|
+      format.html { redirect_to @post }
       format.js
     end
   end

@@ -14,17 +14,17 @@
         <%= pie_chart @chart, donut: true, messages: {empty: "まだ回答がありません。"} %>
       </div>
       <div class="col-md-7 text-center">
-        <h5 class="card-title">回答</h5>
         <aside>
           <% if @post.image? %>
             <%= image_tag @post.image.url, class: "img-fluid" %>
           <% end %>
         </aside>
         <% @options.each do |option| %>
-          <%= option.title %>
-          <%= option.vote_count %>
+          <li>
+            <%= option.title %>
+            <%= option.vote_count %>
+          </li>
         <% end %>
-        回答者数<%= @votes.count %>
       </div>
     </div>
   </div>

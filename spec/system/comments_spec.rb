@@ -14,9 +14,8 @@ RSpec.describe 'Comments', type: :system do
     click_button '回答'
     expect(current_path).to eq post_votes_path(option.post)
     expect(page).to have_content '回答者数'
-    #expect do
-    #  fill_in 'コメント', with: 'コメント'
-    #  click_button '送信する'
-    #end.to change(user.comments :count).by(1)
+    fill_in 'コメント', with: 'コメント'
+    click_button '送信する'
+    expect(page).to have_content user.name
   end
 end
