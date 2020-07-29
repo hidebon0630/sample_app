@@ -10,7 +10,8 @@
 User.create!(name: 'ゲストユーザー',
              email: 'guest@example.com',
              password: 'password',
-             password_confirmation: 'password')
+             password_confirmation: 'password',
+             admin_flg: true)
 
 3.times do |n|
   name = Faker::Name.name
@@ -22,20 +23,6 @@ User.create!(name: 'ゲストユーザー',
                avatar: File.open(avatar),
                password: password,
                password_confirmation: password)
-end
-
-users = User.order(:created_at).take(3)
-post_title = 'アンケートタイトル'
-image = "#{Rails.root}/db/fixtures/sample1.jpeg"
-tag_list = 'サンプル,テスト'
-option_titles = %w[あいうえお かきくけこ さしすせそ にふぇいふbw jぢあふぃえ bふいbふぃわ]
-option_title = option_titles.sample(3)
-users.each do |user|
-  post = user.posts.create!(title: post_title, image: File.open(image), tag_list: tag_list)
-  3.times do |n|
-    option = option_title.fetch(n)
-    post.options.create!(title: option, post_id: post.id, user_id: user.id)
-  end
 end
 
 users = User.all

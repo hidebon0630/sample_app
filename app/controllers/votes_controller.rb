@@ -5,9 +5,15 @@ class VotesController < ApplicationController
   def show
     @options = @post.options
     @votes = @post.votes
-    @chart = @votes.eager_load(:option).group(:title).count
     @comments = @post.comments.includes(:user)
     @comment = current_user.comments.build
+    gon.options = @votes.eager_load(:option).pluck(:title)
+    gon.data = []
+    votes_count = @votes.group(:option_id).count
+    gon.array = votes_count.values
+    gon.array.each do | data |
+      gon.data << data
+    end
   end
 
   def create

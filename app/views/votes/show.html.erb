@@ -7,26 +7,42 @@
   </ol>
 </nav>
 <div class="card">
-  <div class="card-body">
-    <div class="row">
-      <div class="col-md-5">
-        <h5 class="card-title text-center"><%= @post.title %></h5>
-        <%= pie_chart @chart, donut: true, messages: {empty: "まだ回答がありません。"} %>
-      </div>
-      <div class="col-md-7 text-center">
-        <aside>
-          <% if @post.image? %>
-            <%= image_tag @post.image.url, class: "img-fluid" %>
-          <% end %>
-        </aside>
-        <% @options.each do |option| %>
-          <li>
+  <div class="card-body text-center">
+    <h1 class="card-title">
+      <li><%= @post.title %></li>
+    </h1>
+    <h3 class="card-text">
+      <% if @post.image.present? %>
+        <%= image_tag @post.image.url, class: "img-fluid" %>
+      <% end %>
+      <% if @votes.present? %>
+        <canvas id="myChart" width="200" height="100"></canvas>
+        <script>draw_graph();</script>
+      <% else %>
+        <h5 class="text-center">まだ回答がありません</h5>
+      <% end %>
+      <div class="row">
+        <% @options.each_with_index do |option, index| %>
+        <div class="col-md-4">
+          <div id="gragh_<%= index %>">
+            <div class="progress-pie-chart" data-percent="100">
+              <div class="ppc-progress">
+                <div class="ppc-progress-fill"></div>
+              </div>
+              <div class="ppc-percents">
+                <div class="pcc-percents-wrapper">
+                  <span>
+                    <%= option.vote_count %>
+                  </span>
+                </div>
+              </div>
+            </div>
             <%= option.title %>
-            <%= option.vote_count %>
-          </li>
+          </div>
+        </div>
         <% end %>
       </div>
-    </div>
+    </h3>
   </div>
 </div>
 <div class="comments">
@@ -52,3 +68,15 @@
     </div>
   </div>
 </div>
+
+<script>
+$(function(){
+  var $ppc = $('.progress-pie-chart'),
+    percent = parseInt($ppc.data('percent')),
+    deg = 360*percent/100;
+  if (percent > 50) {
+    $ppc.addClass('gt-50');
+  }
+  $('.ppc-progress-fill').css('transform','rotate('+ deg +'deg)');
+});
+</script>
