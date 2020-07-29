@@ -5,7 +5,6 @@
 #  id                :bigint           not null, primary key
 #  image             :string(255)
 #  impressions_count :integer          default(0)
-#  status            :integer          default("published"), not null
 #  title             :string(255)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
@@ -19,17 +18,14 @@
 class Post < ApplicationRecord
   mount_uploader :image, ImageUploader
   belongs_to :user
-  belongs_to :owner, class_name: 'User', foreign_key: :user_id
-  validates :user_id, presence: true
   validates :title, presence: true, length: { maximum: 30 }
-  validate :image_size
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
-  has_many :options, dependent: :destroy
   has_many :votes, dependent: :destroy
-  enum status: { published: 0, draft: 1 }
+  has_many :options, dependent: :destroy, inverse_of: :post
+  accepts_nested_attributes_for :options, reject_if: :all_blank, allow_destroy: true
   is_impressionable counter_cache: true
   acts_as_taggable
 
@@ -76,11 +72,5 @@ class Post < ApplicationRecord
       action: 'vote'
     )
     notification.save if notification.valid?
-  end
-
-  private
-
-  def image_size
-    errors.add(:image, 'should be less than 5MB') if image.size > 5.megabytes
   end
 end

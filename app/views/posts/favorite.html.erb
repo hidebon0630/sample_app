@@ -5,9 +5,7 @@
     <li class="breadcrumb-item active" aria-current="page">Favorite</li>
   </ol>
 </nav>
-<ul class="post-list jscroll">
-  <% @posts.each_with_index do |post, index| %>
-    <%= render "ranking", post: post, index: index %>
-  <% end %>
+<ul class="post-list">
+  <%= render @posts %>
 </ul>
 <%= render "post_btn" %>

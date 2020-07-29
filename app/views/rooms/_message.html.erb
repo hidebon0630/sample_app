@@ -1,27 +1,12 @@
 <div class="mt-3">
-<p class="text-center">メッセージ一覧</p>
-<% if messages.present? %>
-  <% messages.each do |m| %>
-    <li class="list-group border border-primary">
-      <div class="list-group-item">
-        <% if m.user == current_user %>
-          <i class="material-icons icon-right">person</i>
-          <%= m.user.name %>
-          <span class="label label-default label-pill">
-            <span><%= m.content %></span>
-            <i class="material-icons icon-right">sms</i>
-          </span>
-        <% else %>
-          <i class="material-icons">sms</i>
-          <%= m.content %>
-          <span class="label label-default label-pill">
-            <%= link_to m.user.name, m.user %>
-            <i class="material-icons">person_outline</i>
-          </span>
-        <% end %>
-      </div>
-    </li>
-    <p class="text-right"><%= time_ago_in_words(m.created_at).upcase %>前</p>
-  <% end %>
-<% end %>
+  <li class="list-group border border-primary">
+    <div class="list-group-item">
+      <i class="material-icons icon-right">person</i>
+      <%= message.user.name %>
+      <span class="label label-default label-pill">
+        <span><%= message.content %></span>
+      </span>
+    </div>
+  </li>
+  <p class="text-right"><%= time_ago_in_words(message.created_at).upcase %>前</p>
 </div>

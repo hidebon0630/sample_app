@@ -21,12 +21,13 @@ ja:
         remember_me: ログインを記憶する
         sign_in_count: ログイン回数
         updated_at: 更新日
+      option:
+        title: 回答項目
       post:
-        title: タイトル
+        title: 質問
         content: 内容
         tag_list: タグ（任意）
         image: 画像（任意）
-        status: ステータス
       comment:
         content: コメント
       message:

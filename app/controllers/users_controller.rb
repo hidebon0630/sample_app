@@ -10,9 +10,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @posts = @user.posts.published
-    @draft_posts = @user.posts.draft
-    @liked_posts = @user.liked_posts
+    @posts = @user.posts.includes(:taggings)
+    @following = @user.following
+    @followers = @user.followers
+    @liked_posts = @user.liked_posts.includes(:taggings, [:user])
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
     return if @user.id == current_user.id

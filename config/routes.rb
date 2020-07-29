@@ -22,10 +22,10 @@ Rails.application.routes.draw do
   end
   resources :posts do
     resource :likes, only: %i[create destroy]
-    resources :comments, only: [:create]
+    resources :comments, only: :create
     resource :votes, only: %i[show create]
   end
   resources :notifications, only: :index
-  resources :messages, only: [:create]
+  resources :messages, only: :create
   resources :rooms, only: %i[create show]
 end

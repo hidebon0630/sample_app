@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Users', type: :feature do
+RSpec.describe 'Users', type: :system do
   scenario '新規登録' do
     visit root_path
     click_link '新規登録'
@@ -25,7 +25,7 @@ RSpec.feature 'Users', type: :feature do
   end
 
   scenario '通常ユーザーでログイン、ログアウト' do
-    FactoryBot.create(:user, :sample)
+    create(:user, :sample)
     visit root_path
     click_link 'ログイン'
     fill_in 'メールアドレス', with: 'sample@example.com'
@@ -40,7 +40,7 @@ RSpec.feature 'Users', type: :feature do
   end
 
   scenario 'ゲストユーザーでログイン' do
-    FactoryBot.create(:user, :guest)
+    create(:user, :guest)
     visit root_path
     click_link 'ログイン'
     fill_in 'メールアドレス', with: 'guest@example.com'
@@ -52,7 +52,7 @@ RSpec.feature 'Users', type: :feature do
   end
 
   scenario 'かんたんログイン' do
-    FactoryBot.create(:user, :guest)
+    create(:user, :guest)
     visit root_path
     click_link 'ログイン'
     click_button 'かんたんログイン'
@@ -62,7 +62,7 @@ RSpec.feature 'Users', type: :feature do
   end
 
   scenario '管理ユーザーでログイン' do
-    FactoryBot.create(:user, :admin)
+    create(:user, :admin)
     visit root_path
     click_link 'ログイン'
     fill_in 'メールアドレス', with: 'admin@example.com'

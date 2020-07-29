@@ -22,12 +22,17 @@ services:
       - log_data:/sample_app/log
       - gem_data:/usr/local/bundle
     environment:
-      RUBYOPT: '-W:no-deprecated'
+      - "RUBYOPT=-W:no-deprecated"
     env_file: development.env
     ports:
       - "3000:3000"
     depends_on:
       - db
+      - chrome
+  chrome:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - 4444:4444
 
   nginx:
     build:

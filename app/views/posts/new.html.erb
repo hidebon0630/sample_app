@@ -2,57 +2,74 @@
 <%= form_for(@post) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="form-group">
-    <%= f.label :title, class:"bmd-label-floating" %>
+    <%= f.label :title, class:"bmd-label-static" %>
     <%= f.text_field :title, class: 'form-control', required: true %>
     <span class="bmd-help">30文字以内で入力してください</span>
   </div>
-  <div class="form-group">
-    <%= f.label :option, "質問1", class:"bmd-label-floating" %>
-    <%= text_field_tag "options[][title]", @option.title, autocomplete: "off", class: 'form-control', required: true %>
-    <span class="bmd-help">同じ質問は結果が重複されます。</span>
+  <div id="options">
+    <%= f.fields_for :options do |option| %>
+      <%= render 'option_fields', f: option %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association '追加', f, :options, class: "btn btn-raised btn-info" %>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :option, "質問2", class:"bmd-label-floating" %>
-    <%= text_field_tag "options[][title]", @option.title, autocomplete: "off", class: 'form-control', required: true %>
-    <span class="bmd-help">同じ質問は結果が重複されます。</span>
+    <%= f.label :tag_list, class:"bmd-label-static" %>
+    <%= f.text_field :tag_list, value: @post.tag_list.join(','), data: {role: "tagsinput"} %>
   </div>
   <div class="form-group">
-    <%= f.label :option, "質問3", class:"bmd-label-floating" %>
-    <%= text_field_tag "options[][title]", @option.title, autocomplete: "off", class: 'form-control', required: true %>
-    <span class="bmd-help">同じ質問は結果が重複されます。</span>
-  </div>
-  <div class="form-group">
-    <%= f.label :tag_list, class:"bmd-label-floating" %>
-    <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control" %>
-    <span class="bmd-help">" , "で区切ると複数選択出来ます。</span>
-  </div>
-  <div class="form-group">
-    <%= f.label :image, class:"bmd-label-floating" %>
+    <%= f.label :image, class:"bmd-label-static" %>
     <label class="form-control">
     <% if @post.image.present? %>
-      <%= image_tag @post.image_url, id: :img_prev, :size => '300x300', class: "form-control" %>
+      <%= image_tag @post.image_url, id: :img_prev, :size => '400x400', class: "form-control" %>
     <% else %>
-      <%= image_tag "noimage.png", id: :img_prev, :size => '300x300', class: "form-control"  %>
+      <%= image_tag "noimage.jpeg", id: :img_prev, :size => '400x400', class: "form-control"  %>
     <% end %>
     <br>
       <span class="btn btn-raised btn-secondary btn-block">画像ファイルを追加する</span>
       <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: :post_img, class: "d-none" %>
     </label>
   </div>
-  <div class="form-group">
-    <%= f.label :status, class:"bmd-label-floating" %>
-    <%= f.select :status, Post.statuses.keys.map {|k| [I18n.t("enums.post.status.#{k}"), k]}, {}, class: 'form-control' %>
-  </div>
   <%= f.submit "投稿", class: "btn btn-primary btn-raised btn-block" %>
 <% end %>
 </div>
 
 <script type="text/javascript">
-  $('#post_image').bind('change', function() {
-    var size_in_megabytes = this.files[0].size/1024/1024;
-    if (size_in_megabytes > 5) {
-      alert('Maximum file size is 5MB. Please choose a smaller file.');
+  $(function() {
+    function check_to_hide_or_show_add_link() {
+      if ($('#options .nested-fields:visible').length == 5) {
+        $('#options .links a').hide();
+      } else {
+        $('#options .links a').show();
+      }
     }
+    $('#options').on('cocoon:after-insert', function() {
+      check_to_hide_or_show_add_link();
+    });
+    $('#options').on('cocoon:after-remove', function() {
+      check_to_hide_or_show_add_link();
+    });
+      check_to_hide_or_show_add_link();
+  });
+</script>
+
+<script type="text/javascript">
+  $(function() {
+    function check_to_hide_or_show_delete_link() {
+      if ($('#options .nested-fields:visible').length == 1) {
+        $('#options .nested-fields a').hide();
+      } else {
+        $('#options .nested-fields a').show();
+      }
+    }
+    $('#options').on('cocoon:before-insert', function() {
+      check_to_hide_or_show_delete_link();
+    });
+    $('#options').on('cocoon:after-remove', function() {
+      check_to_hide_or_show_delete_link();
+    });
+      check_to_hide_or_show_delete_link();
   });
 </script>
 

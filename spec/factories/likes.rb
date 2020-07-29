@@ -17,6 +17,6 @@
 FactoryBot.define do
   factory :like do
     association :post
-    user { post.owner }
+    user { post.user }
   end
 end

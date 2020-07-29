@@ -54,6 +54,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'bullet'
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -62,7 +63,9 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
+  gem 'launchy'
   gem 'rspec_junit_formatter'
+  gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
 end
 
@@ -77,10 +80,12 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem 'annotate'
 gem 'cancancan'
 gem 'carrierwave'
-gem 'chartkick'
+gem 'chart-js-rails'
+gem 'cocoon'
 gem 'devise'
 gem 'devise-i18n'
 gem 'faker'
+gem 'gon'
 gem 'impressionist', '~>1.6.1'
 gem 'jquery-rails'
 gem 'kaminari'
