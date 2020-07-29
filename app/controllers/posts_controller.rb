@@ -18,7 +18,11 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.build
-    @post.options.build
+    num = 0
+    while num < 2 do
+      @post.options.build
+      num += 1
+    end
   end
 
   def show
