@@ -18,7 +18,7 @@ RSpec.describe 'Posts', type: :system do
     end.to change(user.posts, :count).by(1)
   end
 
-  describe "投稿詳細" do
+  describe '投稿詳細' do
     it '自分の投稿の場合' do
       option = create(:option)
 
@@ -26,7 +26,7 @@ RSpec.describe 'Posts', type: :system do
       visit posts_path
       click_link href: post_votes_path(option.post)
       expect(current_path).to eq post_votes_path(option.post)
-      expect(page).to have_content '回答者数'
+      expect(page).to have_content 'コメント一覧'
     end
     it '他人の投稿の場合' do
       user = create(:user)
@@ -40,17 +40,7 @@ RSpec.describe 'Posts', type: :system do
       expect(page).to have_checked_field 'あいうえお'
       click_button '回答'
       expect(current_path).to eq post_votes_path(option.post)
-      expect(page).to have_content '回答者数'
-    end
-  end
-
-  it "投稿削除", js: true do
-    post = create(:post)
-
-    sign_in post.user
-    visit posts_path
-    page.accept_confirm '本当に削除しますか？' do
-      click_on :delete_button
+      expect(page).to have_content 'コメント一覧'
     end
   end
 end

@@ -11,7 +11,7 @@ class VotesController < ApplicationController
     gon.data = []
     votes_count = @votes.group(:option_id).count
     gon.array = votes_count.values
-    gon.array.each do | data |
+    gon.array.each do |data|
       gon.data << data
     end
   end

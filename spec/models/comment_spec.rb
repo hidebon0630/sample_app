@@ -17,7 +17,7 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  describe "バリデーション" do
+  describe 'バリデーション' do
     let!(:comment) { create(:comment) }
     it 'コメントファクトリが有効' do
       expect(comment).to be_valid

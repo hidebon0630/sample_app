@@ -62,10 +62,10 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'selenium-webdriver'
-  gem 'launchy'
   gem 'capybara', '>= 2.15'
+  gem 'launchy'
   gem 'rspec_junit_formatter'
+  gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
 end
 

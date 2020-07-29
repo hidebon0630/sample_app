@@ -1,12 +1,12 @@
 Capybara.register_driver :chrome do |app|
-  url = "http://chrome:4444/wd/hub"
+  url = 'http://chrome:4444/wd/hub'
   caps = ::Selenium::WebDriver::Remote::Capabilities.chrome(
-    "goog:chromeOptions" => {
-      "args" => [
-        "no-sandbox",
-        "headless",
-        "disable-gpu",
-        "window-size=1680,1050"
+    'goog:chromeOptions' => {
+      'args' => [
+        'no-sandbox',
+        'headless',
+        'disable-gpu',
+        'window-size=1680,1050'
       ]
     }
   )
@@ -19,7 +19,7 @@ RSpec.configure do |config|
   end
   config.before(:each, type: :system, js: true) do
     driven_by :chrome
-    Capybara.server_host = "web"
-    Capybara.app_host='http://web'
+    Capybara.server_host = 'web'
+    Capybara.app_host = 'http://web'
   end
 end

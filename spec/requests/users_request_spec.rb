@@ -40,11 +40,11 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  describe "GET /admin" do
+  describe 'GET /admin' do
     context 'ログイン状態のとき' do
       it '管理ページにリダイレクト' do
         sign_in admin
-        get "/admin"
+        get '/admin'
         expect(response).to have_http_status 200
       end
       # 例外が発生してしまう
@@ -65,8 +65,7 @@ RSpec.describe 'Users', type: :request do
     # end
   end
 
-
-  describe "GET /login" do
+  describe 'GET /login' do
     context 'ログイン状態のとき' do
       it '投稿一覧ページにリダイレクト' do
         sign_in user
@@ -76,14 +75,14 @@ RSpec.describe 'Users', type: :request do
       end
     end
     context '未ログイン状態のとき' do
-      it "response 200" do
+      it 'response 200' do
         get new_user_session_path
         expect(response).to have_http_status(200)
       end
     end
   end
 
-  describe "GET /signup" do
+  describe 'GET /signup' do
     context 'ログイン状態のとき' do
       it '投稿一覧ページにリダイレクト' do
         sign_in user
@@ -93,16 +92,16 @@ RSpec.describe 'Users', type: :request do
       end
     end
     context '未ログイン状態のとき' do
-      it "response 200" do
+      it 'response 200' do
         get new_user_registration_path
         expect(response).to have_http_status(200)
       end
     end
   end
 
-  describe "GET /signup/edit" do
+  describe 'GET /signup/edit' do
     context 'ログイン状態のとき' do
-      it "response 200" do
+      it 'response 200' do
         sign_in user
         get edit_user_registration_path
         expect(response).to have_http_status(200)

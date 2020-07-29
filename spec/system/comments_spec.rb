@@ -13,7 +13,7 @@ RSpec.describe 'Comments', type: :system do
     expect(page).to have_checked_field 'あいうえお'
     click_button '回答'
     expect(current_path).to eq post_votes_path(option.post)
-    expect(page).to have_content '回答者数'
+    expect(page).to have_content 'コメント一覧'
     fill_in 'コメント', with: 'コメント'
     click_button '送信する'
     expect(page).to have_content user.name
