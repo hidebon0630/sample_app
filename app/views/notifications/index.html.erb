@@ -6,10 +6,10 @@
   </ol>
 </nav>
 <% if @notifications.exists? %>
-  <div class="users-index">
+  <ul class="notification-list jscroll">
     <%= render @notifications %>
     <%= paginate @notifications %>
-  </div>
+  </ul>
 <% else %>
   <p class="text-center">まだ通知はありません</p>
 <% end %>

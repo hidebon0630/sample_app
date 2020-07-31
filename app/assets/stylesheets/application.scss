@@ -25,11 +25,7 @@ nav.pagination {
   display: none;
 }
 
-ul.user-list {
-  padding: 0;
-}
-
-ul.post-list {
+ul.user-list, .post-list, .notification-list {
   padding: 0;
 }
 

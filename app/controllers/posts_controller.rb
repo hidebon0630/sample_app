@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   def index
     @q = Post.ransack(params[:q])
     @posts = if params[:tag_name]
-               Post.tagged_with(params[:tag_name].to_s).page(params[:page]).per(10)
+               Post.includes(:taggings, :user).tagged_with(params[:tag_name].to_s).page(params[:page]).per(10)
              else
                @q.result.includes(:taggings, :user).order('created_at DESC').page(params[:page]).per(10)
              end
