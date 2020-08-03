@@ -22,7 +22,7 @@ ja:
         sign_in_count: ログイン回数
         updated_at: 更新日
       option:
-        title: 回答項目
+        title: 回答
       post:
         title: 質問
         content: 内容
