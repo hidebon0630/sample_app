@@ -6,26 +6,42 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="https://placehold.it/1200x800" alt="First slide">
-      <div class="carousel-caption text-center">
-        <h1>Wanna Know?</h1>
-        <h3>
-          <%= form_for(@user, url: user_session_path) do |g| %>
-            <div class="form-group">
-              <%= g.hidden_field :name, value: 'ゲストユーザー' %>
-              <%= g.hidden_field :email, value: 'guest@example.com' %>
-              <%= g.hidden_field :password, value: 'password' %>
-              <%= g.submit 'かんたんログイン', class: 'btn btn-secondary btn-raised' %>
-            </div>
-          <% end %>
-        </h3>
+      <%= image_tag "top1.png", class:"d-block w-100", alt:"First slide", :size => '800x640' %>
+      <div class="carousel-caption">
+        <div class="top1_title">
+          <h1>Wanna Know?</h1>
+          <p>簡単にアンケートを取れるサービスです。</p>
+          <p>気軽に質問、回答してみませんか？</p>
+        </div>
+        <%= form_for(@user, url: user_session_path) do |g| %>
+          <div class="form-group">
+            <%= g.hidden_field :name, value: 'ゲストユーザー' %>
+            <%= g.hidden_field :email, value: 'guest@example.com' %>
+            <%= g.hidden_field :password, value: 'password' %>
+            <%= g.submit 'さっそく始める！', class: 'btn btn-primary btn-raised btn-block' %>
+          </div>
+        <% end %>
       </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="https://placehold.it/1200x800" alt="Second slide">
+      <%= image_tag "top2.png", class:"d-block w-100", alt:"Second slide", :size => '800x640' %>
+      <div class="carousel-caption d-none d-md-block">
+        <div class="top2_title">
+          <h2>簡単な回答ステップ</h2>
+          <p>項目をチェックして</p>
+          <p>回答ボタンをクリックするだけ!!</p>
+        </div>
+      </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="https://placehold.it/1200x800" alt="Third slide">
+      <%= image_tag "top3.png", class:"d-block w-100", alt:"Third slide", :size => '800x640' %>
+      <div class="carousel-caption d-none d-md-block">
+        <div class="top3_title">
+          <h2>見やすい回答結果</h2>
+          <p>ぱっと見でも結果が見やすいように</p>
+          <p>グラフで回答結果を表示!!</p>
+        </div>
+      </div>
     </div>
   </div>
   <a class="carousel-control-prev" href="#carousel-1" role="button" data-slide="prev">
