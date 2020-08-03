@@ -12,7 +12,8 @@ RSpec.describe 'Posts', type: :system do
       expect(link[:href]).to eq new_post_path
       link.click
       fill_in '質問', with: '質問'
-      fill_in '回答項目', with: 'あいうえお'
+      (all('.option_titles')[0]).set('テスト回答1')
+      (all('.option_titles')[1]).set('テスト回答2')
       attach_file 'post[image]', "#{Rails.root}/spec/fixtures/sample1.png"
       click_button '投稿'
     end.to change(user.posts, :count).by(1)
