@@ -12,7 +12,6 @@
 
 User.create!(name: 'ゲストユーザー',
              email: 'guest@example.com',
-             admin_flg: true,
              password: 'password',
              password_confirmation: 'password')
 
