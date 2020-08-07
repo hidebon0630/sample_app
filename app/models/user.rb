@@ -7,6 +7,7 @@
 #  avatar                 :string(255)
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
+#  gender                 :integer
 #  name                   :string(255)      default(""), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
@@ -43,7 +44,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+  enum gender: { male: 0, female: 1 }
   validates :name, presence: true, length: { maximum: 30 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
   validates :email, presence: true,
