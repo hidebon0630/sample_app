@@ -124,7 +124,7 @@ $size: 180px;
   background-color: #E5E5E5;
   position: relative;
   &.gt-50 {
-    background-color: rgb(153, 179, 179);
+    background-color: rgb(100, 129, 129);
   }
 }
 .ppc-progress {
@@ -181,11 +181,11 @@ $size: 180px;
 }
 
 .logo {
-  color: whitesmoke;
+  color: rgb(244, 242, 236);
 }
 .navbar-toggler {
   margin: 10px 0;
-  background-color: whitesmoke;
+  background-color: rgb(244, 242, 236);
 }
 
 .btn-primary, .bg-primary {

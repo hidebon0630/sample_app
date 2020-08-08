@@ -13,13 +13,14 @@
 User.create!(name: 'ゲストユーザー',
              email: 'guest@example.com',
              password: 'password',
-             password_confirmation: 'password')
+             password_confirmation: 'password',
+             avatar: File.open("#{Rails.root}/db/fixtures/avatar.png"))
 
 # ユーザー
 20.times do |n|
   name = Faker::Name.name
   email = "sample-#{n + 1}@example.com"
-  avatar = "#{Rails.root}/db/fixtures/avatar.png"
+  avatar = "#{Rails.root}/db/fixtures/user#{n + 1}.png"
   password = 'password'
   User.create!(name: name,
                email: email,
