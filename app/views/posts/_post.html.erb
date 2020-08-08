@@ -14,14 +14,17 @@
         </div>
       </div>
       <div class="col-md-10">
-        <h2 class="card-subtitle text-center mb-5">
-          <%= post.title %>
+        <div class="card-subtitle text-center mb-5">
+        <% if current_page?(pv_path) || current_page?(favorite_path) %>
+          <h1><%= post_counter + 1 %>位</h1>
+        <% end %>
+          <h2><%= post.title %></h2>
             <div class="tag_button">
               <% post.tag_list.each do |tag| %>
                 <%= link_to tag, posts_path(tag_name: tag), class: "badge badge-secondary tags" %>
               <% end %>
             </div>
-        </h2>
+        </div>
         <div class="card-text">
           <div class="row justify-content-between ml-3 mr-3">
             <div class="impression_count">
