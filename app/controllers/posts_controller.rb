@@ -27,7 +27,6 @@ class PostsController < ApplicationController
 
   def show
     @vote = current_user.votes.build
-    impressionist(@post, nil, unique: [:session_hash.to_s])
   end
 
   def create
