@@ -2,18 +2,6 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="form-group">
-    <div class="radio">
-      <label>
-        <%= f.label :male, "男" %>
-        <%= f.radio_button :gender, :male %>
-      </label>
-      <label>
-        <%= f.label :female, "女" %>
-        <%= f.radio_button :gender, :female %>
-      </label>
-    </div>
-  </div>
-  <div class="form-group">
     <%= f.label :name, class:"bmd-label-floating" %>
     <%= f.text_field :name, autofocus: true,
                       autocomplete: 'name',

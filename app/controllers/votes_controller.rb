@@ -3,6 +3,7 @@ class VotesController < ApplicationController
   before_action :yet_voted_user, only: :show
 
   def show
+    impressionist(@post, nil, unique: [:session_hash.to_s])
     @options = @post.options
     @votes = @post.votes
     @comments = @post.comments.includes(:user)
