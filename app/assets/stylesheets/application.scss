@@ -37,6 +37,7 @@ ul.user-list, .post-list, .notification-list {
   bottom: 10px;
   right: 8%;
   padding: 15px 0px;
+  color:rgb(2, 73, 89) !important;
 }
 
 // Drawer
@@ -44,6 +45,7 @@ ul.user-list, .post-list, .notification-list {
 body, html {
   height: 100%;
   font-family: 'Noto Sans JP', sans-serif;
+  background-color:rgb(244, 242, 236) !important;
 }
 
 main {
@@ -62,11 +64,11 @@ flex-grow: 1;
 // アイコン
 
 .favorite {
-  color: #FF5F17;
+  color: rgb(139, 202, 217) ;
 }
 
 .delete {
-  color: red;
+  color:rgb(214, 188, 109);
 }
 
 // コンテナ
@@ -91,7 +93,6 @@ flex-grow: 1;
 }
 
 //　ドーナツグラフ
-
 
 @mixin circle($size) {
   content: "";
@@ -173,4 +174,24 @@ $size: 200px;
   h2 {
     padding-bottom:10px;
   }
+}
+
+.navbar-toggler {
+  background-color: whitesmoke;
+}
+
+.btn-primary, .bg-primary {
+  background:rgb(45, 108, 115) !important;
+}
+
+.btn-secondary {
+  background:rgb(153, 179, 179) !important;
+}
+
+.btn-info {
+  background:rgb(72, 87, 87) !important;
+}
+
+.breadcrumb {
+  background-color: white;
 }

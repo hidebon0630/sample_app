@@ -29,7 +29,7 @@
         <% end %>
         <div class="tag_button">
           <% post.tag_list.each do |tag| %>
-            <%= link_to tag, posts_path(tag_name: tag), class: "mb-2 badge badge-success tags" %>
+            <%= link_to tag, posts_path(tag_name: tag), class: "mb-2 badge badge-secondary tags" %>
           <% end %>
         </div>
         <% if current_user?(post.user) || current_user.already_voted?(post) %>
