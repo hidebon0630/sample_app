@@ -85,13 +85,6 @@ flex-grow: 1;
 
 // コンテナ
 
-.new_post_page {
-  @extend .container-fluid;
-  max-width: 768px;
-  padding: 2rem;
-  background-color: white;
-}
-
 .container-fluid {
   margin-right: auto;
   margin-left: auto;
