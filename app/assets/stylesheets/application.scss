@@ -63,12 +63,24 @@ flex-grow: 1;
 
 // アイコン
 
-.favorite {
+.favorite-icon {
   color: rgb(139, 202, 217) ;
+  font-size:30px;
 }
 
-.delete {
+.delete-icon {
   color:rgb(214, 188, 109);
+  font-size:30px;
+}
+
+.impression-icon {
+  color:rgb(130, 159, 217);
+  font-size:30px;
+}
+
+.comment-icon {
+  color:rgb(82, 168, 116);
+  font-size:30px;
 }
 
 // コンテナ
@@ -104,7 +116,7 @@ flex-grow: 1;
   height: $size;
 }
 
-$size: 200px;
+$size: 180px;
 .progress-pie-chart {
   width: $size;
   height: $size;
@@ -112,7 +124,7 @@ $size: 200px;
   background-color: #E5E5E5;
   position: relative;
   &.gt-50 {
-    background-color: gray;
+    background-color: rgb(153, 179, 179);
   }
 }
 .ppc-progress {
@@ -141,7 +153,7 @@ $size: 200px;
     display: block;
     font-size: 2.6em;
     font-weight: bold;
-    color: gray;
+    color: rgb(72, 87, 87);
   }
 }
 .pcc-percents-wrapper {
