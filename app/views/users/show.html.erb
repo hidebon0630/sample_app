@@ -11,13 +11,13 @@
   <% unless current_user?(@user) %>
     <% if (current_user.following?(@user)) && (@user.following?(current_user))  %>
       <% if @is_room == true %>
-        <p class="user-show-room"><a href="/rooms/<%= @room_id %>" class="btn btn-secondary btn-raised btn-block">チャットへ</a>
+        <p class="user-show-room"><a href="/rooms/<%= @room_id %>" class="btn btn-success btn-raised btn-block">チャットへ</a>
       <% else %>
         <%= form_for @room do |f| %>
           <%= fields_for @entry do |e| %>
             <%= e.hidden_field :user_id, value: @user.id %>
           <% end %>
-          <%= f.submit "チャットを始める", class:"btn btn-secondary btn-raised btn-block user-show-chat"%>
+          <%= f.submit "チャットを始める", class:"btn btn-success btn-raised btn-block user-show-chat"%>
         <% end %>
       <% end %>
     <% end %>
@@ -31,7 +31,7 @@
   </li>
   <li class="nav-item">
     <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">
-      お気に入り<span><%= @user.liked_posts.count %></span>
+      いいね<span><%= @user.liked_posts.count %></span>
     </a>
   </li>
   <li class="nav-item">

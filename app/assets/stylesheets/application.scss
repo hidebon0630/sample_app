@@ -158,6 +158,8 @@ $size: 180px;
   margin: 10px auto 0;
 }
 
+// ランディングページ
+
 .top1_title {
   height: 540px;
   color: white;
@@ -173,13 +175,18 @@ $size: 180px;
   }
 }
 
+// navbar
+
 .logo {
-  color: white;
+  color: rgb(244, 242, 236);
 }
+
 .navbar-toggler {
   margin: 10px 0;
   background-color: white;
 }
+
+// ボタン、ヘッダーカラー
 
 .btn-primary, .bg-primary {
   background:rgb(45, 108, 115) !important;
@@ -193,6 +200,12 @@ $size: 180px;
   background:rgb(72, 87, 87) !important;
 }
 
+.btn-success {
+  background:rgb(110, 193, 193) !important;
+}
+
+// パンくずリスト
+
 .breadcrumb {
-  background-color: white;
+  background-color: rgb(244, 242, 236);
 }

@@ -1,9 +1,4 @@
 <% provide(:title, 'アンケートを探す') %>
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <a class="breadcrumb-item active" aria-current="page">Home</li>
-  </ol>
-</nav>
 <%= render 'post_search_form', url: posts_path, q: @q %>
 <ul class="post-list jscroll">
   <%= render @posts %>
