@@ -145,6 +145,7 @@ GEM
       i18n (>= 0.7)
       multi_json
       request_store (>= 1.0)
+    google-analytics-rails (1.1.1)
     haml (5.1.2)
       temple (>= 0.8.0)
       tilt
@@ -397,6 +398,7 @@ DEPENDENCIES
   faker
   fog-aws
   gon
+  google-analytics-rails
   impressionist (~> 1.6.1)
   jbuilder (~> 2.5)
   jquery-rails
