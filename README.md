@@ -56,44 +56,34 @@
   - レスポンシブデザインに対応
 
 # 使用技術
-
-- Ruby 2.7.1 Rails 5.2.4
-
-- MySQL 5.7
-
-- AWS（ECS, ECR, RDS, Route 53, VPC, ALB, ACM, S3, CloudFront）
-  - cloudfront経由でs3のファイルを独自ドメイン(images.water-mint.work...)からCDN配信
-  
-- Puma(アプリケーションサーバー）
-  - Nginxとsockets通信して連携
-- Nginx(Webサーバー)
+- Ruby 2.7.1
+- Rails 5.2.4
+- Mysql 5.7
+- AWS(ECS/ECR/RDS/Route53/VPC/ALB/ACM/S3/CloudFront/CloudWatch/IAM)
+  - CloudFront経由でS3のファイルを独自ドメイン(images.water-mint.work)からCDN配信
+- Puma
+  - sockets通信でNginxと連携
+- Nginx
   - ロードバランサーとしての負荷分散
   - ヘルスチェッククリア
-
 - Docker
 - docker-compose
   - ローカル環境構築
-  - systemスペックにおけるjavascriptのテスト用に、docker-seleniumを導入
-
+  - docker-selenium
 - CircleCI
   - CI
-    - RSpecのテスト及びRansackによる静的解析をpush時に開始
+    - RSpecでのテスト及びransackによる静的解析
   - CD
-    - masterブランチへのマージによりECR/ECSへデプロイ
-    - Orbsを用いたデプロイを実装
-
+    - masterブランチへのマージへのECS/ECRへデプロイ
+    - orbsを用いたデプロイ
 - RSpec
   - 単体テスト
   - 統合テスト
-
 - Material Design for Bootstrap
-
 - Ajax
-
-- JQuery
+- jQuery
   - jscroll
   - bootstrap-tags-input
-  
 - Javascript
   - toastr.js
   - chart.js
