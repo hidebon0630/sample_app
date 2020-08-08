@@ -73,13 +73,13 @@ class PostsController < ApplicationController
     return if voted.nil?
 
     redirect_to post_votes_path(@post)
-    flash[:notice] = '既に回答しています'
+    flash[:warning] = '既に回答しています'
   end
 
   def reject_current_user
     return unless @post.user == current_user
 
     redirect_back(fallback_location: posts_path)
-    flash[:warning] = '自分で回答は出来ません'
+    flash[:alert] = '自分で回答は出来ません'
   end
 end
