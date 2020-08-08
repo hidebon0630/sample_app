@@ -73,4 +73,8 @@ class Post < ApplicationRecord
     )
     notification.save if notification.valid?
   end
+
+  def comment_count
+    Comment.where({ post_id: id }).count
+  end
 end

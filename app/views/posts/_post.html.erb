@@ -1,50 +1,65 @@
 <li id="post-<%= post.id %>">
-  <div class="card mb-3">
-    <div class="card-body">
-      <h5 class="card-title text-center">
-        <%= post.title %>
-      </h5>
-      <div class="card-subtitle">
-        <% if post.user.avatar? %>
-          <%= link_to image_tag(post.user.avatar.thumb.url, :size => '50x50', class: "rounded-circle"), post.user %>
-        <% else %>
-          <%= link_to image_tag("noimage.jpeg", :size => '50x50', class: "rounded-circle"), post.user %>
-        <% end %>
+  <div class="card mb-3 pt-3">
+    <div class="card-body row">
+      <div class="col-md-2">
+        <div class="card-title text-center">
+          <div>
+            <% if post.user.avatar? %>
+              <%= link_to image_tag(post.user.avatar.thumb.url, :size => '100x100', class: "rounded-circle"), post.user %>
+            <% else %>
+              <%= link_to image_tag("noimage.jpeg", :size => '100x100', class: "rounded-circle"), post.user %>
+            <% end %>
+          </div>
+          <span><%= link_to post.user.name, post.user %></span>
+        </div>
       </div>
-      <div class="card-text">
-        <div class="impression">
-          <i class="material-icons">remove_red_eye</i>
-          <%= post.impressionist_count(:filter=>:session_hash) %>
+      <div class="col-md-10">
+        <h2 class="card-subtitle text-center mb-5">
+          <%= post.title %>
+            <div class="tag_button">
+              <% post.tag_list.each do |tag| %>
+                <%= link_to tag, posts_path(tag_name: tag), class: "badge badge-secondary tags" %>
+              <% end %>
+            </div>
+        </h2>
+        <div class="card-text">
+          <div class="row justify-content-between ml-3 mr-3">
+            <div class="impression_count">
+              <i class="material-icons impression-icon">remove_red_eye</i>
+              <%= post.impressionist_count(:filter=>:session_hash) %>
+            </div>
+            <div class="comment_count">
+              <span class="material-icons comment-icon">comment</span>
+              <%= post.comment_count %>
+            </div>
+            <% if current_user?(post.user) %>
+              <div class="delete_button">
+                <%= link_to post, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+                  <i class="material-icons delete-icon">delete_forever</i>
+                <% end %>
+              </div>
+            <% else %>
+              <div id="likes_buttons_<%= post.id %>">
+                <%= render partial: 'likes/like', locals: { post: post} %>
+              </div>
+            <% end %>
+          </div>
+          <div class="poll_btn mt-3">
+            <% if current_user?(post.user) || current_user.already_voted?(post) %>
+              <div class="result">
+                <%= link_to post_votes_path(post), class:"btn btn-primary btn-raised btn-block" do %>
+                  結果を見る<i class="material-icons">equalizer</i>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="answer">
+                <%= link_to post_path(post), class:"btn btn-secondary btn-raised btn-block" do %>
+                  回答する<i class="material-icons">check</i>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
         </div>
-        <% if current_user?(post.user) %>
-          <div class="delete_button">
-            <%= link_to post, method: :delete, id: "delete_button", data: { confirm: "本当に削除しますか？" } do %>
-              <i class="material-icons delete">delete_forever</i>
-            <% end %>
-          </div>
-        <% else %>
-          <div id="likes_buttons_<%= post.id %>">
-            <%= render partial: 'likes/like', locals: { post: post} %>
-          </div>
-        <% end %>
-        <div class="tag_button">
-          <% post.tag_list.each do |tag| %>
-            <%= link_to tag, posts_path(tag_name: tag), class: "mb-2 badge badge-secondary tags" %>
-          <% end %>
-        </div>
-        <% if current_user?(post.user) || current_user.already_voted?(post) %>
-          <div class="result">
-            <%= link_to post_votes_path(post), class:"btn btn-primary btn-raised btn-block" do %>
-              結果を見る<i class="material-icons">equalizer</i>
-            <% end %>
-          </div>
-        <% else %>
-          <div class="answer">
-            <%= link_to post_path(post), class:"btn btn-secondary btn-raised btn-block" do %>
-              回答する<i class="material-icons">check</i>
-            <% end %>
-          </div>
-        <% end %>
       </div>
     </div>
   </div>
