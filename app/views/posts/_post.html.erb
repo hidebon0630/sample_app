@@ -16,7 +16,7 @@
       <div class="col-md-10">
         <h2 class="card-subtitle text-center mb-5">
         <% if current_page?(pv_path) || current_page?(favorite_path) %>
-          <div><%= post_counter + 1 %>位</div>
+          <div class="mb-1 ranking"><%= post_counter + 1 %>位</div>
         <% end %>
           <%= post.title %>
             <div class="tag_button">

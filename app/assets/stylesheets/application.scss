@@ -32,11 +32,11 @@ ul.user-list, .post-list, .notification-list {
 // 新規投稿ボタン
 
 .new-post-btn {
-  font-size: 100px;
+  font-size: 120px;
   position: fixed;
   bottom: 10px;
   right: 8%;
-  padding: 15px 0px;
+  padding: 30px 50px;
   color:rgb(2, 73, 89) !important;
 }
 
@@ -194,6 +194,7 @@ $size: 180px;
 .top-icon {
   font-size:7rem;
 }
+
 // navbar
 
 .logo {
@@ -227,4 +228,11 @@ $size: 180px;
 .breadcrumb {
   background-color: rgb(244, 242, 236);
   margin-top:1.5rem;
+}
+
+// 順位
+
+.ranking {
+  font-size:2.5rem;
+  color: gray
 }
