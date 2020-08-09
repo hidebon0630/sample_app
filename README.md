@@ -19,7 +19,7 @@
 # インフラ構築図
 ![名称未設定ファイル](https://user-images.githubusercontent.com/45557213/89125277-4d3d0f00-d518-11ea-811f-fd61c44baab2.png)
 # ER図
-![ポートフォリオ](https://user-images.githubusercontent.com/45557213/89125323-9beaa900-d518-11ea-89dd-aa62e14bbed4.png)
+![ポートフォリオ (1)](https://user-images.githubusercontent.com/45557213/89738885-0ff7f480-dab7-11ea-9b4c-a874f38d09b6.png)
 # 実装機能
 
 - ユーザー機能
