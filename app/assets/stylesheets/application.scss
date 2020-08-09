@@ -164,23 +164,36 @@ $size: 180px;
 }
 
 // ランディングページ
-
-.masthead {
+.home {
   min-height: 30rem;
+  position: relative;
   display: table;
   width: 100%;
-  background-image:  linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%),image-url("top1.png");
+  height: auto;
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+  background-image:  linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%),image-url("top1.jpeg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+.home h1 {
+  font-size: 4rem;
+}
+
 @media (min-width: 992px) {
-  .masthead {
+  .home {
     height: 100vh;
+  }
+  .home h1 {
+    font-size: 5.5rem;
   }
 }
 
+.top-icon {
+  font-size:7rem;
+}
 // navbar
 
 .logo {

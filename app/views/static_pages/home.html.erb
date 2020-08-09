@@ -1,50 +1,50 @@
-<header class="masthead">
-  <div class="text-center">
-    <h1 class="">Wanna Know？</h1>
-    <h3 class="">
-      ユーザーの疑問解決を目的としたアンケートサービス
-    </h3>
+<div class="home d-flex">
+  <div class="container text-center my-auto">
+    <h1 class="mb-5">Wanna Know?</h1>
+    <h3 class="mb-4">アンケートサービス</h3>
+    <h5 class="mb-3">ユーザー同士で個々の疑問を解決できます</h5>
+    <h5 class="mb-5">気軽に質問し、様々な意見を参考にしてみよう！</h5>
+    <%= form_for(@user, url: user_session_path) do |g| %>
+      <div class="form-group">
+        <%= g.hidden_field :name, value: 'ゲストユーザー' %>
+        <%= g.hidden_field :email, value: 'guest@example.com' %>
+        <%= g.hidden_field :password, value: 'password' %>
+        <%= g.submit 'さっそく始める！', class: 'btn btn-primary btn-raised btn-block' %>
+      </div>
+    <% end %>
   </div>
-</header>
-
-<section class="content-section bg-primary text-white text-center" id="services">
-  <div class="container">
-    <div class="content-section-heading">
-      <h3 class="text-secondary mb-0">Services</h3>
-      <h2 class="mb-5">Wanna Know？ではこんなことが可能です</h2>
-    </div>
+</div>
+<section class="bg-primary text-white text-center">
+  <div class="container-fluid">
+    <h1 class="pt-5 mb-4">サービス概要</h1>
     <div class="row">
-
-      <div class="col-md-4 mb-5 mb-lg-0">
-        <span class="service-icon rounded-circle mx-auto mb-3">
-          <i class="fa fa-pencil-square-o icon-1" aria-hidden="true"></i>
-        </span>
-        <h4>
-          <strong>口コミを投稿する</strong>
-        </h4>
-        <p class="text-faded text-left mb-0">レストランの口コミを投稿することができます。口コミは投稿したユーザーにのみ、編集・削除が可能です。</p>
+      <div class="col-md-4 mb-5">
+        <span class="material-icons mx-auto mb-3 top-icon">live_help</span>
+        <h3 class="mb-4">
+          <strong>アンケートを投稿する</strong>
+        </h3>
+        <p>アンケートを投稿し、質問することができます</p>
+        <p>任意で画像やタグを付けることもできます</p>
+        <p>あなたが気になる質問をどんどんしてみましょう！</p>
       </div>
-
-      <div class="col-md-4 mb-5 mb-lg-0">
-        <span class="service-icon rounded-circle mx-auto mb-3">
-          <i class="fa fa-check icon-2" aria-hidden="true"></i>
-        </span>
-        <h4>
-          <strong>口コミを見る</strong>
-        </h4>
-        <p class="text-faded text-left mb-0">キーワードの検索はもちろん、登録タグやレストランからの逆引きで、過去に投稿された口コミを表示することができます。</p>
+      <div class="col-md-4 mb-5">
+        <span class="material-icons mx-auto mb-3 top-icon">check_circle</span>
+        <h3 class="mb-4">
+          <strong>質問に答える</strong>
+        </h3>
+        <p>様々なユーザーの質問に答えることができます</p>
+        <p>回答項目をチェックするだけの簡単ステップ</p>
+        <p>質問に答えて、誰かの手助けをしてみましょう！</p>
       </div>
-
-      <div class="col-md-4 mb-5 mb-md-0">
-        <span class="service-icon rounded-circle mx-auto mb-3">
-          <i class="fa fa-comments-o icon-2" aria-hidden="true"></i>
-        </span>
-        <h4>
-          <strong>ユーザー同士で共有</strong>
-        </h4>
-        <p class="text-faded text-left mb-0">投稿された口コミにはいいね！やコメントをすることができ、それらは投稿ユーザーに通知されます。</p>
+      <div class="col-md-4 mb-5">
+        <span class="material-icons mx-auto mb-3 top-icon">equalizer</span>
+        <h3 class="mb-4">
+          <strong>結果を共有</strong>
+        </h3>
+        <p>ユーザー同士で回答結果を共有することができます</p>
+        <p>自分以外の回答も参考にすることも可能</p>
+        <p>結果はグラフで表示されて、見やすい！</p>
       </div>
-
     </div>
   </div>
 </section>
