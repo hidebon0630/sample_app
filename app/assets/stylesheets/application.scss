@@ -49,7 +49,7 @@ body, html {
 }
 
 main {
-  padding: 90px 0 20px 0;
+  padding-top:50px;
 }
 
 
@@ -88,7 +88,12 @@ flex-grow: 1;
 .container-fluid {
   margin-right: auto;
   margin-left: auto;
-  max-width: 960px;
+  max-width: 1280px;
+  .new-page {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 800px;
+  }
 }
 
 // タグ
@@ -159,22 +164,36 @@ $size: 180px;
 }
 
 // ランディングページ
+.home {
+  min-height: 30rem;
+  position: relative;
+  display: table;
+  width: 100%;
+  height: auto;
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+  background-image:  linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%),image-url("top1.jpeg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-.top1_title {
-  height: 540px;
-  color: white;
-  h1 {
-    padding-bottom:10px;
+.home h1 {
+  font-size: 4rem;
+}
+
+@media (min-width: 992px) {
+  .home {
+    height: 100vh;
+  }
+  .home h1 {
+    font-size: 5.5rem;
   }
 }
 
-.top2_title {
-  height: 490px;
-  h2 {
-    padding-bottom:10px;
-  }
+.top-icon {
+  font-size:7rem;
 }
-
 // navbar
 
 .logo {
@@ -182,7 +201,6 @@ $size: 180px;
 }
 
 .navbar-toggler {
-  margin: 10px 0;
   background-color: white;
 }
 
@@ -208,4 +226,5 @@ $size: 180px;
 
 .breadcrumb {
   background-color: rgb(244, 242, 236);
+  margin-top:1.5rem;
 }

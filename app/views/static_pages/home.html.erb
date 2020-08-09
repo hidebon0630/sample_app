@@ -1,44 +1,50 @@
-<div id="carousel-1" class="carousel slide" data-interval="5000">
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-1" data-slide-to="1"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <%= image_tag "top1.png", class:"d-block w-100", alt:"First slide", :size => '800x680' %>
-      <div class="carousel-caption">
-        <div class="top1_title">
-          <h1>Wanna Know?</h1>
-          <p>簡単にアンケートを取れるサービスです。</p>
-          <p>気軽に質問、回答してみませんか？</p>
-        </div>
-        <%= form_for(@user, url: user_session_path) do |g| %>
-          <div class="form-group">
-            <%= g.hidden_field :name, value: 'ゲストユーザー' %>
-            <%= g.hidden_field :email, value: 'guest@example.com' %>
-            <%= g.hidden_field :password, value: 'password' %>
-            <%= g.submit 'さっそく始める！', class: 'btn btn-primary btn-raised btn-block' %>
-          </div>
-        <% end %>
+<div class="home d-flex">
+  <div class="container text-center my-auto">
+    <h1 class="mb-5">Wanna Know?</h1>
+    <h3 class="mb-4">アンケートサービス</h3>
+    <h5 class="mb-3">ユーザー同士で個々の疑問を解決できます</h5>
+    <h5 class="mb-5">気軽に質問し、様々な意見を参考にしてみよう！</h5>
+    <%= form_for(@user, url: user_session_path) do |g| %>
+      <div class="form-group">
+        <%= g.hidden_field :name, value: 'ゲストユーザー' %>
+        <%= g.hidden_field :email, value: 'guest@example.com' %>
+        <%= g.hidden_field :password, value: 'password' %>
+        <%= g.submit 'さっそく始める！', class: 'btn btn-primary btn-raised btn-block' %>
       </div>
-    </div>
-    <div class="carousel-item">
-      <%= image_tag "top2.png", class:"d-block w-100", alt:"Second slide", :size => '800x680' %>
-      <div class="carousel-caption">
-        <div class="top2_title">
-          <h2>簡単な回答ステップ</h2>
-          <p>項目をチェックして</p>
-          <p>回答ボタンをクリックするだけ!!</p>
-        </div>
+    <% end %>
+  </div>
+</div>
+<section class="bg-primary text-white text-center">
+  <div class="container-fluid">
+    <h1 class="pt-5 mb-4">サービス概要</h1>
+    <div class="row">
+      <div class="col-md-4 mb-5">
+        <span class="material-icons mx-auto mb-3 top-icon">live_help</span>
+        <h3 class="mb-4">
+          <strong>アンケートを投稿する</strong>
+        </h3>
+        <p>アンケートを投稿し、質問することができます</p>
+        <p>任意で画像やタグを付けることもできます</p>
+        <p>あなたが気になる質問をどんどんしてみましょう！</p>
+      </div>
+      <div class="col-md-4 mb-5">
+        <span class="material-icons mx-auto mb-3 top-icon">check_circle</span>
+        <h3 class="mb-4">
+          <strong>質問に答える</strong>
+        </h3>
+        <p>様々なユーザーの質問に答えることができます</p>
+        <p>回答項目をチェックするだけの簡単ステップ</p>
+        <p>質問に答えて、誰かの手助けをしてみましょう！</p>
+      </div>
+      <div class="col-md-4 mb-5">
+        <span class="material-icons mx-auto mb-3 top-icon">equalizer</span>
+        <h3 class="mb-4">
+          <strong>結果を共有</strong>
+        </h3>
+        <p>ユーザー同士で回答結果を共有することができます</p>
+        <p>自分以外の回答も参考にすることも可能</p>
+        <p>結果はグラフで表示されて、見やすい！</p>
       </div>
     </div>
   </div>
-  <a class="carousel-control-prev" href="#carousel-1" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carousel-1" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
+</section>

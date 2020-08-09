@@ -1,11 +1,12 @@
 <% provide(:title, '新規投稿') %>
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/posts">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">NewPost</li>
-  </ol>
-</nav>
-<div class="new_post_page">
+<div class="container-fluid">
+  <div class="new-page">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/posts">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">NewPost</li>
+    </ol>
+  </nav>
   <%= form_for(@post) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div class="form-group">
@@ -42,6 +43,7 @@
     </div>
     <%= f.submit "投稿", class: "btn btn-primary btn-raised btn-block" %>
   <% end %>
+  </div>
 </div>
 
 <script type="text/javascript">

@@ -1,69 +1,71 @@
 <% provide(:title, '回答') %>
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/posts">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Answer</li>
-  </ol>
-</nav>
-<div class="card">
-  <div class="card-body text-center">
-    <h1 class="card-title">
-      <li><%= @post.title %></li>
-    </h1>
-    <h3 class="card-text">
-      <% if @post.image.present? %>
-        <%= image_tag @post.image.url, class: "img-fluid" %>
-      <% end %>
-      <% if @votes.present? %>
-        <canvas id="myChart" width="200" height="100"></canvas>
-        <script>draw_graph();</script>
-      <% else %>
-        <h5 class="text-center">まだ回答がありません</h5>
-      <% end %>
-      <div class="row">
-        <% @options.each_with_index do |option, index| %>
-        <div class="col-md-4">
-          <div id="gragh_<%= index %>">
-            <div class="progress-pie-chart" data-percent="100">
-              <div class="ppc-progress">
-                <div class="ppc-progress-fill"></div>
-              </div>
-              <div class="ppc-percents">
-                <div class="pcc-percents-wrapper">
-                  <span>
-                    <%= option.vote_count %>
-                  </span>
+<div class="container-fluid">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/posts">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Answer</li>
+    </ol>
+  </nav>
+  <div class="card">
+    <div class="card-body text-center">
+      <h1 class="card-title">
+        <li><%= @post.title %></li>
+      </h1>
+      <h3 class="card-text">
+        <% if @post.image.present? %>
+          <%= image_tag @post.image.url, class: "img-fluid" %>
+        <% end %>
+        <% if @votes.present? %>
+          <canvas id="myChart" width="200" height="100"></canvas>
+          <script>draw_graph();</script>
+        <% else %>
+          <h5 class="text-center">まだ回答がありません</h5>
+        <% end %>
+        <div class="row">
+          <% @options.each_with_index do |option, index| %>
+          <div class="col-md-4">
+            <div id="gragh_<%= index %>">
+              <div class="progress-pie-chart" data-percent="100">
+                <div class="ppc-progress">
+                  <div class="ppc-progress-fill"></div>
+                </div>
+                <div class="ppc-percents">
+                  <div class="pcc-percents-wrapper">
+                    <span>
+                      <%= option.vote_count %>
+                    </span>
+                  </div>
                 </div>
               </div>
+              <h4><%= option.title %></h4>
             </div>
-            <h4><%= option.title %></h4>
           </div>
+          <% end %>
         </div>
+      </h3>
+    </div>
+  </div>
+  <div class="comments">
+    <div class="card mt-3">
+      <div class="card-body">
+        <div class="card-title text-center">
+          <h4>コメント一覧</h4>
+        </div>
+        <div id="comments_area">
+          <%= render partial: "posts/comment", collection: @comments %>
+        </div>
+        <%= form_for [@post, @comment], remote: true do |f| %>
+          <div class="form-group">
+            <%= f.label :content, class:"bmd-label-floating" %>
+            <%= f.text_field :content, class: 'form-control', required: true, maxlength:'30' %>
+            <%= f.hidden_field :post_id, value: @post.id %>
+            <span class="bmd-help">30文字以内で入力して下さい</span>
+          </div>
+          <div class="form-group">
+            <%= f.submit '送信する', class: "btn btn-secondary btn-block btn-raised" %>
+          </div>
         <% end %>
       </div>
-    </h3>
-  </div>
-</div>
-<div class="comments">
-  <div class="card mt-3">
-    <div class="card-body">
-      <div class="card-title text-center">
-        <h4>コメント一覧</h4>
-      </div>
-      <div id="comments_area">
-        <%= render partial: "posts/comment", collection: @comments %>
-      </div>
-      <%= form_for [@post, @comment], remote: true do |f| %>
-        <div class="form-group">
-          <%= f.label :content, class:"bmd-label-floating" %>
-          <%= f.text_field :content, class: 'form-control', required: true, maxlength:'30' %>
-          <%= f.hidden_field :post_id, value: @post.id %>
-          <span class="bmd-help">30文字以内で入力して下さい</span>
-        </div>
-        <div class="form-group">
-          <%= f.submit '送信する', class: "btn btn-secondary btn-block btn-raised" %>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>
