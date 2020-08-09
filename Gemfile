@@ -78,6 +78,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'annotate'
+gem "asset_sync"
 gem 'cancancan'
 gem 'carrierwave'
 gem 'chart-js-rails'
