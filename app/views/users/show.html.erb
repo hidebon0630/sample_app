@@ -1,74 +1,76 @@
 <% provide(:title, 'ユーザー詳細') %>
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/posts">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">User</li>
-  </ol>
-</nav>
-<div class="user_info">
-  <%= render 'profile', object: @user %>
-  <%= render 'follow_form', user: @user %>
-  <% unless current_user?(@user) %>
-    <% if (current_user.following?(@user)) && (@user.following?(current_user))  %>
-      <% if @is_room == true %>
-        <p class="user-show-room"><a href="/rooms/<%= @room_id %>" class="btn btn-success btn-raised btn-block">チャットへ</a>
-      <% else %>
-        <%= form_for @room do |f| %>
-          <%= fields_for @entry do |e| %>
-            <%= e.hidden_field :user_id, value: @user.id %>
+<div class="container-fluid">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/posts">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">User</li>
+    </ol>
+  </nav>
+  <div class="user_info">
+    <%= render 'profile', object: @user %>
+    <%= render 'follow_form', user: @user %>
+    <% unless current_user?(@user) %>
+      <% if (current_user.following?(@user)) && (@user.following?(current_user))  %>
+        <% if @is_room == true %>
+          <p class="user-show-room"><a href="/rooms/<%= @room_id %>" class="btn btn-success btn-raised btn-block">チャットへ</a>
+        <% else %>
+          <%= form_for @room do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, value: @user.id %>
+            <% end %>
+            <%= f.submit "チャットを始める", class:"btn btn-success btn-raised btn-block user-show-chat"%>
           <% end %>
-          <%= f.submit "チャットを始める", class:"btn btn-success btn-raised btn-block user-show-chat"%>
         <% end %>
       <% end %>
     <% end %>
-  <% end %>
+  </div>
+  <ul class="nav nav-tabs bg-primary justify-content-center mt-3 mb-3" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">
+        投稿<span><%= @posts.count %></span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">
+        いいね<span><%= @user.liked_posts.count %></span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="item3-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="false">
+        フォロー<span><%= @user.following.count %></span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="item4-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="false">
+        フォロワー<span id="followers"><%= @user.followers.count %></span>
+      </a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+      <ul class="post-list jscroll">
+        <%= render @posts %>
+      </ul>
+    </div>
+    <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
+      <ul class="post-list jscroll">
+        <%= render partial: 'posts/post', collection: @liked_posts, as: :post %>
+      </ul>
+    </div>
+    <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">
+      <ul class="user-list jscroll">
+        <div class="row">
+          <%= render partial: 'show_follows', collection: @following, as: :user %>
+        </div>
+      </ul>
+    </div>
+    <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="item4-tab">
+      <ul class="user-list jscroll">
+        <div class="row">
+          <%= render partial: 'show_follows', collection: @followers, as: :user %>
+        </div>
+      </ul>
+    </div>
+  </div>
+  <%= render "posts/post_btn" %>
 </div>
-<ul class="nav nav-tabs bg-primary justify-content-center mt-3 mb-3" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">
-      投稿<span><%= @posts.count %></span>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">
-      いいね<span><%= @user.liked_posts.count %></span>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="item3-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="false">
-      フォロー<span><%= @user.following.count %></span>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="item4-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="false">
-      フォロワー<span id="followers"><%= @user.followers.count %></span>
-    </a>
-  </li>
-</ul>
-<div class="tab-content">
-  <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
-    <ul class="post-list jscroll">
-      <%= render @posts %>
-    </ul>
-  </div>
-  <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
-    <ul class="post-list jscroll">
-      <%= render partial: 'posts/post', collection: @liked_posts, as: :post %>
-    </ul>
-  </div>
-  <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">
-    <ul class="user-list jscroll">
-      <div class="row">
-        <%= render partial: 'show_follows', collection: @following, as: :user %>
-      </div>
-    </ul>
-  </div>
-  <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="item4-tab">
-    <ul class="user-list jscroll">
-      <div class="row">
-        <%= render partial: 'show_follows', collection: @followers, as: :user %>
-      </div>
-    </ul>
-  </div>
-</div>
-<%= render "posts/post_btn" %>

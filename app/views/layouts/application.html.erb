@@ -13,11 +13,9 @@
           <div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
             <%= render 'layouts/header' %>
             <main class="bmd-layout-content">
-              <div class="container-fluid">
-                <%= render 'shared/flash_messages' %>
-                <%= yield %>
-                <%= render 'layouts/script' %>
-              </div>
+              <%= render 'shared/flash_messages' %>
+              <%= yield %>
+              <%= render 'layouts/script' %>
             </main>
           </div>
         </div>

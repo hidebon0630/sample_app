@@ -1,15 +1,17 @@
 <% provide(:title, 'ユーザーを探す') %>
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/posts">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Users</li>
-  </ol>
-</nav>
-<%= render 'user_search_form', url: users_path, q: @q %>
-<ul class="user-list jscroll">
-  <div class="row">
-    <%= render @users %>
-    <%= paginate @users %>
-  </div>
-</ul>
-<%= render "posts/post_btn" %>
+<div class="container-fluid">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/posts">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Users</li>
+    </ol>
+  </nav>
+  <%= render 'user_search_form', url: users_path, q: @q %>
+  <ul class="user-list jscroll">
+    <div class="row">
+      <%= render @users %>
+      <%= paginate @users %>
+    </div>
+  </ul>
+  <%= render "posts/post_btn" %>
+</div>

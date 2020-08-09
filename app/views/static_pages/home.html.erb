@@ -1,44 +1,50 @@
-<div id="carousel-1" class="carousel slide" data-interval="5000">
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-1" data-slide-to="1"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <%= image_tag "top1.png", class:"d-block w-100", alt:"First slide", :size => '800x680' %>
-      <div class="carousel-caption">
-        <div class="top1_title">
-          <h1>Wanna Know?</h1>
-          <p>簡単にアンケートを取れるサービスです。</p>
-          <p>気軽に質問、回答してみませんか？</p>
-        </div>
-        <%= form_for(@user, url: user_session_path) do |g| %>
-          <div class="form-group">
-            <%= g.hidden_field :name, value: 'ゲストユーザー' %>
-            <%= g.hidden_field :email, value: 'guest@example.com' %>
-            <%= g.hidden_field :password, value: 'password' %>
-            <%= g.submit 'さっそく始める！', class: 'btn btn-primary btn-raised btn-block' %>
-          </div>
-        <% end %>
-      </div>
+<header class="masthead">
+  <div class="text-center">
+    <h1 class="">Wanna Know？</h1>
+    <h3 class="">
+      ユーザーの疑問解決を目的としたアンケートサービス
+    </h3>
+  </div>
+</header>
+
+<section class="content-section bg-primary text-white text-center" id="services">
+  <div class="container">
+    <div class="content-section-heading">
+      <h3 class="text-secondary mb-0">Services</h3>
+      <h2 class="mb-5">Wanna Know？ではこんなことが可能です</h2>
     </div>
-    <div class="carousel-item">
-      <%= image_tag "top2.png", class:"d-block w-100", alt:"Second slide", :size => '800x680' %>
-      <div class="carousel-caption">
-        <div class="top2_title">
-          <h2>簡単な回答ステップ</h2>
-          <p>項目をチェックして</p>
-          <p>回答ボタンをクリックするだけ!!</p>
-        </div>
+    <div class="row">
+
+      <div class="col-md-4 mb-5 mb-lg-0">
+        <span class="service-icon rounded-circle mx-auto mb-3">
+          <i class="fa fa-pencil-square-o icon-1" aria-hidden="true"></i>
+        </span>
+        <h4>
+          <strong>口コミを投稿する</strong>
+        </h4>
+        <p class="text-faded text-left mb-0">レストランの口コミを投稿することができます。口コミは投稿したユーザーにのみ、編集・削除が可能です。</p>
       </div>
+
+      <div class="col-md-4 mb-5 mb-lg-0">
+        <span class="service-icon rounded-circle mx-auto mb-3">
+          <i class="fa fa-check icon-2" aria-hidden="true"></i>
+        </span>
+        <h4>
+          <strong>口コミを見る</strong>
+        </h4>
+        <p class="text-faded text-left mb-0">キーワードの検索はもちろん、登録タグやレストランからの逆引きで、過去に投稿された口コミを表示することができます。</p>
+      </div>
+
+      <div class="col-md-4 mb-5 mb-md-0">
+        <span class="service-icon rounded-circle mx-auto mb-3">
+          <i class="fa fa-comments-o icon-2" aria-hidden="true"></i>
+        </span>
+        <h4>
+          <strong>ユーザー同士で共有</strong>
+        </h4>
+        <p class="text-faded text-left mb-0">投稿された口コミにはいいね！やコメントをすることができ、それらは投稿ユーザーに通知されます。</p>
+      </div>
+
     </div>
   </div>
-  <a class="carousel-control-prev" href="#carousel-1" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carousel-1" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
+</section>

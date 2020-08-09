@@ -1,16 +1,18 @@
 <% provide(:title, '通知') %>
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/posts">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Notifications</li>
-  </ol>
-</nav>
-<% if @notifications.exists? %>
-  <ul class="notification-list jscroll">
-    <%= render @notifications %>
-    <%= paginate @notifications %>
-  </ul>
-<% else %>
-  <p class="text-center">まだ通知はありません</p>
-<% end %>
-<%= render "posts/post_btn" %>
+<div class="container-fluid">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/posts">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Notifications</li>
+    </ol>
+  </nav>
+  <% if @notifications.exists? %>
+    <ul class="notification-list jscroll">
+      <%= render @notifications %>
+      <%= paginate @notifications %>
+    </ul>
+  <% else %>
+    <p class="text-center">まだ通知はありません</p>
+  <% end %>
+  <%= render "posts/post_btn" %>
+</div>

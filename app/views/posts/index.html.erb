@@ -1,7 +1,9 @@
 <% provide(:title, 'アンケートを探す') %>
-<%= render 'post_search_form', url: posts_path, q: @q %>
-<ul class="post-list jscroll">
-  <%= render @posts %>
-  <%= paginate @posts %>
-</ul>
-<%= render "posts/post_btn" %>
+<div class="container-fluid">
+  <%= render 'post_search_form', url: posts_path, q: @q %>
+  <ul class="post-list jscroll">
+    <%= render @posts %>
+    <%= paginate @posts %>
+  </ul>
+  <%= render "posts/post_btn" %>
+</div>
