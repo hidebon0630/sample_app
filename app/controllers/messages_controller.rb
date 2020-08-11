@@ -2,9 +2,9 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!, only: [:create]
 
   def create
-    return unless Entry.where(user_id: current_user.id, room_id: params[:message][:room_id]).present?
+    return unless current_user.entries
 
-    @message = Message.create(params.require(:message).permit(:user_id, :content, :room_id).merge(user_id: current_user.id))
+    @message = Message.new(params.require(:message).permit(:user_id, :content, :room_id).merge(user_id: current_user.id))
     return unless @message.save
 
     @message = Message.new
