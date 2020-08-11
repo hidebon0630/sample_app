@@ -17,10 +17,6 @@
 class Option < ApplicationRecord
   belongs_to :post
   belongs_to :user
-  has_many :vote, dependent: :destroy
+  has_many :votes, dependent: :destroy
   validates :title, presence: true, length: { maximum: 30 }
-
-  def vote_count
-    Vote.where({ option_id: id }).count
-  end
 end
