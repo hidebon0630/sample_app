@@ -1,5 +1,7 @@
 # 概要
-[Wanna Know?](https://www.water-mint.work/)
+Wanna Know?
+
+※配信終了致しました。
 
 気軽にアンケートを集め、ユーザーの疑問を解決する事を目的としたサービスです。
 
